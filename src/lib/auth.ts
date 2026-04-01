@@ -44,6 +44,28 @@ export async function getAuthenticatedUser() {
 }
 
 /**
+ * Verify that the current request comes from an authenticated candidate.
+ * Returns the User record with their CandidateProfile, or null.
+ */
+export async function getAuthenticatedCandidate() {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) return null
+
+  const dbUser = await prisma.user.findUnique({
+    where: { supabaseId: user.id },
+    include: { candidateProfile: true },
+  })
+
+  if (!dbUser || dbUser.role !== "CANDIDATE") return null
+
+  return dbUser
+}
+
+/**
  * Verify that the current request comes from an authenticated employer
  * who owns a company. Returns the User record and their Company, or null.
  */
