@@ -12,10 +12,19 @@ import {
   Users,
   Menu,
   X,
+  Briefcase,
+  Building2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-const NAV_ITEMS = [
+interface NavItem {
+  label: string
+  href: string
+  icon: React.ComponentType<{ className?: string }>
+  children?: { label: string; href: string; icon: React.ComponentType<{ className?: string }> }[]
+}
+
+const NAV_ITEMS: NavItem[] = [
   {
     label: "Tableau de bord",
     href: "/admin",
@@ -35,6 +44,18 @@ const NAV_ITEMS = [
     label: "Moderation",
     href: "/admin/moderation",
     icon: Shield,
+    children: [
+      {
+        label: "Offres",
+        href: "/admin/moderation/offres",
+        icon: Briefcase,
+      },
+      {
+        label: "Entreprises",
+        href: "/admin/moderation/entreprises",
+        icon: Building2,
+      },
+    ],
   },
   {
     label: "Utilisateurs",
@@ -58,20 +79,45 @@ export function AdminSidebar() {
         const Icon = item.icon
         const active = isActive(item.href)
         return (
-          <Link
-            key={item.href}
-            href={item.href}
-            onClick={() => setMobileOpen(false)}
-            className={cn(
-              "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-              active
-                ? "bg-primary text-primary-foreground"
-                : "text-muted-foreground hover:bg-muted hover:text-foreground"
+          <div key={item.href}>
+            <Link
+              href={item.href}
+              onClick={() => setMobileOpen(false)}
+              className={cn(
+                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                active
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              )}
+            >
+              <Icon className="h-4 w-4 shrink-0" />
+              {item.label}
+            </Link>
+            {item.children && isActive(item.href) && (
+              <div className="ml-4 mt-1 flex flex-col gap-0.5 border-l pl-3">
+                {item.children.map((child) => {
+                  const ChildIcon = child.icon
+                  const childActive = pathname === child.href || pathname.startsWith(child.href + "/")
+                  return (
+                    <Link
+                      key={child.href}
+                      href={child.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={cn(
+                        "flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm transition-colors",
+                        childActive
+                          ? "font-medium text-foreground bg-muted"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      )}
+                    >
+                      <ChildIcon className="h-3.5 w-3.5 shrink-0" />
+                      {child.label}
+                    </Link>
+                  )
+                })}
+              </div>
             )}
-          >
-            <Icon className="h-4 w-4 shrink-0" />
-            {item.label}
-          </Link>
+          </div>
         )
       })}
     </nav>
