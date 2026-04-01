@@ -1,0 +1,378 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["fullTextSearchPostgres"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================================
+// ENUMS
+// ============================================================
+
+enum Role {
+  ADMIN
+  CANDIDATE
+  EMPLOYER
+  INVESTOR
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+}
+
+enum ArticleCategory {
+  HEBERGEMENT
+  TRANSPORT
+  AERIEN
+  GASTRONOMIE
+  EVENEMENTS
+  DEVELOPPEMENT
+  MICE
+}
+
+enum JobCategory {
+  RECEPTION
+  CUISINE
+  SERVICE
+  ANIMATION
+  GUIDE
+  BIEN_ETRE
+  MANAGEMENT
+  MICE
+  TRANSPORT
+  ENTRETIEN
+}
+
+enum ContractType {
+  CDI
+  CDD
+  SAISONNIER
+  STAGE
+  FREELANCE
+}
+
+enum JobStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  EXPIRED
+  DISABLED
+}
+
+enum ApplicationStatus {
+  UNREAD
+  VIEWED
+  SHORTLISTED
+  REJECTED
+}
+
+enum CompanyVerification {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum Availability {
+  IMMEDIATE
+  ONE_MONTH
+  THREE_MONTHS
+}
+
+enum InvestmentType {
+  TERRAIN
+  HOTEL
+  RIAD
+  RESTAURANT
+  PROJET
+  AUTRE
+}
+
+enum PropertyCondition {
+  NEUF
+  A_RENOVER
+  EN_ACTIVITE
+}
+
+enum InvestmentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  SOLD
+}
+
+enum ReportStatus {
+  PENDING
+  RESOLVED
+  DISMISSED
+}
+
+enum ReportTargetType {
+  JOB_LISTING
+  INVESTMENT
+}
+
+enum StatisticIndicator {
+  TOURISTS
+  REVENUE
+  NIGHTS
+  OCCUPANCY_RATE
+}
+
+enum MoroccoRegion {
+  MARRAKECH_SAFI
+  SOUSS_MASSA
+  TANGER_TETOUAN_AL_HOCEIMA
+  FES_MEKNES
+  RABAT_SALE_KENITRA
+  CASABLANCA_SETTAT
+  ORIENTAL
+  BENI_MELLAL_KHENIFRA
+  DRAA_TAFILALET
+  GUELMIM_OUED_NOUN
+  LAAYOUNE_SAKIA_EL_HAMRA
+  DAKHLA_OUED_ED_DAHAB
+}
+
+// ============================================================
+// MODELS
+// ============================================================
+
+model User {
+  id          String   @id @default(uuid())
+  email       String   @unique
+  name        String
+  role        Role     @default(CANDIDATE)
+  phone       String?
+  city        String?
+  avatarUrl   String?
+  isSuspended Boolean  @default(false)
+  supabaseId  String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  company           Company?
+  candidateProfile  CandidateProfile?
+  applications      Application[]
+  jobAlerts         JobAlert[]
+  investments       Investment[]
+  articles          Article[]          @relation("ArticleAuthor")
+  moderationLogs    ModerationLog[]
+  statisticsUpdated TourismStatistic[]
+
+  @@map("users")
+}
+
+model Article {
+  id          String          @id @default(uuid())
+  title       String
+  slug        String          @unique
+  summary     String?
+  content     Json
+  coverImage  String?
+  category    ArticleCategory
+  status      ArticleStatus   @default(DRAFT)
+  publishedAt DateTime?
+  scheduledAt DateTime?
+  viewCount   Int             @default(0)
+  authorId    String
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  author User @relation("ArticleAuthor", fields: [authorId], references: [id])
+
+  @@map("articles")
+}
+
+model Company {
+  id                 String              @id @default(uuid())
+  userId             String              @unique
+  name               String
+  description        String?
+  logo               String?
+  city               String
+  sector             String
+  website            String
+  ice                String
+  email              String
+  verificationStatus CompanyVerification @default(PENDING)
+  rejectionReason    String?
+  verifiedAt         DateTime?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+
+  user        User         @relation(fields: [userId], references: [id])
+  jobListings JobListing[]
+
+  @@map("companies")
+}
+
+model JobListing {
+  id              String        @id @default(uuid())
+  title           String
+  slug            String        @unique
+  description     Json
+  jobCategory     JobCategory
+  contractType    ContractType
+  city            String
+  region          MoroccoRegion?
+  skills          String[]
+  experience      String?
+  salary          String?
+  deadline        DateTime?
+  status          JobStatus     @default(PENDING)
+  rejectionReason String?
+  viewCount       Int           @default(0)
+  companyId       String
+  approvedAt      DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  company      Company       @relation(fields: [companyId], references: [id])
+  applications Application[]
+
+  @@map("job_listings")
+}
+
+model CandidateProfile {
+  id           String       @id @default(uuid())
+  userId       String       @unique
+  cvUrl        String?
+  experiences  Json?
+  skills       String[]
+  education    String?
+  desiredCity  String?
+  availability Availability @default(IMMEDIATE)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("candidate_profiles")
+}
+
+model Application {
+  id             String            @id @default(uuid())
+  jobListingId   String
+  candidateEmail String
+  candidateName  String
+  cvUrl          String
+  message        String?
+  status         ApplicationStatus @default(UNREAD)
+  userId         String?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  jobListing JobListing @relation(fields: [jobListingId], references: [id])
+  user       User?      @relation(fields: [userId], references: [id])
+
+  @@map("applications")
+}
+
+model JobAlert {
+  id           String        @id @default(uuid())
+  userId       String
+  city         String?
+  region       MoroccoRegion?
+  jobCategory  JobCategory?
+  contractType ContractType?
+  isActive     Boolean       @default(true)
+  lastSentAt   DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("job_alerts")
+}
+
+model Investment {
+  id              String            @id @default(uuid())
+  title           String
+  slug            String            @unique
+  description     Json
+  investmentType  InvestmentType
+  city            String
+  region          MoroccoRegion?
+  price           Float?
+  surface         Float?
+  rooms           Int?
+  condition       PropertyCondition?
+  images          String[]
+  status          InvestmentStatus  @default(PENDING)
+  rejectionReason String?
+  contactName     String
+  contactCompany  String?
+  contactEmail    String
+  userId          String
+  viewCount       Int               @default(0)
+  approvedAt      DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  user            User             @relation(fields: [userId], references: [id])
+  contactMessages ContactMessage[]
+
+  @@map("investments")
+}
+
+model TourismStatistic {
+  id              String             @id @default(uuid())
+  indicator       StatisticIndicator
+  value           Float
+  year            Int
+  region          MoroccoRegion?
+  source          String
+  updatedByUserId String
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  updatedBy User @relation(fields: [updatedByUserId], references: [id])
+
+  @@map("tourism_statistics")
+}
+
+model Report {
+  id               String           @id @default(uuid())
+  targetType       ReportTargetType
+  targetId         String
+  reason           String
+  reporterEmail    String
+  status           ReportStatus     @default(PENDING)
+  resolvedByUserId String?
+  resolvedAt       DateTime?
+  createdAt        DateTime         @default(now())
+
+  @@map("reports")
+}
+
+model ModerationLog {
+  id         String   @id @default(uuid())
+  action     String
+  targetType String
+  targetId   String
+  reason     String?
+  adminId    String
+  createdAt  DateTime @default(now())
+
+  admin User @relation(fields: [adminId], references: [id])
+
+  @@map("moderation_logs")
+}
+
+model ContactMessage {
+  id           String   @id @default(uuid())
+  investmentId String
+  senderName   String
+  senderEmail  String
+  message      String
+  createdAt    DateTime @default(now())
+
+  investment Investment @relation(fields: [investmentId], references: [id])
+
+  @@map("contact_messages")
+}

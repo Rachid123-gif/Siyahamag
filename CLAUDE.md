@@ -39,7 +39,7 @@ Pour chaque fonctionnalité, suivre cet ordre :
 3. **API** — Créer les routes API avec validation Zod + auth
 4. **UI** — Construire les pages et composants (Server Components par défaut)
 5. **Test** — Vérifier manuellement que tout fonctionne
-6. **Commit** — Un commit par fonctionnalité complète
+6. **Commit & Push** — Un commit + push par partie logique (ex: schéma DB, API routes, UI d'une page, layout complet). Ne pas attendre la fin d'une phase entière pour committer. Chaque bloc cohérent de travail = commit + `git push origin main`.
 
 ## Conventions de code
 
