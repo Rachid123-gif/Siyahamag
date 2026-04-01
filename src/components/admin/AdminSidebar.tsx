@@ -14,6 +14,7 @@ import {
   X,
   Briefcase,
   Building2,
+  BarChart3,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -56,6 +57,11 @@ const NAV_ITEMS: NavItem[] = [
         icon: Building2,
       },
     ],
+  },
+  {
+    label: "Statistiques",
+    href: "/admin/statistiques",
+    icon: BarChart3,
   },
   {
     label: "Utilisateurs",
