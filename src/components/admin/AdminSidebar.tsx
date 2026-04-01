@@ -15,6 +15,7 @@ import {
   Briefcase,
   Building2,
   BarChart3,
+  Landmark,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -55,6 +56,11 @@ const NAV_ITEMS: NavItem[] = [
         label: "Entreprises",
         href: "/admin/moderation/entreprises",
         icon: Building2,
+      },
+      {
+        label: "Investissements",
+        href: "/admin/moderation/investissements",
+        icon: Landmark,
       },
     ],
   },
