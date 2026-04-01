@@ -11,6 +11,20 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { prisma } from "@/lib/prisma"
+import { HOMEPAGE_ARTICLES_COUNT } from "@/lib/constants"
+import { ArticleCard } from "@/components/articles/ArticleCard"
+
+// ── Helpers ───────────────────────────────────────────────────────────
+
+function splitName(fullName: string): { firstName: string | null; lastName: string | null } {
+  const parts = fullName.trim().split(/\s+/)
+  if (parts.length === 0) return { firstName: null, lastName: null }
+  if (parts.length === 1) return { firstName: parts[0], lastName: null }
+  return { firstName: parts[0], lastName: parts.slice(1).join(" ") }
+}
+
+// ── Static data ───────────────────────────────────────────────────────
 
 const KEY_FIGURES = [
   {
@@ -74,7 +88,47 @@ const SECTIONS = [
   },
 ]
 
-export default function HomePage() {
+// ── Page ──────────────────────────────────────────────────────────────
+
+// Force dynamic rendering to avoid build-time DB access
+export const dynamic = "force-dynamic"
+
+export default async function HomePage() {
+  // Fetch latest published articles (graceful fallback if DB unavailable)
+  type ArticleWithAuthor = Awaited<ReturnType<typeof prisma.article.findMany>>[number] & {
+    author: { id: string; name: string }
+  }
+  let latestArticles: ArticleWithAuthor[] = []
+  try {
+    const now = new Date()
+    latestArticles = await prisma.article.findMany({
+      where: {
+        status: "PUBLISHED",
+        publishedAt: { lte: now },
+      },
+      include: {
+        author: {
+          select: { id: true, name: true },
+        },
+      },
+      orderBy: { publishedAt: "desc" },
+      take: HOMEPAGE_ARTICLES_COUNT,
+    }) as ArticleWithAuthor[]
+  } catch {
+    // DB not available (e.g., build time) — show empty state
+  }
+
+  const articleCards = latestArticles.map((article) => ({
+    id: article.id,
+    title: article.title,
+    slug: article.slug,
+    summary: article.summary,
+    coverImageUrl: article.coverImage,
+    category: article.category,
+    publishedAt: article.publishedAt,
+    author: splitName(article.author.name),
+  }))
+
   return (
     <>
       {/* Hero */}
@@ -135,8 +189,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Sections */}
+      {/* Latest articles */}
       <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold">
+              Dernières Actualités
+            </h2>
+            <Button
+              asChild
+              variant="ghost"
+              className="text-ocean hover:text-ocean/80"
+            >
+              <Link href="/actualites">
+                Voir toutes les actualités
+                <ArrowRight className="h-4 w-4 ml-1" />
+              </Link>
+            </Button>
+          </div>
+
+          {articleCards.length > 0 ? (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {articleCards.map((article) => (
+                <ArticleCard key={article.id} article={article} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">
+                Les actualités seront disponibles prochainement.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Sections */}
+      <section className="py-16 bg-secondary/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
             Explorez nos rubriques
