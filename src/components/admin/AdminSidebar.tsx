@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils"
 import {
   LayoutDashboard,
   FileText,
-  FolderOpen,
   Shield,
   Users,
   Menu,
@@ -16,6 +15,7 @@ import {
   Building2,
   BarChart3,
   Landmark,
+  AlertTriangle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -38,9 +38,9 @@ const NAV_ITEMS: NavItem[] = [
     icon: FileText,
   },
   {
-    label: "Categories",
-    href: "/admin/categories",
-    icon: FolderOpen,
+    label: "Statistiques",
+    href: "/admin/statistiques",
+    icon: BarChart3,
   },
   {
     label: "Moderation",
@@ -65,14 +65,14 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: "Statistiques",
-    href: "/admin/statistiques",
-    icon: BarChart3,
+    label: "Utilisateurs",
+    href: "/admin/utilisateurs",
+    icon: Users,
   },
   {
-    label: "Utilisateurs",
-    href: "/admin/users",
-    icon: Users,
+    label: "Signalements",
+    href: "/admin/signalements",
+    icon: AlertTriangle,
   },
 ]
 
