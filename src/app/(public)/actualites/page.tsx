@@ -80,21 +80,29 @@ export default async function ActualitesPage(props: ActualitesPageProps) {
     ...(q && { title: { contains: q, mode: "insensitive" as const } }),
   }
 
-  // Fetch articles + total count in parallel
-  const [articles, total] = await Promise.all([
-    prisma.article.findMany({
-      where,
-      include: {
-        author: {
-          select: { id: true, name: true },
+  // Fetch articles + total count (graceful fallback if DB unavailable)
+  let articles: Awaited<ReturnType<typeof prisma.article.findMany>> = []
+  let total = 0
+  try {
+    const result = await Promise.all([
+      prisma.article.findMany({
+        where,
+        include: {
+          author: {
+            select: { id: true, name: true },
+          },
         },
-      },
-      orderBy: { publishedAt: "desc" },
-      skip,
-      take: ARTICLES_PER_PAGE,
-    }),
-    prisma.article.count({ where }),
-  ])
+        orderBy: { publishedAt: "desc" },
+        skip,
+        take: ARTICLES_PER_PAGE,
+      }),
+      prisma.article.count({ where }),
+    ])
+    articles = result[0]
+    total = result[1]
+  } catch {
+    // DB not available
+  }
 
   const totalPages = Math.ceil(total / ARTICLES_PER_PAGE)
 

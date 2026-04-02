@@ -110,26 +110,34 @@ export default async function InvestissementPage(props: PageProps) {
     where.price = priceFilter
   }
 
-  // Fetch investments + count in parallel
-  const [investments, total] = await Promise.all([
-    prisma.investment.findMany({
-      where,
-      select: {
-        id: true,
-        title: true,
-        slug: true,
-        investmentType: true,
-        city: true,
-        price: true,
-        surface: true,
-        images: true,
-      },
-      orderBy: { createdAt: "desc" },
-      skip,
-      take: PER_PAGE,
-    }),
-    prisma.investment.count({ where }),
-  ])
+  // Fetch investments + count (graceful fallback if DB unavailable)
+  let investments: Awaited<ReturnType<typeof prisma.investment.findMany>> = []
+  let total = 0
+  try {
+    const result = await Promise.all([
+      prisma.investment.findMany({
+        where,
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          investmentType: true,
+          city: true,
+          price: true,
+          surface: true,
+          images: true,
+        },
+        orderBy: { createdAt: "desc" },
+        skip,
+        take: PER_PAGE,
+      }),
+      prisma.investment.count({ where }),
+    ])
+    investments = result[0]
+    total = result[1]
+  } catch {
+    // DB not available
+  }
 
   const totalPages = Math.ceil(total / PER_PAGE)
 

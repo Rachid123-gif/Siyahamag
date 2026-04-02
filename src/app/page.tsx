@@ -156,8 +156,7 @@ export default async function HomePage() {
             <Button
               asChild
               size="lg"
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white/10"
+              className="border-2 border-white bg-transparent text-white hover:bg-white/20"
             >
               <Link href="/inscription/employeur">
                 Publier une offre

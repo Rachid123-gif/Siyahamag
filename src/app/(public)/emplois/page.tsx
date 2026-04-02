@@ -102,26 +102,34 @@ export default async function EmploisPage(props: EmploisPageProps) {
     ...(contractType && { contractType: contractType as ContractType }),
   }
 
-  // Fetch jobs + count in parallel
-  const [jobs, total] = await Promise.all([
-    prisma.jobListing.findMany({
-      where,
-      include: {
-        company: {
-          select: {
-            id: true,
-            name: true,
-            logo: true,
-            verificationStatus: true,
+  // Fetch jobs + count in parallel (graceful fallback if DB unavailable)
+  let jobs: Awaited<ReturnType<typeof prisma.jobListing.findMany>> = []
+  let total = 0
+  try {
+    const result = await Promise.all([
+      prisma.jobListing.findMany({
+        where,
+        include: {
+          company: {
+            select: {
+              id: true,
+              name: true,
+              logo: true,
+              verificationStatus: true,
+            },
           },
         },
-      },
-      orderBy: { createdAt: "desc" },
-      skip,
-      take: JOBS_PER_PAGE,
-    }),
-    prisma.jobListing.count({ where }),
-  ])
+        orderBy: { createdAt: "desc" },
+        skip,
+        take: JOBS_PER_PAGE,
+      }),
+      prisma.jobListing.count({ where }),
+    ])
+    jobs = result[0]
+    total = result[1]
+  } catch {
+    // DB not available
+  }
 
   const totalPages = Math.ceil(total / JOBS_PER_PAGE)
 

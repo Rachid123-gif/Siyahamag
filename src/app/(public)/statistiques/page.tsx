@@ -53,9 +53,14 @@ const KPI_CONFIG: {
 ]
 
 export default async function StatistiquesPage() {
-  const allStatistics = await prisma.tourismStatistic.findMany({
-    orderBy: [{ year: "desc" }, { indicator: "asc" }],
-  })
+  let allStatistics: Awaited<ReturnType<typeof prisma.tourismStatistic.findMany>> = []
+  try {
+    allStatistics = await prisma.tourismStatistic.findMany({
+      orderBy: [{ year: "desc" }, { indicator: "asc" }],
+    })
+  } catch {
+    // DB not available
+  }
 
   // Get latest national value for each indicator
   const latestKpis = KPI_CONFIG.map((config) => {
