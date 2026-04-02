@@ -1,25 +1,109 @@
 import type { Metadata } from "next"
+import Image from "next/image"
+import Link from "next/link"
 import { BarChart3 } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: "Tableaux de bord du tourisme marocain",
-  description: "Indicateurs clés, données et analyses pour suivre la performance du tourisme marocain.",
+  title: "Tableaux de bord du tourisme marocain | SiyahaMag",
+  description:
+    "Indicateurs cles, donnees et analyses pour suivre la performance du tourisme marocain.",
 }
+
+const DASHBOARD_ARTICLES = [
+  {
+    id: "d1",
+    title: "Bilan touristique 2025 : le Maroc depasse les 14 millions de visiteurs",
+    summary:
+      "Analyse complete des indicateurs cles de performance du secteur touristique marocain pour l'annee 2025, avec comparaisons regionales et internationales.",
+    image: "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=600&h=400&fit=crop",
+    date: "18 mars 2026",
+    tag: "Bilan annuel",
+  },
+  {
+    id: "d2",
+    title: "Tableau de bord mensuel : fevrier 2026 en chiffres",
+    summary:
+      "Arrivees aux frontieres, nuitees hoteliers, recettes en devises : tous les indicateurs mensuels du tourisme marocain pour fevrier 2026.",
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=600&h=400&fit=crop",
+    date: "10 mars 2026",
+    tag: "Mensuel",
+  },
+  {
+    id: "d3",
+    title: "Comparatif regional : quelle region attire le plus de touristes ?",
+    summary:
+      "Marrakech-Safi domine, mais Dakhla affiche la plus forte croissance. Analyse detaillee des flux touristiques par region du Maroc.",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop",
+    date: "2 mars 2026",
+    tag: "Analyse regionale",
+  },
+]
 
 export default function TableauxDeBordPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-8">
         <div className="inline-flex p-3 rounded-lg bg-emerald-50 text-emerald-700">
           <BarChart3 className="h-6 w-6" />
         </div>
         <div>
           <h1 className="text-3xl font-bold text-ocean">Tableaux de bord</h1>
-          <p className="text-muted-foreground">Indicateurs clés et analyses du secteur touristique</p>
+          <p className="text-muted-foreground">
+            Indicateurs cles et analyses du secteur touristique marocain
+          </p>
         </div>
       </div>
-      <div className="mt-8 text-center py-16 text-muted-foreground border border-dashed rounded-lg">
-        Les tableaux de bord seront disponibles prochainement.
+
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {DASHBOARD_ARTICLES.map((article) => (
+          <Link
+            key={article.id}
+            href="/thematiques/tableaux-de-bord"
+            className="group block"
+          >
+            <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">
+              <div className="relative aspect-video w-full overflow-hidden">
+                <Image
+                  src={article.image}
+                  alt={article.title}
+                  fill
+                  unoptimized
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute left-3 top-3">
+                  <Badge className="bg-emerald-100 text-emerald-800 border-0">
+                    {article.tag}
+                  </Badge>
+                </div>
+              </div>
+              <CardContent className="flex flex-1 flex-col gap-2 p-4">
+                <h3 className="line-clamp-2 text-base font-semibold leading-snug text-foreground group-hover:text-primary">
+                  {article.title}
+                </h3>
+                <p className="line-clamp-2 text-sm text-muted-foreground">
+                  {article.summary}
+                </p>
+                <p className="mt-auto pt-2 text-xs text-muted-foreground">
+                  {article.date}
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
+      </div>
+
+      {/* Link to full statistics */}
+      <div className="mt-10 text-center">
+        <Link
+          href="/statistiques"
+          className="inline-flex items-center gap-2 rounded-lg bg-ocean px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-ocean/90"
+        >
+          <BarChart3 className="size-4" />
+          Voir toutes les statistiques
+        </Link>
       </div>
     </div>
   )

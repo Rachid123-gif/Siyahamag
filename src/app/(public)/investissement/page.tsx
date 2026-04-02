@@ -1,159 +1,106 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
-import { Search } from "lucide-react"
+import { Suspense } from "react"
 
-import { prisma } from "@/lib/prisma"
-import { INVESTMENT_TYPES, INVESTMENTS_PER_PAGE } from "@/lib/constants"
-import { InvestmentCard } from "@/components/investments/InvestmentCard"
+import { INVESTMENT_TYPES } from "@/lib/constants"
 import { InvestmentFilters } from "@/components/investments/InvestmentFilters"
-import type { InvestmentType } from "@/types"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
+import { MapPin, Ruler, Banknote } from "lucide-react"
 
 // ── SEO ───────────────────────────────────────────────────────────────
 
-export async function generateMetadata(props: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}): Promise<Metadata> {
-  const searchParams = await props.searchParams
-  const city =
-    typeof searchParams.city === "string" ? searchParams.city : null
-  const typeKey =
-    typeof searchParams.investmentType === "string"
-      ? searchParams.investmentType
-      : null
-  const typeLabel = typeKey
-    ? INVESTMENT_TYPES[typeKey as keyof typeof INVESTMENT_TYPES]
-    : null
-
-  const parts = ["Investissement touristique"]
-  if (typeLabel) parts.push(typeLabel)
-  if (city) parts.push(city)
-  parts.push("Maroc | SiyahaMag")
-
-  const title = parts.join(" - ")
-  const description = typeLabel
-    ? `Decouvrez les opportunites d'investissement en ${typeLabel.toLowerCase()} dans le secteur touristique marocain.`
-    : "Decouvrez les opportunites d'investissement dans le secteur touristique marocain : hotels, riads, restaurants, terrains."
-
-  return {
-    title,
-    description,
-    openGraph: { title, description, type: "website" },
-  }
+export const metadata: Metadata = {
+  title: "Investissement touristique au Maroc | SiyahaMag",
+  description:
+    "Decouvrez les opportunites d'investissement dans le secteur touristique marocain : hotels, riads, restaurants, terrains.",
+  openGraph: {
+    title: "Investissement touristique au Maroc | SiyahaMag",
+    description:
+      "Decouvrez les meilleures opportunites d'investissement dans le secteur touristique marocain.",
+    type: "website",
+  },
 }
 
-// ── Valid keys ────────────────────────────────────────────────────────
+// ── Static demo data ─────────────────────────────────────────────────
 
-const VALID_TYPES = new Set(Object.keys(INVESTMENT_TYPES))
-const PER_PAGE = 12
+const DEMO_INVESTMENTS = [
+  {
+    id: "1",
+    title: "Riad de charme a vendre - Medina de Marrakech",
+    slug: "riad-charme-medina-marrakech",
+    investmentType: "RIAD" as const,
+    city: "Marrakech",
+    price: 3500000,
+    surface: 320,
+    image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&h=400&fit=crop",
+  },
+  {
+    id: "2",
+    title: "Terrain en zone touristique - Baie d'Agadir",
+    slug: "terrain-zone-touristique-agadir",
+    investmentType: "TERRAIN" as const,
+    city: "Agadir",
+    price: 8000000,
+    surface: 5000,
+    image: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=600&h=400&fit=crop",
+  },
+  {
+    id: "3",
+    title: "Hotel 4 etoiles - Front de mer Tanger",
+    slug: "hotel-4-etoiles-tanger",
+    investmentType: "HOTEL" as const,
+    city: "Tanger",
+    price: 45000000,
+    surface: 4200,
+    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=400&fit=crop",
+  },
+  {
+    id: "4",
+    title: "Restaurant panoramique vue ocean - Essaouira",
+    slug: "restaurant-panoramique-essaouira",
+    investmentType: "RESTAURANT" as const,
+    city: "Essaouira",
+    price: 2800000,
+    surface: 180,
+    image: "https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=600&h=400&fit=crop",
+  },
+  {
+    id: "5",
+    title: "Projet resort eco-touristique - Dakhla",
+    slug: "projet-resort-eco-dakhla",
+    investmentType: "PROJET" as const,
+    city: "Dakhla",
+    price: 120000000,
+    surface: 25000,
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop",
+  },
+  {
+    id: "6",
+    title: "Maison d'hotes avec terrasse - Chefchaouen",
+    slug: "maison-hotes-chefchaouen",
+    investmentType: "RIAD" as const,
+    city: "Chefchaouen",
+    price: 4200000,
+    surface: 280,
+    image: "https://images.unsplash.com/photo-1553899017-43a2e746f73a?w=600&h=400&fit=crop",
+  },
+]
+
+function formatPrice(price: number): string {
+  if (price >= 1_000_000) {
+    return `${(price / 1_000_000).toFixed(price % 1_000_000 === 0 ? 0 : 1)} M MAD`
+  }
+  if (price >= 1_000) {
+    return `${(price / 1_000).toFixed(0)} K MAD`
+  }
+  return `${price.toLocaleString("fr-FR")} MAD`
+}
 
 // ── Page ─────────────────────────────────────────────────────────────
 
-export const dynamic = "force-dynamic"
-
-interface PageProps {
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}
-
-export default async function InvestissementPage(props: PageProps) {
-  const searchParams = await props.searchParams
-
-  // Parse search params
-  const investmentTypeParam =
-    typeof searchParams.investmentType === "string"
-      ? searchParams.investmentType
-      : null
-  const investmentType =
-    investmentTypeParam && VALID_TYPES.has(investmentTypeParam)
-      ? investmentTypeParam
-      : null
-  const city =
-    typeof searchParams.city === "string" ? searchParams.city.trim() : null
-  const priceMinParam =
-    typeof searchParams.priceMin === "string"
-      ? parseFloat(searchParams.priceMin)
-      : null
-  const priceMaxParam =
-    typeof searchParams.priceMax === "string"
-      ? parseFloat(searchParams.priceMax)
-      : null
-  const priceMin =
-    priceMinParam != null && Number.isFinite(priceMinParam) && priceMinParam >= 0
-      ? priceMinParam
-      : null
-  const priceMax =
-    priceMaxParam != null && Number.isFinite(priceMaxParam) && priceMaxParam > 0
-      ? priceMaxParam
-      : null
-  const pageParam =
-    typeof searchParams.page === "string"
-      ? parseInt(searchParams.page, 10)
-      : 1
-  const currentPage =
-    Number.isFinite(pageParam) && pageParam >= 1 ? pageParam : 1
-
-  const skip = (currentPage - 1) * PER_PAGE
-
-  // Build where clause
-  const where: Record<string, unknown> = {
-    status: "APPROVED" as const,
-  }
-  if (investmentType) {
-    where.investmentType = investmentType as InvestmentType
-  }
-  if (city) {
-    where.city = { contains: city, mode: "insensitive" }
-  }
-  if (priceMin != null || priceMax != null) {
-    const priceFilter: Record<string, number> = {}
-    if (priceMin != null) priceFilter.gte = priceMin
-    if (priceMax != null) priceFilter.lte = priceMax
-    where.price = priceFilter
-  }
-
-  // Fetch investments + count (graceful fallback if DB unavailable)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let investments: any[] = []
-  let total = 0
-  try {
-    const result = await Promise.all([
-      prisma.investment.findMany({
-        where,
-        select: {
-          id: true,
-          title: true,
-          slug: true,
-          investmentType: true,
-          city: true,
-          price: true,
-          surface: true,
-          images: true,
-        },
-        orderBy: { createdAt: "desc" },
-        skip,
-        take: PER_PAGE,
-      }),
-      prisma.investment.count({ where }),
-    ])
-    investments = result[0]
-    total = result[1]
-  } catch {
-    // DB not available
-  }
-
-  const totalPages = Math.ceil(total / PER_PAGE)
-
-  // Pagination URL builder
-  function buildPageUrl(page: number): string {
-    const params = new URLSearchParams()
-    if (investmentType) params.set("investmentType", investmentType)
-    if (city) params.set("city", city)
-    if (priceMin != null) params.set("priceMin", String(priceMin))
-    if (priceMax != null) params.set("priceMax", String(priceMax))
-    if (page > 1) params.set("page", String(page))
-    const qs = params.toString()
-    return `/investissement${qs ? `?${qs}` : ""}`
-  }
-
+export default function InvestissementPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero section */}
@@ -169,118 +116,91 @@ export default async function InvestissementPage(props: PageProps) {
 
       {/* Filters */}
       <div className="mt-8">
-        <InvestmentFilters />
+        <Suspense fallback={<div className="h-24 animate-pulse rounded-lg bg-muted" />}>
+          <InvestmentFilters />
+        </Suspense>
       </div>
 
       {/* Results count */}
       <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
-        <Search className="size-4" />
         <span>
-          {total} opportunite{total !== 1 ? "s" : ""} trouvee
-          {total !== 1 ? "s" : ""}
+          {DEMO_INVESTMENTS.length} opportunites disponibles
         </span>
       </div>
 
       {/* Investment grid */}
-      {investments.length > 0 ? (
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {investments.map((investment) => (
-            <InvestmentCard key={investment.id} investment={investment} />
-          ))}
-        </div>
-      ) : (
-        <div className="mt-12 py-16 text-center">
-          <p className="text-muted-foreground">
-            Aucune opportunite disponible pour le moment.
-          </p>
-          <Link
-            href="/investissement"
-            className="mt-4 inline-block text-ocean hover:underline"
-          >
-            Voir toutes les opportunites
-          </Link>
-        </div>
-      )}
+      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {DEMO_INVESTMENTS.map((investment) => {
+          const typeLabel =
+            INVESTMENT_TYPES[
+              investment.investmentType as keyof typeof INVESTMENT_TYPES
+            ] ?? investment.investmentType
 
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <nav
-          aria-label="Pagination des investissements"
-          className="mt-12 flex items-center justify-center gap-2"
+          return (
+            <Link
+              key={investment.id}
+              href={`/investissement/${investment.slug}`}
+              className="group block"
+            >
+              <Card className="overflow-hidden transition-shadow hover:shadow-md">
+                {/* Image */}
+                <div className="relative aspect-video w-full overflow-hidden bg-muted">
+                  <Image
+                    src={investment.image}
+                    alt={investment.title}
+                    fill
+                    unoptimized
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <Badge className="absolute left-3 top-3">{typeLabel}</Badge>
+                </div>
+
+                <CardContent className="space-y-2">
+                  {/* Title */}
+                  <h3 className="font-heading text-base font-semibold leading-snug text-foreground line-clamp-2">
+                    {investment.title}
+                  </h3>
+
+                  {/* City */}
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <MapPin className="size-3.5 shrink-0" />
+                    <span>{investment.city}</span>
+                  </div>
+
+                  {/* Price + Surface */}
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                    <span className="text-base font-bold text-ocean">
+                      {formatPrice(investment.price)}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
+                      <Ruler className="size-3.5" />
+                      {investment.surface.toLocaleString("fr-FR")} m&sup2;
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          )
+        })}
+      </div>
+
+      {/* CTA */}
+      <div className="mt-12 rounded-xl border bg-muted/30 p-8 text-center">
+        <h2 className="text-xl font-semibold text-foreground">
+          Vous avez un bien a proposer ?
+        </h2>
+        <p className="mt-2 text-muted-foreground">
+          Publiez votre opportunite d&apos;investissement et touchez des
+          investisseurs qualifies du secteur touristique.
+        </p>
+        <Link
+          href="/inscription/employeur"
+          className="mt-4 inline-flex items-center gap-2 rounded-lg bg-ocean px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-ocean/90"
         >
-          {currentPage > 1 ? (
-            <Link
-              href={buildPageUrl(currentPage - 1)}
-              className="inline-flex items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-secondary"
-            >
-              <span aria-hidden="true">&lsaquo;</span>
-              <span className="hidden sm:inline">Precedent</span>
-            </Link>
-          ) : (
-            <span className="inline-flex cursor-not-allowed items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium text-muted-foreground opacity-50">
-              <span aria-hidden="true">&lsaquo;</span>
-              <span className="hidden sm:inline">Precedent</span>
-            </span>
-          )}
-
-          {Array.from({ length: totalPages }, (_, i) => i + 1)
-            .filter((page) => {
-              if (page === 1 || page === totalPages) return true
-              if (Math.abs(page - currentPage) <= 1) return true
-              return false
-            })
-            .reduce<(number | "ellipsis")[]>((acc, page, idx, arr) => {
-              if (
-                idx > 0 &&
-                arr[idx - 1] !== undefined &&
-                page - (arr[idx - 1] as number) > 1
-              ) {
-                acc.push("ellipsis")
-              }
-              acc.push(page)
-              return acc
-            }, [])
-            .map((item, idx) =>
-              item === "ellipsis" ? (
-                <span
-                  key={`ellipsis-${idx}`}
-                  className="flex h-10 w-10 items-center justify-center text-sm text-muted-foreground"
-                  aria-hidden="true"
-                >
-                  &hellip;
-                </span>
-              ) : (
-                <Link
-                  key={item}
-                  href={buildPageUrl(item)}
-                  aria-current={item === currentPage ? "page" : undefined}
-                  className={`inline-flex h-10 w-10 items-center justify-center rounded-md text-sm font-medium transition-colors ${
-                    item === currentPage
-                      ? "bg-ocean text-white"
-                      : "border hover:bg-secondary"
-                  }`}
-                >
-                  {item}
-                </Link>
-              )
-            )}
-
-          {currentPage < totalPages ? (
-            <Link
-              href={buildPageUrl(currentPage + 1)}
-              className="inline-flex items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-secondary"
-            >
-              <span className="hidden sm:inline">Suivant</span>
-              <span aria-hidden="true">&rsaquo;</span>
-            </Link>
-          ) : (
-            <span className="inline-flex cursor-not-allowed items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium text-muted-foreground opacity-50">
-              <span className="hidden sm:inline">Suivant</span>
-              <span aria-hidden="true">&rsaquo;</span>
-            </span>
-          )}
-        </nav>
-      )}
+          Publier une opportunite
+        </Link>
+      </div>
     </div>
   )
 }

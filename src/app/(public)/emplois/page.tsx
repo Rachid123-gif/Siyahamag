@@ -1,151 +1,152 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Search } from "lucide-react"
+import { Suspense } from "react"
 
-import { prisma } from "@/lib/prisma"
 import {
   JOB_CATEGORIES,
   CONTRACT_TYPES,
   MAJOR_CITIES,
-  JOBS_PER_PAGE,
 } from "@/lib/constants"
-import { JobCard } from "@/components/jobs/JobCard"
 import { JobSearchFilters } from "@/components/jobs/JobSearchFilters"
 import { JobSearchBar } from "@/components/jobs/JobSearchBar"
-import type { JobCategory, ContractType } from "@/types"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
+import { MapPin, Building2, Clock, BadgeCheck, Banknote } from "lucide-react"
 
 // ── SEO ───────────────────────────────────────────────────────────────
 
-export async function generateMetadata(props: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}): Promise<Metadata> {
-  const searchParams = await props.searchParams
-  const city =
-    typeof searchParams.city === "string" ? searchParams.city : null
-  const categoryKey =
-    typeof searchParams.jobCategory === "string"
-      ? searchParams.jobCategory
-      : null
-  const categoryLabel = categoryKey
-    ? JOB_CATEGORIES[categoryKey as keyof typeof JOB_CATEGORIES]
-    : null
-
-  const parts = ["Offres d'emploi tourisme"]
-  if (categoryLabel) parts.push(categoryLabel)
-  if (city) parts.push(city)
-  parts.push("Maroc | SiyahaMag")
-
-  const title = parts.join(" - ")
-  const description = categoryLabel
-    ? `Trouvez un emploi en ${categoryLabel.toLowerCase()} dans le secteur touristique marocain.`
-    : "Trouvez votre emploi dans le secteur touristique marocain : hotellerie, restauration, animation, guide, management."
-
-  return {
-    title,
-    description,
-    openGraph: { title, description, type: "website" },
-  }
+export const metadata: Metadata = {
+  title: "Offres d'emploi tourisme Maroc | SiyahaMag",
+  description:
+    "Trouvez votre emploi dans le secteur touristique marocain : hotellerie, restauration, animation, guide, management.",
+  openGraph: {
+    title: "Offres d'emploi tourisme Maroc | SiyahaMag",
+    description:
+      "Trouvez votre emploi dans le secteur touristique marocain.",
+    type: "website",
+  },
 }
 
-// ── Valid keys ────────────────────────────────────────────────────────
+// ── Static demo data ─────────────────────────────────────────────────
 
-const VALID_CATEGORIES = new Set(Object.keys(JOB_CATEGORIES))
-const VALID_CONTRACTS = new Set(Object.keys(CONTRACT_TYPES))
+const DEMO_JOBS = [
+  {
+    id: "1",
+    title: "Receptionniste bilingue",
+    slug: "receptionniste-bilingue-marrakech",
+    jobCategory: "RECEPTION" as const,
+    contractType: "CDI" as const,
+    city: "Marrakech",
+    salary: "6 000 - 8 000 MAD",
+    createdAt: "2026-03-30",
+    company: {
+      name: "Royal Mansour Marrakech",
+      verified: true,
+    },
+  },
+  {
+    id: "2",
+    title: "Chef de cuisine - Restaurant gastronomique",
+    slug: "chef-cuisine-agadir",
+    jobCategory: "CUISINE" as const,
+    contractType: "CDI" as const,
+    city: "Agadir",
+    salary: "12 000 - 18 000 MAD",
+    createdAt: "2026-03-28",
+    company: {
+      name: "Sofitel Agadir Royal Bay",
+      verified: true,
+    },
+  },
+  {
+    id: "3",
+    title: "Guide touristique certifie",
+    slug: "guide-touristique-fes",
+    jobCategory: "GUIDE" as const,
+    contractType: "FREELANCE" as const,
+    city: "Fes",
+    salary: "8 000 - 12 000 MAD",
+    createdAt: "2026-03-26",
+    company: {
+      name: "Fes Medina Tours",
+      verified: false,
+    },
+  },
+  {
+    id: "4",
+    title: "Directeur d'hotel 4 etoiles",
+    slug: "directeur-hotel-casablanca",
+    jobCategory: "MANAGEMENT" as const,
+    contractType: "CDI" as const,
+    city: "Casablanca",
+    salary: "25 000 - 35 000 MAD",
+    createdAt: "2026-03-24",
+    company: {
+      name: "Hyatt Regency Casablanca",
+      verified: true,
+    },
+  },
+  {
+    id: "5",
+    title: "Animateur touristique polyvalent",
+    slug: "animateur-touristique-essaouira",
+    jobCategory: "ANIMATION" as const,
+    contractType: "SAISONNIER" as const,
+    city: "Essaouira",
+    salary: "5 000 - 7 000 MAD",
+    createdAt: "2026-03-22",
+    company: {
+      name: "Mogador Hotels & Resorts",
+      verified: true,
+    },
+  },
+  {
+    id: "6",
+    title: "Responsable spa et bien-etre",
+    slug: "responsable-spa-tanger",
+    jobCategory: "BIEN_ETRE" as const,
+    contractType: "CDI" as const,
+    city: "Tanger",
+    salary: "10 000 - 14 000 MAD",
+    createdAt: "2026-03-20",
+    company: {
+      name: "Hilton Tanger City Center",
+      verified: true,
+    },
+  },
+  {
+    id: "7",
+    title: "Stagiaire en gestion hoteliere",
+    slug: "stagiaire-gestion-hoteliere-rabat",
+    jobCategory: "MANAGEMENT" as const,
+    contractType: "STAGE" as const,
+    city: "Rabat",
+    salary: "2 500 MAD",
+    createdAt: "2026-03-18",
+    company: {
+      name: "The View Hotel Rabat",
+      verified: false,
+    },
+  },
+  {
+    id: "8",
+    title: "Chef de rang - Restaurant panoramique",
+    slug: "chef-rang-restaurant-ouarzazate",
+    jobCategory: "SERVICE" as const,
+    contractType: "CDD" as const,
+    city: "Ouarzazate",
+    salary: "5 500 - 7 500 MAD",
+    createdAt: "2026-03-15",
+    company: {
+      name: "Kasbah Tamadot",
+      verified: true,
+    },
+  },
+]
 
 // ── Page ─────────────────────────────────────────────────────────────
 
-export const dynamic = "force-dynamic"
-
-interface EmploisPageProps {
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}
-
-export default async function EmploisPage(props: EmploisPageProps) {
-  const searchParams = await props.searchParams
-
-  // Parse search params
-  const q =
-    typeof searchParams.q === "string" ? searchParams.q.trim() : null
-  const city =
-    typeof searchParams.city === "string" ? searchParams.city.trim() : null
-  const jobCategoryParam =
-    typeof searchParams.jobCategory === "string"
-      ? searchParams.jobCategory
-      : null
-  const jobCategory =
-    jobCategoryParam && VALID_CATEGORIES.has(jobCategoryParam)
-      ? jobCategoryParam
-      : null
-  const contractTypeParam =
-    typeof searchParams.contractType === "string"
-      ? searchParams.contractType
-      : null
-  const contractType =
-    contractTypeParam && VALID_CONTRACTS.has(contractTypeParam)
-      ? contractTypeParam
-      : null
-  const pageParam =
-    typeof searchParams.page === "string"
-      ? parseInt(searchParams.page, 10)
-      : 1
-  const currentPage =
-    Number.isFinite(pageParam) && pageParam >= 1 ? pageParam : 1
-
-  const skip = (currentPage - 1) * JOBS_PER_PAGE
-
-  // Build where clause
-  const where = {
-    status: "APPROVED" as const,
-    ...(q && { title: { contains: q, mode: "insensitive" as const } }),
-    ...(city && { city: { contains: city, mode: "insensitive" as const } }),
-    ...(jobCategory && { jobCategory: jobCategory as JobCategory }),
-    ...(contractType && { contractType: contractType as ContractType }),
-  }
-
-  // Fetch jobs + count in parallel (graceful fallback if DB unavailable)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let jobs: any[] = []
-  let total = 0
-  try {
-    const result = await Promise.all([
-      prisma.jobListing.findMany({
-        where,
-        include: {
-          company: {
-            select: {
-              id: true,
-              name: true,
-              logo: true,
-              verificationStatus: true,
-            },
-          },
-        },
-        orderBy: { createdAt: "desc" },
-        skip,
-        take: JOBS_PER_PAGE,
-      }),
-      prisma.jobListing.count({ where }),
-    ])
-    jobs = result[0]
-    total = result[1]
-  } catch {
-    // DB not available
-  }
-
-  const totalPages = Math.ceil(total / JOBS_PER_PAGE)
-
-  // Pagination URL builder
-  function buildPageUrl(page: number): string {
-    const params = new URLSearchParams()
-    if (q) params.set("q", q)
-    if (city) params.set("city", city)
-    if (jobCategory) params.set("jobCategory", jobCategory)
-    if (contractType) params.set("contractType", contractType)
-    if (page > 1) params.set("page", String(page))
-    const qs = params.toString()
-    return `/emplois${qs ? `?${qs}` : ""}`
-  }
-
+export default function EmploisPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero section */}
@@ -159,145 +160,120 @@ export default async function EmploisPage(props: EmploisPageProps) {
 
         {/* Search bar */}
         <div className="mx-auto mt-8 max-w-3xl">
-          <JobSearchBar
-            defaultQuery={q ?? ""}
-            defaultCity={city ?? ""}
-            cities={[...MAJOR_CITIES]}
-          />
+          <Suspense fallback={<div className="h-11 animate-pulse rounded-lg bg-white/20" />}>
+            <JobSearchBar
+              defaultQuery=""
+              defaultCity=""
+              cities={[...MAJOR_CITIES]}
+            />
+          </Suspense>
         </div>
       </div>
 
       {/* Filters */}
       <div className="mt-8">
-        <JobSearchFilters />
+        <Suspense fallback={<div className="h-24 animate-pulse rounded-lg bg-muted" />}>
+          <JobSearchFilters />
+        </Suspense>
       </div>
 
       {/* Results count */}
       <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
-        <Search className="size-4" />
         <span>
-          {total} offre{total !== 1 ? "s" : ""} trouvee{total !== 1 ? "s" : ""}
+          {DEMO_JOBS.length} offres disponibles
         </span>
-        {(q || city) && (
-          <Link
-            href={
-              jobCategory || contractType
-                ? `/emplois?${new URLSearchParams({
-                    ...(jobCategory && { jobCategory }),
-                    ...(contractType && { contractType }),
-                  }).toString()}`
-                : "/emplois"
-            }
-            className="ml-2 text-ocean hover:underline"
-          >
-            Effacer la recherche
-          </Link>
-        )}
       </div>
 
       {/* Job list */}
-      {jobs.length > 0 ? (
-        <div className="mt-6 space-y-4">
-          {jobs.map((job) => (
-            <JobCard key={job.id} job={job} />
-          ))}
-        </div>
-      ) : (
-        <div className="mt-12 py-16 text-center">
-          <p className="text-muted-foreground">
-            Aucune offre ne correspond a vos criteres.
-          </p>
-          <Link
-            href="/emplois"
-            className="mt-4 inline-block text-ocean hover:underline"
-          >
-            Voir toutes les offres
-          </Link>
-        </div>
-      )}
+      <div className="mt-6 space-y-4">
+        {DEMO_JOBS.map((job) => {
+          const categoryLabel =
+            JOB_CATEGORIES[job.jobCategory as keyof typeof JOB_CATEGORIES] ??
+            job.jobCategory
+          const contractLabel =
+            CONTRACT_TYPES[job.contractType as keyof typeof CONTRACT_TYPES] ??
+            job.contractType
 
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <nav
-          aria-label="Pagination des offres"
-          className="mt-12 flex items-center justify-center gap-2"
+          return (
+            <Link key={job.id} href={`/emplois/${job.slug}`} className="block">
+              <Card className="transition-shadow hover:shadow-md">
+                <CardContent className="flex gap-4">
+                  {/* Company icon */}
+                  <div className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-muted">
+                    <Building2 className="size-6 text-muted-foreground" />
+                  </div>
+
+                  {/* Job info */}
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-heading text-base font-semibold leading-snug text-foreground">
+                      {job.title}
+                    </h3>
+
+                    {/* Company name */}
+                    <div className="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground">
+                      <span>{job.company.name}</span>
+                      {job.company.verified && (
+                        <BadgeCheck
+                          className="size-4 text-blue-500"
+                          aria-label="Entreprise verifiee"
+                        />
+                      )}
+                    </div>
+
+                    {/* Location + contract + date */}
+                    <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="size-3.5" />
+                        {job.city}
+                      </span>
+
+                      <Badge variant="secondary" className="text-xs">
+                        {contractLabel}
+                      </Badge>
+
+                      <Badge variant="outline" className="text-xs">
+                        {categoryLabel}
+                      </Badge>
+
+                      {job.salary && (
+                        <span className="inline-flex items-center gap-1">
+                          <Banknote className="size-3.5" />
+                          {job.salary}
+                        </span>
+                      )}
+
+                      <span className="inline-flex items-center gap-1">
+                        <Clock className="size-3.5" />
+                        {new Date(job.createdAt).toLocaleDateString("fr-FR", {
+                          day: "numeric",
+                          month: "short",
+                        })}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          )
+        })}
+      </div>
+
+      {/* CTA */}
+      <div className="mt-12 rounded-xl border bg-muted/30 p-8 text-center">
+        <h2 className="text-xl font-semibold text-foreground">
+          Vous etes candidat ?
+        </h2>
+        <p className="mt-2 text-muted-foreground">
+          Creez votre profil pour postuler aux offres et recevoir des alertes
+          personnalisees.
+        </p>
+        <Link
+          href="/inscription"
+          className="mt-4 inline-flex items-center gap-2 rounded-lg bg-ocean px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-ocean/90"
         >
-          {/* Previous */}
-          {currentPage > 1 ? (
-            <Link
-              href={buildPageUrl(currentPage - 1)}
-              className="inline-flex items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-secondary"
-            >
-              <span aria-hidden="true">&lsaquo;</span>
-              <span className="hidden sm:inline">Precedent</span>
-            </Link>
-          ) : (
-            <span className="inline-flex cursor-not-allowed items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium text-muted-foreground opacity-50">
-              <span aria-hidden="true">&lsaquo;</span>
-              <span className="hidden sm:inline">Precedent</span>
-            </span>
-          )}
-
-          {/* Page numbers */}
-          {Array.from({ length: totalPages }, (_, i) => i + 1)
-            .filter((page) => {
-              if (page === 1 || page === totalPages) return true
-              if (Math.abs(page - currentPage) <= 1) return true
-              return false
-            })
-            .reduce<(number | "ellipsis")[]>((acc, page, idx, arr) => {
-              if (
-                idx > 0 &&
-                arr[idx - 1] !== undefined &&
-                page - (arr[idx - 1] as number) > 1
-              ) {
-                acc.push("ellipsis")
-              }
-              acc.push(page)
-              return acc
-            }, [])
-            .map((item, idx) =>
-              item === "ellipsis" ? (
-                <span
-                  key={`ellipsis-${idx}`}
-                  className="flex h-10 w-10 items-center justify-center text-sm text-muted-foreground"
-                  aria-hidden="true"
-                >
-                  &hellip;
-                </span>
-              ) : (
-                <Link
-                  key={item}
-                  href={buildPageUrl(item)}
-                  aria-current={item === currentPage ? "page" : undefined}
-                  className={`inline-flex h-10 w-10 items-center justify-center rounded-md text-sm font-medium transition-colors ${
-                    item === currentPage
-                      ? "bg-ocean text-white"
-                      : "border hover:bg-secondary"
-                  }`}
-                >
-                  {item}
-                </Link>
-              )
-            )}
-
-          {/* Next */}
-          {currentPage < totalPages ? (
-            <Link
-              href={buildPageUrl(currentPage + 1)}
-              className="inline-flex items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-secondary"
-            >
-              <span className="hidden sm:inline">Suivant</span>
-              <span aria-hidden="true">&rsaquo;</span>
-            </Link>
-          ) : (
-            <span className="inline-flex cursor-not-allowed items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium text-muted-foreground opacity-50">
-              <span className="hidden sm:inline">Suivant</span>
-              <span aria-hidden="true">&rsaquo;</span>
-            </span>
-          )}
-        </nav>
-      )}
+          Creer mon compte candidat
+        </Link>
+      </div>
     </div>
   )
 }

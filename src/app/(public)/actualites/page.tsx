@@ -1,258 +1,234 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
-import { Search } from "lucide-react"
 
-import { prisma } from "@/lib/prisma"
-import { ARTICLE_CATEGORIES, ARTICLES_PER_PAGE } from "@/lib/constants"
-import { ArticleCard } from "@/components/articles/ArticleCard"
+import { ARTICLE_CATEGORIES } from "@/lib/constants"
 import { CategoryFilterBar } from "@/components/articles/CategoryFilterBar"
-import type { ArticleCategory } from "@/types"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
 
 // ── SEO ───────────────────────────────────────────────────────────────
 
-export async function generateMetadata(props: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}): Promise<Metadata> {
-  const searchParams = await props.searchParams
-  const category = typeof searchParams.category === "string" ? searchParams.category : null
-  const categoryLabel = category
-    ? ARTICLE_CATEGORIES[category as keyof typeof ARTICLE_CATEGORIES]
-    : null
-
-  const title = categoryLabel
-    ? `${categoryLabel} — Actualités tourisme Maroc | SiyahaMag`
-    : "Actualités du tourisme marocain | SiyahaMag"
-
-  const description = categoryLabel
-    ? `Articles et actualités sur ${categoryLabel.toLowerCase()} dans le secteur touristique marocain.`
-    : "Suivez les dernières nouvelles du secteur touristique au Maroc : hébergement, transport, gastronomie, événements."
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-    },
-  }
+export const metadata: Metadata = {
+  title: "Actualites du tourisme marocain | SiyahaMag",
+  description:
+    "Suivez les dernieres nouvelles du secteur touristique au Maroc : hebergement, transport, gastronomie, evenements.",
+  openGraph: {
+    title: "Actualites du tourisme marocain | SiyahaMag",
+    description:
+      "Suivez les dernieres nouvelles du secteur touristique au Maroc.",
+    type: "website",
+  },
 }
 
-// ── Helpers ───────────────────────────────────────────────────────────
+// ── Static demo data ─────────────────────────────────────────────────
 
-function splitName(fullName: string): { firstName: string | null; lastName: string | null } {
-  const parts = fullName.trim().split(/\s+/)
-  if (parts.length === 0) return { firstName: null, lastName: null }
-  if (parts.length === 1) return { firstName: parts[0], lastName: null }
-  return { firstName: parts[0], lastName: parts.slice(1).join(" ") }
+const CATEGORY_COLORS: Record<string, string> = {
+  HEBERGEMENT: "bg-blue-100 text-blue-800",
+  TRANSPORT: "bg-amber-100 text-amber-800",
+  AERIEN: "bg-sky-100 text-sky-800",
+  GASTRONOMIE: "bg-rose-100 text-rose-800",
+  EVENEMENTS: "bg-purple-100 text-purple-800",
+  DEVELOPPEMENT: "bg-emerald-100 text-emerald-800",
+  INVEST: "bg-orange-100 text-orange-800",
+  GOUVERNEMENT: "bg-indigo-100 text-indigo-800",
+  MARCHES: "bg-cyan-100 text-cyan-800",
+  PROJETS_FEDERATIONS: "bg-teal-100 text-teal-800",
+  CULTURE_PATRIMOINE: "bg-pink-100 text-pink-800",
+  MICE: "bg-teal-100 text-teal-800",
 }
 
-// ── Valid categories ──────────────────────────────────────────────────
-
-const VALID_CATEGORIES = new Set(Object.keys(ARTICLE_CATEGORIES))
+const DEMO_ARTICLES = [
+  {
+    id: "1",
+    title: "Les riads de Marrakech affichent complet pour la saison printemps 2026",
+    slug: "riads-marrakech-complet-printemps-2026",
+    summary:
+      "Avec un taux d'occupation record de 92%, les riads de la medina de Marrakech confirment l'engouement des touristes internationaux pour l'hebergement traditionnel marocain.",
+    coverImage: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&h=400&fit=crop",
+    category: "HEBERGEMENT" as const,
+    publishedAt: "2026-03-28",
+    author: "Yasmine El Amrani",
+  },
+  {
+    id: "2",
+    title: "Le nouvel aeroport de Marrakech-Menara accueillera 20 millions de passagers",
+    slug: "nouvel-aeroport-marrakech-menara-2026",
+    summary:
+      "L'extension du terminal 2 de l'aeroport de Marrakech entre dans sa phase finale, avec une capacite doublee pour repondre a la croissance du trafic aerien.",
+    coverImage: "https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=600&h=400&fit=crop",
+    category: "AERIEN" as const,
+    publishedAt: "2026-03-25",
+    author: "Karim Bennis",
+  },
+  {
+    id: "3",
+    title: "La gastronomie marocaine inscrite au patrimoine mondial de l'UNESCO",
+    slug: "gastronomie-marocaine-unesco-2026",
+    summary:
+      "Le couscous, le tajine et les patisseries traditionnelles marocaines obtiennent une reconnaissance internationale meritee aupres de l'organisation onusienne.",
+    coverImage: "https://images.unsplash.com/photo-1541518763-27a024444965?w=600&h=400&fit=crop",
+    category: "GASTRONOMIE" as const,
+    publishedAt: "2026-03-22",
+    author: "Fatima Zahra Idrissi",
+  },
+  {
+    id: "4",
+    title: "Coupe du Monde 2030 : le Maroc accelere la construction des stades",
+    slug: "coupe-du-monde-2030-stades-maroc",
+    summary:
+      "Les chantiers des six stades marocains pour la Coupe du Monde 2030 avancent a grand rythme. Le Grand Stade de Casablanca sera le plus grand d'Afrique.",
+    coverImage: "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=600&h=400&fit=crop",
+    category: "EVENEMENTS" as const,
+    publishedAt: "2026-03-20",
+    author: "Omar Tazi",
+  },
+  {
+    id: "5",
+    title: "Le tourisme durable au coeur de la strategie Vision 2030 du Maroc",
+    slug: "tourisme-durable-vision-2030-maroc",
+    summary:
+      "Le Ministere du Tourisme devoile un plan ambitieux pour un tourisme respectueux de l'environnement, avec des labels ecologiques pour les etablissements hoteliers.",
+    coverImage: "https://images.unsplash.com/photo-1489493887464-892be6d1daae?w=600&h=400&fit=crop",
+    category: "DEVELOPPEMENT" as const,
+    publishedAt: "2026-03-18",
+    author: "Nadia Alaoui",
+  },
+  {
+    id: "6",
+    title: "Le TGV Al Boraq relie desormais Tanger a Essaouira en 4 heures",
+    slug: "tgv-al-boraq-tanger-essaouira",
+    summary:
+      "L'extension de la ligne a grande vitesse vers le sud permet aux touristes de decouvrir la cote atlantique marocaine plus facilement que jamais.",
+    coverImage: "https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=600&h=400&fit=crop",
+    category: "TRANSPORT" as const,
+    publishedAt: "2026-03-15",
+    author: "Mehdi Chraibi",
+  },
+  {
+    id: "7",
+    title: "Festival des musiques sacrees de Fes : edition record avec 200 000 visiteurs",
+    slug: "festival-musiques-sacrees-fes-2026",
+    summary:
+      "La 30e edition du celebre festival de Fes a attire un nombre record de visiteurs nationaux et internationaux, confirmant le rayonnement culturel de la ville.",
+    coverImage: "https://images.unsplash.com/photo-1531219572328-a0171b4448a7?w=600&h=400&fit=crop",
+    category: "EVENEMENTS" as const,
+    publishedAt: "2026-03-12",
+    author: "Salma Bennani",
+  },
+  {
+    id: "8",
+    title: "Les plages du Maroc classees parmi les plus belles de la Mediterranee",
+    slug: "plages-maroc-classement-mediterranee",
+    summary:
+      "Plusieurs plages marocaines figurent dans le top 20 du classement europeen Blue Flag, recompensant la qualite de l'eau et les infrastructures touristiques.",
+    coverImage: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=600&h=400&fit=crop",
+    category: "DEVELOPPEMENT" as const,
+    publishedAt: "2026-03-10",
+    author: "Hassan Ouazzani",
+  },
+  {
+    id: "9",
+    title: "Investissements hoteliers : 15 milliards MAD injectes en 2025",
+    slug: "investissements-hoteliers-15-milliards-2025",
+    summary:
+      "Le secteur hotelier marocain connait une vague d'investissements sans precedent, avec l'arrivee de grandes chaines internationales a Tanger et Dakhla.",
+    coverImage: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=400&fit=crop",
+    category: "INVEST" as const,
+    publishedAt: "2026-03-07",
+    author: "Rachid Amri",
+  },
+  {
+    id: "10",
+    title: "Chefchaouen, la perle bleue, bat son record de frequentation touristique",
+    slug: "chefchaouen-record-frequentation-2026",
+    summary:
+      "La ville bleue du Rif a accueilli plus de 500 000 visiteurs en 2025, portee par les reseaux sociaux et son classement dans les destinations les plus photogeniques.",
+    coverImage: "https://images.unsplash.com/photo-1553899017-43a2e746f73a?w=600&h=400&fit=crop",
+    category: "CULTURE_PATRIMOINE" as const,
+    publishedAt: "2026-03-04",
+    author: "Amina Kettani",
+  },
+]
 
 // ── Page ──────────────────────────────────────────────────────────────
 
-export const dynamic = "force-dynamic"
-
-interface ActualitesPageProps {
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}
-
-export default async function ActualitesPage(props: ActualitesPageProps) {
-  const searchParams = await props.searchParams
-
-  // Parse search params
-  const categoryParam = typeof searchParams.category === "string" ? searchParams.category : null
-  const category = categoryParam && VALID_CATEGORIES.has(categoryParam) ? categoryParam : null
-  const q = typeof searchParams.q === "string" ? searchParams.q.trim() : null
-  const pageParam = typeof searchParams.page === "string" ? parseInt(searchParams.page, 10) : 1
-  const currentPage = Number.isFinite(pageParam) && pageParam >= 1 ? pageParam : 1
-
-  const skip = (currentPage - 1) * ARTICLES_PER_PAGE
-  const now = new Date()
-
-  // Build where clause
-  const where = {
-    status: "PUBLISHED" as const,
-    publishedAt: { lte: now },
-    ...(category && { category: category as ArticleCategory }),
-    ...(q && { title: { contains: q, mode: "insensitive" as const } }),
-  }
-
-  // Fetch articles + total count (graceful fallback if DB unavailable)
-  type ArticleWithAuthor = { id: string; title: string; slug: string; summary: string | null; coverImage: string | null; category: ArticleCategory; publishedAt: Date | null; author: { id: string; name: string } }
-  let articles: ArticleWithAuthor[] = []
-  let total = 0
-  try {
-    const result = await Promise.all([
-      prisma.article.findMany({
-        where,
-        include: {
-          author: {
-            select: { id: true, name: true },
-          },
-        },
-        orderBy: { publishedAt: "desc" },
-        skip,
-        take: ARTICLES_PER_PAGE,
-      }),
-      prisma.article.count({ where }),
-    ])
-    articles = result[0] as unknown as ArticleWithAuthor[]
-    total = result[1]
-  } catch {
-    // DB not available
-  }
-
-  const totalPages = Math.ceil(total / ARTICLES_PER_PAGE)
-
-  // Map to ArticleCard format
-  const articleCards = articles.map((article) => ({
-    id: article.id,
-    title: article.title,
-    slug: article.slug,
-    summary: article.summary,
-    coverImageUrl: article.coverImage,
-    category: article.category,
-    publishedAt: article.publishedAt,
-    author: splitName(article.author.name),
-  }))
-
-  // Build pagination URL helper
-  function buildPageUrl(page: number): string {
-    const params = new URLSearchParams()
-    if (category) params.set("category", category)
-    if (q) params.set("q", q)
-    if (page > 1) params.set("page", String(page))
-    const qs = params.toString()
-    return `/actualites${qs ? `?${qs}` : ""}`
-  }
-
+export default function ActualitesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Page header */}
-      <h1 className="text-3xl font-bold text-ocean">Actualités</h1>
-      <p className="mt-2 text-muted-foreground">
-        Les dernières nouvelles du secteur touristique marocain.
-      </p>
-
-      {/* Category filter */}
-      <div className="mt-6">
-        <CategoryFilterBar currentCategory={category} />
+      {/* Hero section */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-ocean to-ocean/80 px-6 py-12 text-center text-white sm:py-16 mb-8">
+        <h1 className="text-3xl font-bold sm:text-4xl">
+          Actualites du tourisme marocain
+        </h1>
+        <p className="mx-auto mt-3 max-w-2xl text-lg text-white/90">
+          Toute l&apos;information du secteur touristique au Maroc : hebergement,
+          transport, gastronomie, evenements et investissements.
+        </p>
       </div>
 
-      {/* Search results header */}
-      {q && (
-        <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
-          <Search className="h-4 w-4" />
-          <span>
-            {total} résultat{total !== 1 ? "s" : ""} pour &laquo;{" "}
-            <span className="font-medium text-foreground">{q}</span> &raquo;
-          </span>
-          <Link
-            href={category ? `/actualites?category=${category}` : "/actualites"}
-            className="ml-2 text-ocean hover:underline"
-          >
-            Effacer la recherche
-          </Link>
-        </div>
-      )}
+      {/* Category filter */}
+      <div className="mb-8">
+        <CategoryFilterBar currentCategory={null} />
+      </div>
+
+      {/* Results count */}
+      <p className="mb-6 text-sm text-muted-foreground">
+        {DEMO_ARTICLES.length} articles disponibles
+      </p>
 
       {/* Articles grid */}
-      {articleCards.length > 0 ? (
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {articleCards.map((article) => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
-        </div>
-      ) : (
-        <div className="mt-12 text-center py-16">
-          <p className="text-muted-foreground">
-            Aucun article disponible pour le moment.
-          </p>
-        </div>
-      )}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {DEMO_ARTICLES.map((article) => {
+          const categoryLabel =
+            ARTICLE_CATEGORIES[article.category as keyof typeof ARTICLE_CATEGORIES] ??
+            article.category
+          const colorClass =
+            CATEGORY_COLORS[article.category] ?? "bg-gray-100 text-gray-800"
 
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <nav
-          aria-label="Pagination des articles"
-          className="mt-12 flex items-center justify-center gap-2"
-        >
-          {/* Previous */}
-          {currentPage > 1 ? (
+          return (
             <Link
-              href={buildPageUrl(currentPage - 1)}
-              className="inline-flex items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium hover:bg-secondary transition-colors"
+              key={article.id}
+              href={`/actualites/${article.slug}`}
+              className="group block"
             >
-              <span aria-hidden="true">&lsaquo;</span>
-              <span className="hidden sm:inline">Précédent</span>
-            </Link>
-          ) : (
-            <span className="inline-flex items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium text-muted-foreground opacity-50 cursor-not-allowed">
-              <span aria-hidden="true">&lsaquo;</span>
-              <span className="hidden sm:inline">Précédent</span>
-            </span>
-          )}
+              <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow duration-200 hover:shadow-lg">
+                {/* Cover image */}
+                <div className="relative aspect-video w-full overflow-hidden">
+                  <Image
+                    src={article.coverImage}
+                    alt={article.title}
+                    fill
+                    unoptimized
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute left-3 top-3">
+                    <Badge className={`${colorClass} border-0`}>
+                      {categoryLabel}
+                    </Badge>
+                  </div>
+                </div>
 
-          {/* Page numbers */}
-          {Array.from({ length: totalPages }, (_, i) => i + 1)
-            .filter((page) => {
-              // Show first, last, current, and adjacent pages
-              if (page === 1 || page === totalPages) return true
-              if (Math.abs(page - currentPage) <= 1) return true
-              return false
-            })
-            .reduce<(number | "ellipsis")[]>((acc, page, idx, arr) => {
-              if (idx > 0 && arr[idx - 1] !== undefined && page - (arr[idx - 1] as number) > 1) {
-                acc.push("ellipsis")
-              }
-              acc.push(page)
-              return acc
-            }, [])
-            .map((item, idx) =>
-              item === "ellipsis" ? (
-                <span
-                  key={`ellipsis-${idx}`}
-                  className="flex h-10 w-10 items-center justify-center text-sm text-muted-foreground"
-                  aria-hidden="true"
-                >
-                  &hellip;
-                </span>
-              ) : (
-                <Link
-                  key={item}
-                  href={buildPageUrl(item)}
-                  aria-current={item === currentPage ? "page" : undefined}
-                  className={`inline-flex h-10 w-10 items-center justify-center rounded-md text-sm font-medium transition-colors ${
-                    item === currentPage
-                      ? "bg-ocean text-white"
-                      : "border hover:bg-secondary"
-                  }`}
-                >
-                  {item}
-                </Link>
-              )
-            )}
-
-          {/* Next */}
-          {currentPage < totalPages ? (
-            <Link
-              href={buildPageUrl(currentPage + 1)}
-              className="inline-flex items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium hover:bg-secondary transition-colors"
-            >
-              <span className="hidden sm:inline">Suivant</span>
-              <span aria-hidden="true">&rsaquo;</span>
+                {/* Content */}
+                <CardContent className="flex flex-1 flex-col gap-2 p-4">
+                  <h3 className="line-clamp-2 text-base font-semibold leading-snug text-foreground group-hover:text-primary">
+                    {article.title}
+                  </h3>
+                  <p className="line-clamp-2 text-sm text-muted-foreground">
+                    {article.summary}
+                  </p>
+                  <div className="mt-auto flex items-center gap-2 pt-2 text-xs text-muted-foreground">
+                    <time>{new Date(article.publishedAt).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}</time>
+                    <span aria-hidden="true">&#183;</span>
+                    <span>{article.author}</span>
+                  </div>
+                </CardContent>
+              </Card>
             </Link>
-          ) : (
-            <span className="inline-flex items-center gap-1 rounded-md border px-3 py-2 text-sm font-medium text-muted-foreground opacity-50 cursor-not-allowed">
-              <span className="hidden sm:inline">Suivant</span>
-              <span aria-hidden="true">&rsaquo;</span>
-            </span>
-          )}
-        </nav>
-      )}
+          )
+        })}
+      </div>
     </div>
   )
 }

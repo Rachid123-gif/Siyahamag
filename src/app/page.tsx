@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import {
   Newspaper,
   Briefcase,
@@ -8,23 +9,30 @@ import {
   Users,
   TrendingUp,
   MapPin,
+  Trophy,
+  Hotel,
+  Star,
+  Mail,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { prisma } from "@/lib/prisma"
-import { HOMEPAGE_ARTICLES_COUNT } from "@/lib/constants"
-import { ArticleCard } from "@/components/articles/ArticleCard"
+import { Badge } from "@/components/ui/badge"
+import type { Metadata } from "next"
 
-// ── Helpers ───────────────────────────────────────────────────────────
+// ── SEO Metadata ─────────────────────────────────────────────────────
 
-function splitName(fullName: string): { firstName: string | null; lastName: string | null } {
-  const parts = fullName.trim().split(/\s+/)
-  if (parts.length === 0) return { firstName: null, lastName: null }
-  if (parts.length === 1) return { firstName: parts[0], lastName: null }
-  return { firstName: parts[0], lastName: parts.slice(1).join(" ") }
+export const metadata: Metadata = {
+  title: "SiyahaMag — Le tourisme marocain, tout en un",
+  description:
+    "Actualites, emploi, statistiques et investissement — la premiere plateforme dediee au secteur touristique du Maroc.",
+  openGraph: {
+    title: "SiyahaMag — Le tourisme marocain, tout en un",
+    description:
+      "Actualites, emploi, statistiques et investissement — la premiere plateforme dediee au secteur touristique du Maroc.",
+  },
 }
 
-// ── Static data ───────────────────────────────────────────────────────
+// ── Static data ──────────────────────────────────────────────────────
 
 const KEY_FIGURES = [
   {
@@ -32,24 +40,109 @@ const KEY_FIGURES = [
     value: "15.9M",
     label: "Touristes en 2024",
     color: "text-ocean",
+    bg: "bg-ocean-50",
   },
   {
     icon: TrendingUp,
     value: "87.6 Mrd",
     label: "Recettes (MAD)",
     color: "text-oasis",
+    bg: "bg-emerald-50",
   },
   {
     icon: Briefcase,
     value: "500+",
     label: "Offres actives",
     color: "text-sahara",
+    bg: "bg-amber-50",
   },
   {
     icon: MapPin,
     value: "12",
-    label: "Régions couvertes",
+    label: "Regions couvertes",
     color: "text-ocean-light",
+    bg: "bg-sky-50",
+  },
+]
+
+const ARTICLES = [
+  {
+    id: "1",
+    title: "Les riads de Marrakech : entre tradition et modernite",
+    slug: "riads-marrakech-tradition-modernite",
+    summary:
+      "Decouvrez comment les riads historiques de la medina se reinventent pour seduire une clientele internationale en quete d'authenticite.",
+    coverImage:
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&h=400&fit=crop",
+    category: "Culture & Patrimoine",
+    categoryColor: "bg-blue-100 text-blue-800",
+    date: "2 avril 2026",
+    author: "Amina Benali",
+  },
+  {
+    id: "2",
+    title: "Ouverture du nouveau terminal de l'aeroport de Marrakech",
+    slug: "nouveau-terminal-aeroport-marrakech",
+    summary:
+      "Le nouveau terminal T2 vise a tripler la capacite d'accueil de l'aeroport Menara pour accompagner la montee en puissance touristique.",
+    coverImage:
+      "https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=600&h=400&fit=crop",
+    category: "Investissement",
+    categoryColor: "bg-amber-100 text-amber-800",
+    date: "2 avril 2026",
+    author: "Youssef El Idrissi",
+  },
+  {
+    id: "3",
+    title: "La gastronomie marocaine classee patrimoine immateriel",
+    slug: "gastronomie-marocaine-patrimoine-immateriel",
+    summary:
+      "L'UNESCO reconnait officiellement la richesse culinaire du Maroc, un atout majeur pour l'attractivite touristique du Royaume.",
+    coverImage:
+      "https://images.unsplash.com/photo-1541518763-27a024444965?w=600&h=400&fit=crop",
+    category: "Gastronomie",
+    categoryColor: "bg-rose-100 text-rose-800",
+    date: "2 avril 2026",
+    author: "Fatima Zahra Ouali",
+  },
+  {
+    id: "4",
+    title: "Coupe du Monde 2030 : le Maroc prepare ses infrastructures",
+    slug: "coupe-du-monde-2030-maroc-infrastructures",
+    summary:
+      "Stades, transports, hebergements : le Maroc accelere ses grands chantiers en vue de la coorganisation du Mondial 2030.",
+    coverImage:
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=600&h=400&fit=crop",
+    category: "Projets & Federations",
+    categoryColor: "bg-purple-100 text-purple-800",
+    date: "2 avril 2026",
+    author: "Karim Tazi",
+  },
+  {
+    id: "5",
+    title: "Tourisme durable : les eco-lodges du Haut Atlas",
+    slug: "tourisme-durable-eco-lodges-haut-atlas",
+    summary:
+      "Une nouvelle generation d'hebergements ecologiques emerge dans les montagnes de l'Atlas, attirant voyageurs responsables.",
+    coverImage:
+      "https://images.unsplash.com/photo-1489493887464-892be6d1daae?w=600&h=400&fit=crop",
+    category: "Investissement",
+    categoryColor: "bg-amber-100 text-amber-800",
+    date: "2 avril 2026",
+    author: "Nadia Moussaoui",
+  },
+  {
+    id: "6",
+    title: "Record de touristes a Essaouira pendant le festival Gnaoua",
+    slug: "record-touristes-essaouira-festival-gnaoua",
+    summary:
+      "Le festival Gnaoua d'Essaouira attire un nombre record de visiteurs, confirmant le potentiel culturel de la cite des Alizes.",
+    coverImage:
+      "https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=600&h=400&fit=crop",
+    category: "Evenements",
+    categoryColor: "bg-purple-100 text-purple-800",
+    date: "2 avril 2026",
+    author: "Hassan Amrani",
   },
 ]
 
@@ -57,189 +150,252 @@ const SECTIONS = [
   {
     href: "/actualites",
     icon: Newspaper,
-    title: "Actualités",
+    title: "Actualites",
     description:
-      "Suivez les dernières nouvelles du secteur touristique marocain.",
+      "Suivez les dernieres nouvelles du secteur touristique marocain en temps reel.",
     color: "bg-ocean-50 text-ocean",
+  },
+  {
+    href: "/actualites",
+    icon: BarChart3,
+    title: "Thematiques",
+    description:
+      "Explorez nos dossiers par theme : hebergement, transport, gastronomie, evenements.",
+    color: "bg-emerald-50 text-oasis",
   },
   {
     href: "/emplois",
     icon: Briefcase,
-    title: "SiyahaJobs",
+    title: "Offres d'Emploi",
     description:
-      "Trouvez votre emploi dans le tourisme ou recrutez les meilleurs talents.",
+      "Trouvez votre emploi dans le tourisme ou recrutez les meilleurs talents du secteur.",
     color: "bg-amber-50 text-sahara",
   },
   {
-    href: "/statistiques",
-    icon: BarChart3,
-    title: "Statistiques",
+    href: "/inscription",
+    icon: Mail,
+    title: "Newsletter",
     description:
-      "Consultez les chiffres officiels du tourisme marocain.",
-    color: "bg-emerald-50 text-oasis",
-  },
-  {
-    href: "/investissement",
-    icon: Building2,
-    title: "Investissement",
-    description:
-      "Découvrez les opportunités d'investissement touristique.",
+      "Recevez chaque semaine le meilleur de l'actualite touristique marocaine.",
     color: "bg-sky-50 text-ocean-light",
   },
 ]
 
-// ── Page ──────────────────────────────────────────────────────────────
+const BIG_NUMBERS = [
+  {
+    icon: Users,
+    value: "26M",
+    label: "touristes vises d'ici 2030",
+    color: "text-ocean",
+  },
+  {
+    icon: Trophy,
+    value: "2030",
+    label: "Coupe du Monde au Maroc",
+    color: "text-sahara",
+  },
+  {
+    icon: Hotel,
+    value: "+200",
+    label: "nouveaux hotels en construction",
+    color: "text-oasis",
+  },
+  {
+    icon: Star,
+    value: "1er",
+    label: "site specialise tourisme + emploi au Maroc",
+    color: "text-ocean-light",
+  },
+]
 
-// Force dynamic rendering to avoid build-time DB access
-export const dynamic = "force-dynamic"
+// ── Page ─────────────────────────────────────────────────────────────
 
-export default async function HomePage() {
-  // Fetch latest published articles (graceful fallback if DB unavailable)
-  type ArticleWithAuthor = Awaited<ReturnType<typeof prisma.article.findMany>>[number] & {
-    author: { id: string; name: string }
-  }
-  let latestArticles: ArticleWithAuthor[] = []
-  try {
-    const now = new Date()
-    latestArticles = await prisma.article.findMany({
-      where: {
-        status: "PUBLISHED",
-        publishedAt: { lte: now },
-      },
-      include: {
-        author: {
-          select: { id: true, name: true },
-        },
-      },
-      orderBy: { publishedAt: "desc" },
-      take: HOMEPAGE_ARTICLES_COUNT,
-    }) as ArticleWithAuthor[]
-  } catch {
-    // DB not available (e.g., build time) — show empty state
-  }
-
-  const articleCards = latestArticles.map((article) => ({
-    id: article.id,
-    title: article.title,
-    slug: article.slug,
-    summary: article.summary,
-    coverImageUrl: article.coverImage,
-    category: article.category,
-    publishedAt: article.publishedAt,
-    author: splitName(article.author.name),
-  }))
-
+export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-ocean via-ocean to-ocean-light text-white py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+      {/* ─── Hero ─────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-ocean via-ocean to-ocean-light py-20 md:py-32">
+        {/* Decorative circles */}
+        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-white/5" />
+        <div className="pointer-events-none absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full bg-white/5" />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <Badge className="mb-6 border-0 bg-white/15 text-white text-sm px-4 py-1.5 backdrop-blur-sm">
+            La plateforme de reference du tourisme marocain
+          </Badge>
+
+          <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
             Le tourisme marocain,{" "}
             <span className="text-sahara-light">tout en un</span>
           </h1>
-          <p className="mt-4 text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-            Actualités, emploi, statistiques et investissement — la première
-            plateforme dédiée au secteur touristique du Maroc.
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/80 md:text-xl">
+            Actualites, emploi, statistiques et investissement — la premiere
+            plateforme dediee au secteur touristique du Maroc.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button
               asChild
               size="lg"
-              className="bg-sahara hover:bg-sahara/90 text-white"
+              className="bg-sahara text-white hover:bg-sahara/90 text-base px-8 py-6 shadow-lg shadow-sahara/30"
             >
               <Link href="/emplois">
-                <Briefcase className="h-5 w-5 mr-2" />
+                <Briefcase className="mr-2 h-5 w-5" />
                 Voir les offres d&apos;emploi
               </Link>
             </Button>
             <Button
               asChild
               size="lg"
-              className="border-2 border-white bg-transparent text-white hover:bg-white/20"
+              className="border-2 border-white bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 text-base px-8 py-6"
             >
-              <Link href="/inscription/employeur">
-                Publier une offre
-                <ArrowRight className="h-4 w-4 ml-2" />
+              <Link href="/actualites">
+                Decouvrir les actualites
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Key figures */}
-      <section className="py-12 bg-secondary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {/* ─── Key Figures Band ─────────────────────────────────────── */}
+      <section className="border-b bg-white py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
             {KEY_FIGURES.map((figure) => (
-              <Card key={figure.label} className="text-center border-0 shadow-sm">
-                <CardContent className="pt-6">
-                  <figure.icon className={`h-8 w-8 mx-auto ${figure.color}`} />
-                  <p className={`mt-2 text-2xl md:text-3xl font-bold ${figure.color}`}>
-                    {figure.value}
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {figure.label}
-                  </p>
-                </CardContent>
-              </Card>
+              <div
+                key={figure.label}
+                className={`flex flex-col items-center rounded-2xl ${figure.bg} p-6 text-center transition-transform hover:scale-105`}
+              >
+                <figure.icon className={`h-8 w-8 ${figure.color}`} />
+                <p
+                  className={`mt-3 text-3xl font-bold md:text-4xl ${figure.color}`}
+                >
+                  {figure.value}
+                </p>
+                <p className="mt-1 text-sm font-medium text-muted-foreground">
+                  {figure.label}
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Latest articles */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold">
-              Dernières Actualités
-            </h2>
+      {/* ─── Dernieres Actualites ─────────────────────────────────── */}
+      <section className="py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex items-end justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-sahara">
+                A la une
+              </p>
+              <h2 className="mt-1 text-2xl font-bold md:text-3xl lg:text-4xl">
+                Dernieres Actualites
+              </h2>
+            </div>
             <Button
               asChild
               variant="ghost"
-              className="text-ocean hover:text-ocean/80"
+              className="hidden text-ocean hover:text-ocean/80 sm:inline-flex"
             >
               <Link href="/actualites">
-                Voir toutes les actualités
-                <ArrowRight className="h-4 w-4 ml-1" />
+                Voir toutes les actualites
+                <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </Button>
           </div>
 
-          {articleCards.length > 0 ? (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {articleCards.map((article) => (
-                <ArticleCard key={article.id} article={article} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">
-                Les actualités seront disponibles prochainement.
-              </p>
-            </div>
-          )}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {ARTICLES.map((article) => (
+              <Link
+                key={article.id}
+                href={`/actualites/${article.slug}`}
+                className="group block"
+              >
+                <Card className="h-full gap-0 overflow-hidden py-0 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                  {/* Cover image */}
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    <Image
+                      src={article.coverImage}
+                      alt={article.title}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    {/* Category badge */}
+                    <div className="absolute left-3 top-3">
+                      <Badge
+                        className={`${article.categoryColor} border-0 shadow-sm`}
+                      >
+                        {article.category}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <CardContent className="flex flex-1 flex-col gap-2 p-5">
+                    <h3 className="line-clamp-2 text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-ocean">
+                      {article.title}
+                    </h3>
+                    <p className="line-clamp-2 text-sm text-muted-foreground">
+                      {article.summary}
+                    </p>
+                    <div className="mt-auto flex items-center gap-2 pt-3 text-xs text-muted-foreground">
+                      <time>{article.date}</time>
+                      <span aria-hidden="true">&#183;</span>
+                      <span>{article.author}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile "see all" link */}
+          <div className="mt-8 text-center sm:hidden">
+            <Button
+              asChild
+              variant="outline"
+              className="border-ocean text-ocean"
+            >
+              <Link href="/actualites">
+                Voir toutes les actualites
+                <ArrowRight className="ml-1 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* Sections */}
-      <section className="py-16 bg-secondary/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
-            Explorez nos rubriques
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* ─── Explorez nos rubriques ───────────────────────────────── */}
+      <section className="bg-secondary/50 py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <p className="text-sm font-semibold uppercase tracking-wider text-oasis">
+              Tout le secteur en un clic
+            </p>
+            <h2 className="mt-1 text-2xl font-bold md:text-3xl lg:text-4xl">
+              Explorez nos rubriques
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
             {SECTIONS.map((section) => (
-              <Link key={section.href} href={section.href} className="group">
-                <Card className="h-full transition-shadow hover:shadow-lg border-0 shadow-sm">
-                  <CardContent className="pt-6">
+              <Link key={section.title} href={section.href} className="group">
+                <Card className="h-full border-0 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                  <CardContent className="p-6">
                     <div
-                      className={`inline-flex p-3 rounded-lg ${section.color}`}
+                      className={`inline-flex rounded-xl p-3 ${section.color}`}
                     >
                       <section.icon className="h-6 w-6" />
                     </div>
-                    <h3 className="mt-4 text-lg font-semibold group-hover:text-ocean transition-colors">
+                    <h3 className="mt-4 text-lg font-semibold transition-colors group-hover:text-ocean">
                       {section.title}
                     </h3>
                     <p className="mt-2 text-sm text-muted-foreground">
@@ -253,31 +409,60 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-ocean-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold">
-            Prêt à rejoindre la communauté ?
+      {/* ─── Chiffres du secteur ──────────────────────────────────── */}
+      <section className="bg-gradient-to-br from-ocean via-ocean to-ocean-light py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <p className="text-sm font-semibold uppercase tracking-wider text-sahara-light">
+              Vision 2030
+            </p>
+            <h2 className="mt-1 text-2xl font-bold text-white md:text-3xl lg:text-4xl">
+              Chiffres du secteur
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+            {BIG_NUMBERS.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-2xl bg-white/10 p-6 text-center backdrop-blur-sm transition-transform hover:scale-105"
+              >
+                <item.icon className="mx-auto h-8 w-8 text-sahara-light" />
+                <p className="mt-3 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+                  {item.value}
+                </p>
+                <p className="mt-2 text-sm text-white/70">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CTA ──────────────────────────────────────────────────── */}
+      <section className="py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl">
+            Pret a rejoindre la communaute ?
           </h2>
-          <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
-            Créez votre compte gratuitement et accédez à toutes les
-            fonctionnalités de SiyahaMag.
+          <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
+            Creez votre compte gratuitement et accedez a toutes les
+            fonctionnalites de SiyahaMag.
           </p>
-          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90">
-              <Link href="/inscription">
-                Je cherche un emploi
-              </Link>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <Button
+              asChild
+              size="lg"
+              className="bg-ocean text-white hover:bg-ocean/90 text-base px-8 py-6 shadow-lg"
+            >
+              <Link href="/inscription">Je cherche un emploi</Link>
             </Button>
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="border-ocean text-ocean hover:bg-ocean hover:text-white"
+              className="border-2 border-ocean text-ocean hover:bg-ocean hover:text-white text-base px-8 py-6"
             >
-              <Link href="/inscription/employeur">
-                Je recrute
-              </Link>
+              <Link href="/inscription/employeur">Je recrute</Link>
             </Button>
           </div>
         </div>
