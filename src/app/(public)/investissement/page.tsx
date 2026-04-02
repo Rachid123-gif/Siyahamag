@@ -111,7 +111,8 @@ export default async function InvestissementPage(props: PageProps) {
   }
 
   // Fetch investments + count (graceful fallback if DB unavailable)
-  let investments: Awaited<ReturnType<typeof prisma.investment.findMany>> = []
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let investments: any[] = []
   let total = 0
   try {
     const result = await Promise.all([

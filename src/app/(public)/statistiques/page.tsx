@@ -53,7 +53,8 @@ const KPI_CONFIG: {
 ]
 
 export default async function StatistiquesPage() {
-  let allStatistics: Awaited<ReturnType<typeof prisma.tourismStatistic.findMany>> = []
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let allStatistics: any[] = []
   try {
     allStatistics = await prisma.tourismStatistic.findMany({
       orderBy: [{ year: "desc" }, { indicator: "asc" }],

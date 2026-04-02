@@ -103,7 +103,8 @@ export default async function EmploisPage(props: EmploisPageProps) {
   }
 
   // Fetch jobs + count in parallel (graceful fallback if DB unavailable)
-  let jobs: Awaited<ReturnType<typeof prisma.jobListing.findMany>> = []
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let jobs: any[] = []
   let total = 0
   try {
     const result = await Promise.all([

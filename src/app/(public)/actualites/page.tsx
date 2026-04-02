@@ -81,7 +81,8 @@ export default async function ActualitesPage(props: ActualitesPageProps) {
   }
 
   // Fetch articles + total count (graceful fallback if DB unavailable)
-  let articles: Awaited<ReturnType<typeof prisma.article.findMany>> = []
+  type ArticleWithAuthor = { id: string; title: string; slug: string; summary: string | null; coverImage: string | null; category: ArticleCategory; publishedAt: Date | null; author: { id: string; name: string } }
+  let articles: ArticleWithAuthor[] = []
   let total = 0
   try {
     const result = await Promise.all([
@@ -98,7 +99,7 @@ export default async function ActualitesPage(props: ActualitesPageProps) {
       }),
       prisma.article.count({ where }),
     ])
-    articles = result[0]
+    articles = result[0] as unknown as ArticleWithAuthor[]
     total = result[1]
   } catch {
     // DB not available

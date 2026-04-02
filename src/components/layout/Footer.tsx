@@ -1,17 +1,19 @@
 import Link from "next/link"
-import { Newspaper, Briefcase, BarChart3, Building2 } from "lucide-react"
+import { Newspaper, Briefcase, BookOpen, Mail } from "lucide-react"
 
 const FOOTER_LINKS = {
   navigation: [
     { href: "/actualites", label: "Actualités", icon: Newspaper },
-    { href: "/emplois", label: "SiyahaJobs", icon: Briefcase },
-    { href: "/statistiques", label: "Statistiques", icon: BarChart3 },
-    { href: "/investissement", label: "Investissement", icon: Building2 },
+    { href: "/thematiques", label: "Thématiques", icon: BookOpen },
+    { href: "/emplois", label: "Offres d'Emploi", icon: Briefcase },
+    { href: "/newsletter", label: "Newsletter", icon: Mail },
   ],
   platform: [
     { href: "/inscription", label: "Créer un compte" },
     { href: "/inscription/employeur", label: "Espace employeur" },
     { href: "/connexion", label: "Se connecter" },
+    { href: "/statistiques", label: "Statistiques" },
+    { href: "/investissement", label: "Investissement" },
   ],
   legal: [
     { href: "/mentions-legales", label: "Mentions légales" },

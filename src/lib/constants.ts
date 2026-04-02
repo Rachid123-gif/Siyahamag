@@ -1,12 +1,26 @@
 // Article categories with French labels
 export const ARTICLE_CATEGORIES = {
+  INVEST: 'Invest',
+  GOUVERNEMENT: 'Gouvernement',
+  MARCHES: 'Marchés',
+  PROJETS_FEDERATIONS: 'Projets & Fédérations',
+  EVENEMENTS: 'Événements',
+  GASTRONOMIE: 'Gastronomie',
+  CULTURE_PATRIMOINE: 'Culture & Patrimoine',
+  // Legacy categories kept for backward compatibility
   HEBERGEMENT: 'Hébergement',
   TRANSPORT: 'Transport',
   AERIEN: 'Aérien',
-  GASTRONOMIE: 'Gastronomie',
-  EVENEMENTS: 'Événements',
   DEVELOPPEMENT: 'Développement',
   MICE: 'MICE',
+} as const
+
+// Thématiques categories
+export const THEMATIQUE_CATEGORIES = {
+  TECH: 'Tech',
+  REGLEMENTATION: 'Réglementation',
+  TABLEAUX_DE_BORD: 'Tableaux de bord',
+  ACADEMIQUES: 'Académiques',
 } as const
 
 // Job categories with French labels
