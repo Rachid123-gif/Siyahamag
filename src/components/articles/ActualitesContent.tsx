@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
@@ -64,7 +63,7 @@ const DEMO_ARTICLES = [
     summary:
       "Le nouveau plan stratégique vise à attirer 26 millions de touristes d'ici 2030, avec des investissements massifs dans les infrastructures et la formation.",
     coverImage:
-      "https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600&h=400&fit=crop",
     category: "GOUVERNEMENT",
     publishedAt: "2026-03-25",
     author: "Karim Bennis",
@@ -77,7 +76,7 @@ const DEMO_ARTICLES = [
     summary:
       "Le couscous, le tajine et les pâtisseries traditionnelles marocaines obtiennent une reconnaissance internationale méritée auprès de l'organisation onusienne.",
     coverImage:
-      "https://images.unsplash.com/photo-1541518763-27a024444965?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&h=400&fit=crop",
     category: "GASTRONOMIE",
     publishedAt: "2026-03-22",
     author: "Fatima Zahra Idrissi",
@@ -243,13 +242,12 @@ export function ActualitesContent() {
               >
                 <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow duration-200 hover:shadow-lg">
                   <div className="relative aspect-video w-full overflow-hidden">
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={article.coverImage}
                       alt={article.title}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
                     />
                     <div className="absolute left-3 top-3">
                       <Badge className={`${colorClass} border-0`}>

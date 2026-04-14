@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { BarChart3 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -26,7 +25,7 @@ const DASHBOARD_ARTICLES = [
     title: "Tableau de bord mensuel : fevrier 2026 en chiffres",
     summary:
       "Arrivees aux frontieres, nuitees hoteliers, recettes en devises : tous les indicateurs mensuels du tourisme marocain pour fevrier 2026.",
-    image: "https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600&h=400&fit=crop",
     date: "10 mars 2026",
     tag: "Mensuel",
   },
@@ -65,13 +64,12 @@ export default function TableauxDeBordPage() {
           >
             <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">
               <div className="relative aspect-video w-full overflow-hidden">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={article.image}
                   alt={article.title}
-                  fill
-                  unoptimized
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
                 />
                 <div className="absolute left-3 top-3">
                   <Badge className="bg-emerald-100 text-emerald-800 border-0">

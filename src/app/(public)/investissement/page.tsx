@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { Suspense } from "react"
 
@@ -145,13 +144,12 @@ export default function InvestissementPage() {
               <Card className="overflow-hidden transition-shadow hover:shadow-md">
                 {/* Image */}
                 <div className="relative aspect-video w-full overflow-hidden bg-muted">
-                  <Image
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={investment.image}
                     alt={investment.title}
-                    fill
-                    unoptimized
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
                   />
                   <Badge className="absolute left-3 top-3">{typeLabel}</Badge>
                 </div>

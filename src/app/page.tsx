@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import {
   Newspaper,
   Briefcase,
@@ -86,7 +85,7 @@ const ARTICLES = [
     summary:
       "Le nouveau terminal T2 vise a tripler la capacite d'accueil de l'aeroport Menara pour accompagner la montee en puissance touristique.",
     coverImage:
-      "https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600&h=400&fit=crop",
     category: "Investissement",
     categoryColor: "bg-amber-100 text-amber-800",
     date: "2 avril 2026",
@@ -99,7 +98,7 @@ const ARTICLES = [
     summary:
       "L'UNESCO reconnait officiellement la richesse culinaire du Maroc, un atout majeur pour l'attractivite touristique du Royaume.",
     coverImage:
-      "https://images.unsplash.com/photo-1541518763-27a024444965?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&h=400&fit=crop",
     category: "Gastronomie",
     categoryColor: "bg-rose-100 text-rose-800",
     date: "2 avril 2026",
@@ -317,13 +316,11 @@ export default function HomePage() {
                 <Card className="h-full gap-0 overflow-hidden py-0 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                   {/* Cover image */}
                   <div className="relative aspect-video w-full overflow-hidden">
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={article.coverImage}
                       alt={article.title}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
                     />
                     {/* Gradient overlay */}

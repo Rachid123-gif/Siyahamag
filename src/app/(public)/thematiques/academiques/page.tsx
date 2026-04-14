@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { GraduationCap } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -27,7 +26,7 @@ const ACADEMIC_ARTICLES = [
     title: "La gastronomie comme levier d'attractivite touristique au Maroc",
     summary:
       "Publication de l'ISCAE analysant le role de la gastronomie marocaine dans la decision de voyage des touristes europeens et americains.",
-    image: "https://images.unsplash.com/photo-1541518763-27a024444965?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&h=400&fit=crop",
     date: "5 mars 2026",
     tag: "Gastronomie",
     university: "ISCAE Casablanca",
@@ -78,13 +77,12 @@ export default function AcademiquesPage() {
           >
             <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">
               <div className="relative aspect-video w-full overflow-hidden">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={article.image}
                   alt={article.title}
-                  fill
-                  unoptimized
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
                 />
                 <div className="absolute left-3 top-3">
                   <Badge className="bg-purple-100 text-purple-800 border-0">

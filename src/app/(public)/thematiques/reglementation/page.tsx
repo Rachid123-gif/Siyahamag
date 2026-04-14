@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { Scale } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -74,13 +73,12 @@ export default function ReglementationPage() {
           >
             <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">
               <div className="relative aspect-video w-full overflow-hidden">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={article.image}
                   alt={article.title}
-                  fill
-                  unoptimized
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
                 />
                 <div className="absolute left-3 top-3">
                   <Badge className="bg-amber-100 text-amber-800 border-0">
