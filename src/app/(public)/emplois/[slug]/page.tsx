@@ -1,159 +1,90 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import {
   ChevronRight,
   MapPin,
-  Clock,
   BadgeCheck,
   Building2,
   Banknote,
   Briefcase,
   Calendar,
-  Eye,
+  Clock,
+  GraduationCap,
+  ArrowLeft,
 } from "lucide-react"
 
-import { prisma } from "@/lib/prisma"
 import {
   JOB_CATEGORIES,
   CONTRACT_TYPES,
-  MOROCCO_REGIONS,
 } from "@/lib/constants"
-import { formatDate, formatRelativeDate } from "@/lib/formatDate"
+import { DEMO_JOBS } from "@/lib/demoData"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { RichTextRenderer } from "@/components/articles/RichTextRenderer"
 import { ShareButtons } from "@/components/articles/ShareButtons"
-import { JobCard } from "@/components/jobs/JobCard"
-import { ReportJobDialog } from "@/components/jobs/ReportJobDialog"
+import { JsonLd } from "@/components/seo/JsonLd"
 
-// ── Types ─────────────────────────────────────────────────────────────
+// ── Types ────────────────────────────────────────────────────────────
 
-interface JobPageProps {
+interface JobDetailPageProps {
   params: Promise<{ slug: string }>
 }
 
-// ── SEO ───────────────────────────────────────────────────────────────
+// ── Metadata ─────────────────────────────────────────────────────────
 
-export async function generateMetadata(props: JobPageProps): Promise<Metadata> {
-  const { slug } = await props.params
-
-  const job = await prisma.jobListing.findUnique({
-    where: { slug, status: "APPROVED" },
-    include: { company: { select: { name: true } } },
-  })
+export async function generateMetadata({
+  params,
+}: JobDetailPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const job = DEMO_JOBS.find((j) => j.slug === slug)
 
   if (!job) {
     return { title: "Offre introuvable | SiyahaMag" }
   }
 
-  const title = `${job.title} - ${job.company.name} | SiyahaMag`
-  const description = `Offre d'emploi ${job.title} chez ${job.company.name} a ${job.city}. Postulez maintenant sur SiyahaMag.`
-
   return {
-    title,
-    description,
+    title: `${job.title} — ${job.company.name} | SiyahaMag`,
+    description: job.description.slice(0, 160),
     openGraph: {
-      title,
-      description,
+      title: `${job.title} — ${job.company.name}`,
+      description: job.description.slice(0, 160),
       type: "website",
     },
   }
 }
 
-// ── Page ──────────────────────────────────────────────────────────────
+// ── Page ─────────────────────────────────────────────────────────────
 
-export const dynamic = "force-dynamic"
-
-export default async function JobDetailPage(props: JobPageProps) {
-  const { slug } = await props.params
-
-  // Fetch job
-  const job = await prisma.jobListing.findUnique({
-    where: { slug, status: "APPROVED" },
-    include: {
-      company: {
-        select: {
-          id: true,
-          name: true,
-          logo: true,
-          description: true,
-          city: true,
-          sector: true,
-          verificationStatus: true,
-        },
-      },
-    },
-  })
+export default async function JobDetailPage({ params }: JobDetailPageProps) {
+  const { slug } = await params
+  const job = DEMO_JOBS.find((j) => j.slug === slug)
 
   if (!job) notFound()
 
-  // Increment view count (fire-and-forget)
-  prisma.jobListing
-    .update({ where: { id: job.id }, data: { viewCount: { increment: 1 } } })
-    .catch(() => {})
-
-  // Fetch similar jobs (same category or same city, excluding current)
-  const similarJobs = await prisma.jobListing.findMany({
-    where: {
-      status: "APPROVED",
-      id: { not: job.id },
-      OR: [
-        { jobCategory: job.jobCategory },
-        { city: job.city },
-      ],
-    },
-    include: {
-      company: {
-        select: {
-          id: true,
-          name: true,
-          logo: true,
-          verificationStatus: true,
-        },
-      },
-    },
-    orderBy: { createdAt: "desc" },
-    take: 3,
-  })
-
-  // Count active jobs for this company
-  const companyJobsCount = await prisma.jobListing.count({
-    where: { companyId: job.company.id, status: "APPROVED" },
-  })
-
-  // Labels
   const categoryLabel =
     JOB_CATEGORIES[job.jobCategory as keyof typeof JOB_CATEGORIES] ??
     job.jobCategory
   const contractLabel =
     CONTRACT_TYPES[job.contractType as keyof typeof CONTRACT_TYPES] ??
     job.contractType
-  const regionLabel = job.region
-    ? MOROCCO_REGIONS[job.region as keyof typeof MOROCCO_REGIONS]
-    : null
-  const isVerified = job.company.verificationStatus === "VERIFIED"
-  const isExpired = job.deadline ? new Date(job.deadline) < new Date() : false
 
-  // Page URL for sharing
-  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://siyahamag.com"}/emplois/${job.slug}`
+  const similarJobs = DEMO_JOBS.filter(
+    (j) =>
+      j.id !== job.id &&
+      (j.jobCategory === job.jobCategory || j.city === job.city)
+  ).slice(0, 3)
 
-  // JSON-LD structured data
+  const appUrl = `https://siyahamag.com/emplois/${slug}`
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "JobPosting",
     title: job.title,
-    description: job.title,
-    datePosted: job.createdAt.toISOString(),
-    ...(job.deadline && { validThrough: new Date(job.deadline).toISOString() }),
-    employmentType: mapContractToSchema(job.contractType),
-    hiringOrganization: {
-      "@type": "Organization",
-      name: job.company.name,
-      ...(job.company.logo && { logo: job.company.logo }),
-    },
+    description: job.description,
+    datePosted: job.createdAt,
+    validThrough: job.deadline,
+    employmentType: job.contractType,
     jobLocation: {
       "@type": "Place",
       address: {
@@ -162,271 +93,197 @@ export default async function JobDetailPage(props: JobPageProps) {
         addressCountry: "MA",
       },
     },
-    ...(job.salary && {
-      baseSalary: {
-        "@type": "MonetaryAmount",
-        currency: "MAD",
-        value: { "@type": "QuantitativeValue", value: job.salary },
-      },
-    }),
+    hiringOrganization: {
+      "@type": "Organization",
+      name: job.company.name,
+      sameAs: job.company.website,
+    },
   }
 
   return (
-    <>
-      {/* JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* JSON-LD SEO */}
+      <JsonLd data={jsonLd} />
 
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <nav aria-label="Fil d'Ariane" className="mb-6 text-sm text-muted-foreground">
-          <ol className="flex items-center gap-1.5">
-            <li>
-              <Link href="/" className="hover:text-foreground">
-                Accueil
-              </Link>
-            </li>
-            <ChevronRight className="size-3.5" />
-            <li>
-              <Link href="/emplois" className="hover:text-foreground">
-                Emplois
-              </Link>
-            </li>
-            <ChevronRight className="size-3.5" />
-            <li className="truncate font-medium text-foreground">
-              {job.title}
-            </li>
-          </ol>
-        </nav>
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-1.5 text-sm text-muted-foreground mb-6">
+        <Link href="/" className="hover:text-ocean">Accueil</Link>
+        <ChevronRight className="h-3.5 w-3.5" />
+        <Link href="/emplois" className="hover:text-ocean">Offres d&apos;emploi</Link>
+        <ChevronRight className="h-3.5 w-3.5" />
+        <span className="text-foreground font-medium truncate max-w-[200px]">{job.title}</span>
+      </nav>
 
-        {/* Job header */}
-        <div className="mb-8">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="secondary">{contractLabel}</Badge>
-            <Badge variant="outline">{categoryLabel}</Badge>
-            {isExpired && (
-              <Badge className="bg-red-100 text-red-700 border-0">
-                Date limite depassee
-              </Badge>
-            )}
-          </div>
-          <h1 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
-            {job.title}
-          </h1>
-          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5">
-              <Building2 className="size-4" />
-              {job.company.name}
-              {isVerified && (
-                <BadgeCheck className="size-4 text-blue-500" aria-label="Entreprise verifiee" />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Main content */}
+        <div className="lg:col-span-2 space-y-8">
+          {/* Job header */}
+          <div>
+            <div className="flex flex-wrap gap-2 mb-3">
+              <Badge className="bg-ocean-50 text-ocean border-0">{categoryLabel}</Badge>
+              <Badge variant="outline">{contractLabel}</Badge>
+            </div>
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground">{job.title}</h1>
+            <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-muted-foreground">
+              <span className="flex items-center gap-1.5">
+                <Building2 className="h-4 w-4" />
+                {job.company.name}
+                {job.company.verified && <BadgeCheck className="h-4 w-4 text-oasis" />}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <MapPin className="h-4 w-4" />{job.city}
+              </span>
+              {job.salary && (
+                <span className="flex items-center gap-1.5">
+                  <Banknote className="h-4 w-4" />{job.salary}
+                </span>
               )}
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin className="size-4" />
-              {job.city}
-              {regionLabel && `, ${regionLabel}`}
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Clock className="size-4" />
-              Publiee {formatRelativeDate(job.createdAt)}
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Eye className="size-4" />
-              {job.viewCount} vue{job.viewCount !== 1 ? "s" : ""}
-            </span>
+              <span className="flex items-center gap-1.5">
+                <Calendar className="h-4 w-4" />
+                Publié le {new Date(job.createdAt).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
+              </span>
+            </div>
           </div>
-        </div>
 
-        {/* Two-column layout */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {/* Left column: job details */}
-          <div className="lg:col-span-2">
-            {/* Description */}
-            <section>
-              <h2 className="mb-4 text-xl font-semibold">
-                Description du poste
-              </h2>
-              <RichTextRenderer
-                content={job.description as unknown as Parameters<typeof RichTextRenderer>[0]["content"]}
-              />
-            </section>
+          {/* Description */}
+          <Card>
+            <CardHeader><CardTitle className="text-lg">Description du poste</CardTitle></CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{job.description}</p>
+            </CardContent>
+          </Card>
 
-            {/* Skills */}
-            {job.skills.length > 0 && (
-              <section className="mt-8">
-                <h2 className="mb-4 text-xl font-semibold">
-                  Competences requises
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {job.skills.map((skill) => (
-                    <Badge key={skill} variant="secondary">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </section>
-            )}
+          {/* Skills */}
+          <Card>
+            <CardHeader><CardTitle className="text-lg">Compétences requises</CardTitle></CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-2">
+                {job.skills.map((skill) => (
+                  <Badge key={skill} variant="outline" className="bg-ocean-50 text-ocean border-ocean/20">{skill}</Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
-            {/* Details grid */}
-            <section className="mt-8">
-              <h2 className="mb-4 text-xl font-semibold">Details</h2>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {job.experience && (
-                  <div className="flex items-start gap-3 rounded-lg border p-4">
-                    <Briefcase className="mt-0.5 size-5 text-ocean" />
-                    <div>
-                      <p className="text-sm font-medium">Experience</p>
-                      <p className="text-sm text-muted-foreground">
-                        {job.experience}
-                      </p>
-                    </div>
-                  </div>
-                )}
-                {job.salary && (
-                  <div className="flex items-start gap-3 rounded-lg border p-4">
-                    <Banknote className="mt-0.5 size-5 text-ocean" />
-                    <div>
-                      <p className="text-sm font-medium">Salaire</p>
-                      <p className="text-sm text-muted-foreground">
-                        {job.salary}
-                      </p>
-                    </div>
-                  </div>
-                )}
-                {job.deadline && (
-                  <div className="flex items-start gap-3 rounded-lg border p-4">
-                    <Calendar className="mt-0.5 size-5 text-ocean" />
-                    <div>
-                      <p className="text-sm font-medium">Date limite</p>
-                      <p className="text-sm text-muted-foreground">
-                        {formatDate(job.deadline)}
-                      </p>
-                    </div>
-                  </div>
-                )}
-                <div className="flex items-start gap-3 rounded-lg border p-4">
-                  <MapPin className="mt-0.5 size-5 text-ocean" />
+          {/* Details grid */}
+          <Card>
+            <CardHeader><CardTitle className="text-lg">Détails de l&apos;offre</CardTitle></CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-ocean-50"><Briefcase className="h-4 w-4 text-ocean" /></div>
                   <div>
-                    <p className="text-sm font-medium">Localisation</p>
-                    <p className="text-sm text-muted-foreground">
-                      {job.city}
-                      {regionLabel && `, ${regionLabel}`}
-                    </p>
+                    <p className="text-xs text-muted-foreground">Catégorie</p>
+                    <p className="text-sm font-medium">{categoryLabel}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-ocean-50"><Clock className="h-4 w-4 text-ocean" /></div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Contrat</p>
+                    <p className="text-sm font-medium">{contractLabel}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-ocean-50"><GraduationCap className="h-4 w-4 text-ocean" /></div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Expérience</p>
+                    <p className="text-sm font-medium">{job.experience}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-ocean-50"><Calendar className="h-4 w-4 text-ocean" /></div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Date limite</p>
+                    <p className="text-sm font-medium">{new Date(job.deadline).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}</p>
                   </div>
                 </div>
               </div>
-            </section>
+            </CardContent>
+          </Card>
 
-            {/* Share + Report */}
-            <section className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t pt-6">
-              <div>
-                <p className="mb-2 text-sm font-medium">Partager cette offre</p>
-                <ShareButtons url={pageUrl} title={job.title} />
-              </div>
-              <ReportJobDialog jobId={job.id} />
-            </section>
-          </div>
-
-          {/* Right column: sticky sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-6">
-              {/* Apply CTA */}
-              {!isExpired ? (
-                <Button asChild size="lg" className="w-full">
-                  <Link href={`/emplois/${job.slug}/postuler`}>
-                    Postuler a cette offre
-                  </Link>
-                </Button>
-              ) : (
-                <Button size="lg" className="w-full" disabled>
-                  Date limite depassee
-                </Button>
-              )}
-
-              {/* Company card */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">A propos de l&apos;entreprise</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-muted">
-                      {job.company.logo ? (
-                        <Image
-                          src={job.company.logo}
-                          alt={job.company.name}
-                          width={48}
-                          height={48}
-                          className="size-12 object-cover"
-                        />
-                      ) : (
-                        <Building2 className="size-6 text-muted-foreground" />
-                      )}
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1.5 font-semibold">
-                        {job.company.name}
-                        {isVerified && (
-                          <BadgeCheck className="size-4 text-blue-500" />
-                        )}
-                      </div>
-                      <p className="text-xs text-muted-foreground">
-                        {job.company.sector} - {job.company.city}
-                      </p>
-                    </div>
-                  </div>
-
-                  {job.company.description && (
-                    <p className="text-sm text-muted-foreground line-clamp-4">
-                      {job.company.description}
-                    </p>
-                  )}
-
-                  <p className="text-sm text-muted-foreground">
-                    {companyJobsCount} offre{companyJobsCount !== 1 ? "s" : ""}{" "}
-                    active{companyJobsCount !== 1 ? "s" : ""}
-                  </p>
-
-                  <Button asChild variant="outline" className="w-full">
-                    <Link href={`/entreprise/${job.company.id}`}>
-                      Voir le profil
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
+          {/* Share */}
+          <div>
+            <h3 className="text-sm font-semibold text-muted-foreground mb-3">Partager cette offre</h3>
+            <ShareButtons url={appUrl} title={job.title} />
           </div>
         </div>
 
-        {/* Similar jobs */}
-        {similarJobs.length > 0 && (
-          <section className="mt-16">
-            <h2 className="mb-6 text-xl font-semibold">
-              Offres similaires
-            </h2>
-            <div className="space-y-4">
-              {similarJobs.map((similar) => (
-                <JobCard key={similar.id} job={similar} />
-              ))}
-            </div>
-          </section>
-        )}
+        {/* Sidebar */}
+        <div className="space-y-6">
+          {/* Apply CTA */}
+          <Card className="border-ocean/20 bg-ocean-50">
+            <CardContent className="pt-6 text-center">
+              <h3 className="font-semibold text-lg text-ocean mb-2">Intéressé(e) ?</h3>
+              <p className="text-sm text-muted-foreground mb-4">Postulez à cette offre en quelques clics</p>
+              <Button asChild size="lg" className="w-full bg-ocean hover:bg-ocean/90">
+                <Link href="/inscription">Postuler maintenant</Link>
+              </Button>
+              <p className="text-xs text-muted-foreground mt-2">Candidature avec ou sans compte</p>
+            </CardContent>
+          </Card>
+
+          {/* Company card */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base flex items-center gap-2">
+                <Building2 className="h-5 w-5 text-ocean" />
+                {job.company.name}
+                {job.company.verified && (
+                  <Badge className="bg-oasis/10 text-oasis border-0 text-xs">
+                    <BadgeCheck className="h-3 w-3 mr-1" />Vérifié
+                  </Badge>
+                )}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">{job.company.description}</p>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-4 w-4" />{job.company.city}
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Briefcase className="h-4 w-4" />{job.company.sector}
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Clock className="h-4 w-4" />{job.company.activeJobs} offre{job.company.activeJobs > 1 ? "s" : ""} active{job.company.activeJobs > 1 ? "s" : ""}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </>
+
+      {/* Similar jobs */}
+      {similarJobs.length > 0 && (
+        <section className="mt-16">
+          <h2 className="text-xl font-bold mb-6">Offres similaires</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {similarJobs.map((sj) => (
+              <Link key={sj.id} href={`/emplois/${sj.slug}`} className="block group">
+                <Card className="h-full transition-shadow hover:shadow-md">
+                  <CardContent className="pt-4 space-y-2">
+                    <Badge variant="outline" className="text-xs">
+                      {CONTRACT_TYPES[sj.contractType as keyof typeof CONTRACT_TYPES] ?? sj.contractType}
+                    </Badge>
+                    <h3 className="font-semibold group-hover:text-ocean transition-colors line-clamp-2">{sj.title}</h3>
+                    <div className="text-sm text-muted-foreground space-y-1">
+                      <div className="flex items-center gap-1.5"><Building2 className="h-3.5 w-3.5" />{sj.company.name}</div>
+                      <div className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" />{sj.city}</div>
+                      {sj.salary && <div className="flex items-center gap-1.5"><Banknote className="h-3.5 w-3.5" />{sj.salary}</div>}
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Button asChild variant="outline">
+              <Link href="/emplois"><ArrowLeft className="h-4 w-4 mr-2" />Voir toutes les offres</Link>
+            </Button>
+          </div>
+        </section>
+      )}
+    </div>
   )
-}
-
-// ── Helpers ───────────────────────────────────────────────────────────
-
-function mapContractToSchema(contractType: string): string {
-  const map: Record<string, string> = {
-    CDI: "FULL_TIME",
-    CDD: "CONTRACT",
-    SAISONNIER: "TEMPORARY",
-    STAGE: "INTERN",
-    FREELANCE: "CONTRACTOR",
-  }
-  return map[contractType] ?? "OTHER"
 }
