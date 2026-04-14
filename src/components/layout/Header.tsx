@@ -30,13 +30,13 @@ import { UserNav } from "@/components/layout/UserNav"
 
 // ── Actualités sub-categories ────────────────────────────────────────
 const ACTUALITES_ITEMS = [
-  { href: "/actualites?category=INVEST", label: "Invest", icon: TrendingUp },
-  { href: "/actualites?category=GOUVERNEMENT", label: "Gouvernement", icon: Landmark },
-  { href: "/actualites?category=MARCHES", label: "Marchés", icon: ShoppingCart },
-  { href: "/actualites?category=PROJETS_FEDERATIONS", label: "Projets & Fédérations", icon: FolderKanban },
-  { href: "/actualites?category=EVENEMENTS", label: "Événements", icon: CalendarDays },
-  { href: "/actualites?category=GASTRONOMIE", label: "Gastronomie", icon: UtensilsCrossed },
-  { href: "/actualites?category=CULTURE_PATRIMOINE", label: "Culture & Patrimoine", icon: Palette },
+  { href: "/actualites/invest", label: "Invest", icon: TrendingUp },
+  { href: "/actualites/gouvernement", label: "Gouvernement", icon: Landmark },
+  { href: "/actualites/marches", label: "Marchés", icon: ShoppingCart },
+  { href: "/actualites/projets", label: "Projets & Fédérations", icon: FolderKanban },
+  { href: "/actualites/evenements", label: "Événements", icon: CalendarDays },
+  { href: "/actualites/gastronomie", label: "Gastronomie", icon: UtensilsCrossed },
+  { href: "/actualites/culture", label: "Culture & Patrimoine", icon: Palette },
 ]
 
 // ── Thématiques sub-categories ───────────────────────────────────────
