@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Embedded project (legacy)
 /siyahamag/
+
+# Local Netlify folder
+.netlify
