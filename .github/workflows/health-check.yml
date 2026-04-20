@@ -18,25 +18,33 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      - name: Check homepage responds
+      - name: Check homepage responds (with retry)
         run: |
-          HTTP_CODE=$(curl -sk -o /dev/null -w "%{http_code}" https://siyahamag.ma/ || echo "000")
-          if [ "$HTTP_CODE" = "200" ]; then
-            echo "OK Homepage HTTP $HTTP_CODE"
-          else
-            echo "FAIL Homepage HTTP $HTTP_CODE"
-            exit 1
-          fi
+          for i in 1 2 3; do
+            HTTP_CODE=$(curl -sk -o /dev/null -w "%{http_code}" https://siyahamag.ma/ || echo "000")
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "OK Homepage HTTP $HTTP_CODE (attempt $i)"
+              exit 0
+            fi
+            echo "Attempt $i: HTTP $HTTP_CODE, retrying in 15s..."
+            sleep 15
+          done
+          echo "FAIL Homepage after 3 attempts"
+          exit 1
 
-      - name: Check sitemap responds
+      - name: Check sitemap responds (with retry)
         run: |
-          HTTP_CODE=$(curl -sk -o /dev/null -w "%{http_code}" https://siyahamag.ma/sitemap.xml || echo "000")
-          if [ "$HTTP_CODE" = "200" ]; then
-            echo "OK Sitemap HTTP $HTTP_CODE"
-          else
-            echo "FAIL Sitemap HTTP $HTTP_CODE"
-            exit 1
-          fi
+          for i in 1 2 3; do
+            HTTP_CODE=$(curl -sk -o /dev/null -w "%{http_code}" https://siyahamag.ma/sitemap.xml || echo "000")
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "OK Sitemap HTTP $HTTP_CODE (attempt $i)"
+              exit 0
+            fi
+            echo "Attempt $i: HTTP $HTTP_CODE, retrying in 15s..."
+            sleep 15
+          done
+          echo "FAIL Sitemap after 3 attempts"
+          exit 1
 
       - name: Count pages in sitemap
         run: |
