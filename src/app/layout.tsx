@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE",
+    google: "rthJ0IMkfnPfMnH0BvwvQ8-qokT1fTkhR5DN-ENp_H0",
   },
   other: {
     "content-language": "fr-MA",
