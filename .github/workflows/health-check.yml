@@ -1,0 +1,85 @@
+name: Daily Health Check
+
+# Runs every day at 8:00 AM UTC (9:00 AM Morocco time)
+# Only uses safe system variables (no untrusted user inputs)
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  health-check:
+    name: Verify site health and SEO
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check homepage responds
+        run: |
+          HTTP_CODE=$(curl -sk -o /dev/null -w "%{http_code}" https://siyahamag.ma/ || echo "000")
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "OK Homepage HTTP $HTTP_CODE"
+          else
+            echo "FAIL Homepage HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: Check sitemap responds
+        run: |
+          HTTP_CODE=$(curl -sk -o /dev/null -w "%{http_code}" https://siyahamag.ma/sitemap.xml || echo "000")
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "OK Sitemap HTTP $HTTP_CODE"
+          else
+            echo "FAIL Sitemap HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: Count pages in sitemap
+        run: |
+          COUNT=$(curl -sk https://siyahamag.ma/sitemap.xml | grep -c "<loc>" || echo "0")
+          echo "Sitemap has $COUNT pages"
+          if [ "$COUNT" -lt "10" ]; then
+            echo "WARNING Less than 10 pages in sitemap"
+            exit 1
+          fi
+
+      - name: Check key pages
+        run: |
+          PAGES="/actualites /emplois /statistiques /investissement /thematiques /newsletter /emplois/marrakech /guide/emploi-tourisme-maroc"
+          FAILED=0
+          for page in $PAGES; do
+            CODE=$(curl -sk -o /dev/null -w "%{http_code}" "https://siyahamag.ma${page}" || echo "000")
+            if [ "$CODE" = "200" ]; then
+              echo "OK ${page}"
+            else
+              echo "FAIL ${page} returned $CODE"
+              FAILED=$((FAILED + 1))
+            fi
+          done
+          if [ "$FAILED" -gt "0" ]; then
+            echo "${FAILED} pages failed"
+            exit 1
+          fi
+
+      - name: Ping Google about sitemap
+        run: |
+          curl -s "https://www.google.com/ping?sitemap=https://siyahamag.ma/sitemap.xml" || true
+          echo "Google notified of sitemap"
+
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const date = new Date().toISOString().slice(0, 10)
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Health check failed ${date}`,
+              body: `The daily health check failed on ${date}.\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              labels: ["health-check", "automated"],
+            })

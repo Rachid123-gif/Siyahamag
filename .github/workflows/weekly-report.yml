@@ -1,0 +1,96 @@
+name: Weekly SEO Report
+
+# Runs every Monday at 9:00 AM UTC (10:00 AM Morocco time)
+# No untrusted user inputs - all variables are system-generated (step outputs, script-computed counts)
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  report:
+    name: Generate weekly SEO report
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Count pages in sitemap
+        id: sitemap
+        run: |
+          COUNT=$(curl -sk https://siyahamag.ma/sitemap.xml | grep -c "<loc>" || echo "0")
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+
+      - name: Count news articles
+        id: articles
+        run: |
+          COUNT=$(find 'src/app/(public)/news' -type d -mindepth 1 2>/dev/null | wc -l | tr -d ' ')
+          echo "total=$COUNT" >> "$GITHUB_OUTPUT"
+
+      - name: Read daily log
+        id: log
+        run: |
+          if [ -f content/queue/daily-log.json ]; then
+            WEEK_COUNT=$(node -e "const log=require('./content/queue/daily-log.json');const last7=(log.runs||[]).slice(0,7);const total=last7.reduce((s,r)=>s+(r.published?.length||0),0);console.log(total);")
+            echo "week_count=$WEEK_COUNT" >> "$GITHUB_OUTPUT"
+          else
+            echo "week_count=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create weekly report issue
+        uses: actions/github-script@v7
+        env:
+          SITEMAP_COUNT: ${{ steps.sitemap.outputs.count }}
+          TOTAL_ARTICLES: ${{ steps.articles.outputs.total }}
+          WEEK_COUNT: ${{ steps.log.outputs.week_count }}
+        with:
+          script: |
+            const date = new Date().toISOString().slice(0, 10)
+            const sitemapCount = process.env.SITEMAP_COUNT || "0"
+            const totalArticles = process.env.TOTAL_ARTICLES || "0"
+            const weekCount = process.env.WEEK_COUNT || "0"
+
+            const body = [
+              "# Rapport SEO hebdomadaire SiyahaMag",
+              "",
+              "Date : " + date,
+              "",
+              "## Chiffres cles",
+              "",
+              "- Pages dans le sitemap : **" + sitemapCount + "**",
+              "- Articles news publies (total) : **" + totalArticles + "**",
+              "- Articles publies cette semaine : **" + weekCount + "**",
+              "",
+              "## Statut des automatisations",
+              "",
+              "- Publication quotidienne : Active (7h00 Maroc)",
+              "- Health check quotidien : Active (9h00 Maroc)",
+              "- Rapport hebdomadaire : Active (lundi 10h00 Maroc)",
+              "",
+              "## Actions recommandees",
+              "",
+              "1. Verifier Google Search Console : pages indexees vs sitemap",
+              "2. Examiner les requetes qui rapportent du trafic",
+              "3. Identifier les pages faibles a ameliorer",
+              "",
+              "## Liens utiles",
+              "",
+              "- [Site](https://siyahamag.ma)",
+              "- [Search Console](https://search.google.com/search-console)",
+              "- [Netlify](https://app.netlify.com/projects/siyahamag)",
+              "- [Workflows](" + context.serverUrl + "/" + context.repo.owner + "/" + context.repo.repo + "/actions)"
+            ].join("\n")
+
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Rapport SEO hebdomadaire " + date,
+              body: body,
+              labels: ["report", "weekly"],
+            })

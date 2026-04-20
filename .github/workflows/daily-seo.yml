@@ -1,0 +1,68 @@
+name: Daily SEO Content
+
+# Runs every day at 6:00 AM UTC (7:00 AM Morocco time)
+# No untrusted inputs used - only safe system variables (secrets, run_id)
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  generate-content:
+    name: Generate and publish tourism news
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+
+      - name: Run daily SEO script
+        run: |
+          set -e
+          node scripts/daily-seo.mjs | tee seo-output.log
+        continue-on-error: true
+
+      - name: Check for new articles
+        id: check
+        run: |
+          if git diff --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No new content generated today"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            echo "New content detected"
+          fi
+
+      - name: Commit and push changes
+        if: steps.check.outputs.has_changes == 'true'
+        run: |
+          git config user.name "SiyahaMag Bot"
+          git config user.email "bot@siyahamag.ma"
+          git add -A
+          DATE_STR=$(date -u +'%Y-%m-%d')
+          git commit -m "chore(seo): daily news articles ${DATE_STR}" || exit 0
+          git push origin main
+
+      - name: Upload log artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-log-${{ github.run_id }}
+          path: seo-output.log
+          retention-days: 30
