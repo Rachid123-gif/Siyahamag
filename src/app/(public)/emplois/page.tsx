@@ -9,6 +9,8 @@ import {
 } from "@/lib/constants"
 import { JobSearchFilters } from "@/components/jobs/JobSearchFilters"
 import { JobSearchBar } from "@/components/jobs/JobSearchBar"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
+import { JsonLd } from "@/components/seo/JsonLd"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Building2, Clock, BadgeCheck, Banknote } from "lucide-react"
@@ -16,11 +18,14 @@ import { MapPin, Building2, Clock, BadgeCheck, Banknote } from "lucide-react"
 // ── SEO ───────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Offres d'emploi tourisme Maroc | SiyahaMag",
+  title: "Offres d'Emploi Tourisme Maroc — Hôtellerie, Restauration",
   description:
-    "Trouvez votre emploi dans le secteur touristique marocain : hotellerie, restauration, animation, guide, management.",
+    "Trouvez votre emploi dans le secteur touristique marocain : hôtellerie, restauration, animation, guide touristique, management hôtelier.",
+  alternates: {
+    canonical: "/emplois",
+  },
   openGraph: {
-    title: "Offres d'emploi tourisme Maroc | SiyahaMag",
+    title: "Offres d'Emploi Tourisme Maroc — Hôtellerie, Restauration | SiyahaMag",
     description:
       "Trouvez votre emploi dans le secteur touristique marocain.",
     type: "website",
@@ -147,8 +152,49 @@ const DEMO_JOBS = [
 // ── Page ─────────────────────────────────────────────────────────────
 
 export default function EmploisPage() {
+  // Build JobPosting JSON-LD for each job
+  const jobPostingsJsonLd = DEMO_JOBS.map((job) => ({
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: job.title,
+    description: `${job.title} - ${job.company.name} à ${job.city}`,
+    datePosted: job.createdAt,
+    employmentType: job.contractType,
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: job.city,
+        addressCountry: "MA",
+      },
+    },
+    hiringOrganization: {
+      "@type": "Organization",
+      name: job.company.name,
+    },
+    baseSalary: job.salary
+      ? {
+          "@type": "MonetaryAmount",
+          currency: "MAD",
+          value: {
+            "@type": "QuantitativeValue",
+            value: job.salary,
+            unitText: "MONTH",
+          },
+        }
+      : undefined,
+  }))
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* JSON-LD for job postings */}
+      <JsonLd data={jobPostingsJsonLd} />
+
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        segments={[{ label: "Offres d'emploi" }]}
+      />
+
       {/* Hero section */}
       <div className="rounded-2xl bg-gradient-to-r from-ocean to-ocean/80 px-6 py-12 text-center text-white sm:py-16">
         <h1 className="text-3xl font-bold sm:text-4xl">

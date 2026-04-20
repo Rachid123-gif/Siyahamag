@@ -3,8 +3,11 @@ import { Suspense } from "react"
 import { LoginForm } from "@/components/auth/LoginForm"
 
 export const metadata: Metadata = {
-  title: "Connexion",
-  description: "Connectez-vous à votre compte SiyahaMag.",
+  title: "Connexion — Accédez à Votre Espace",
+  description: "Connectez-vous à votre compte SiyahaMag pour accéder à vos offres d'emploi, candidatures et alertes.",
+  alternates: {
+    canonical: "/connexion",
+  },
 }
 
 export default function LoginPage() {

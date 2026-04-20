@@ -16,18 +16,22 @@ import {
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { JsonLd } from "@/components/seo/JsonLd"
 import type { Metadata } from "next"
 
 // ── SEO Metadata ─────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "SiyahaMag — Le tourisme marocain, tout en un",
+  title: "Tourisme Maroc — Actualités, Emploi & Investissement | SiyahaMag",
   description:
-    "Actualites, emploi, statistiques et investissement — la premiere plateforme dediee au secteur touristique du Maroc.",
+    "La première plateforme marocaine dédiée au tourisme : actualités du secteur, offres d'emploi hôtellerie et restauration, statistiques et opportunités d'investissement.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "SiyahaMag — Le tourisme marocain, tout en un",
+    title: "Tourisme Maroc — Actualités, Emploi & Investissement | SiyahaMag",
     description:
-      "Actualites, emploi, statistiques et investissement — la premiere plateforme dediee au secteur touristique du Maroc.",
+      "Actualités, offres d'emploi, statistiques et investissement — la première plateforme dédiée au secteur touristique du Maroc.",
   },
 }
 
@@ -207,11 +211,46 @@ const BIG_NUMBERS = [
   },
 ]
 
+// ── JSON-LD Schemas ──────────────────────────────────────────────────
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "SiyahaMag",
+  url: "https://siyahamag.ma",
+  description:
+    "La première plateforme marocaine dédiée au tourisme : actualités, emploi, statistiques et investissement.",
+  inLanguage: "fr",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://siyahamag.ma/emplois?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+}
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "SiyahaMag",
+  url: "https://siyahamag.ma",
+  description:
+    "Plateforme marocaine combinant média touristique, emploi spécialisé, statistiques et investissement.",
+  foundingDate: "2024",
+  areaServed: {
+    "@type": "Country",
+    name: "Maroc",
+  },
+  sameAs: [],
+}
+
 // ── Page ─────────────────────────────────────────────────────────────
 
 export default function HomePage() {
   return (
     <>
+      {/* JSON-LD structured data */}
+      <JsonLd data={[websiteJsonLd, organizationJsonLd]} />
+
       {/* ─── Hero ─────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-ocean via-ocean to-ocean-light py-20 md:py-32">
         {/* Decorative circles */}

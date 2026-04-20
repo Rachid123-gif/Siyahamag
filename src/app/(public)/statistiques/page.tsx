@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Card, CardContent } from "@/components/ui/card"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 import {
   Users,
   TrendingUp,
@@ -12,13 +13,16 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Statistiques du tourisme marocain | SiyahaMag",
+  title: "Statistiques Tourisme Maroc 2025 — Chiffres Clés & Données",
   description:
-    "Consultez les chiffres officiels du tourisme au Maroc : nombre de touristes, recettes, nuitees, taux d'occupation par region.",
+    "Consultez les chiffres officiels du tourisme au Maroc : nombre de touristes, recettes, nuitées, taux d'occupation par région et évolution annuelle.",
+  alternates: {
+    canonical: "/statistiques",
+  },
   openGraph: {
-    title: "Statistiques du tourisme marocain | SiyahaMag",
+    title: "Statistiques Tourisme Maroc 2025 — Chiffres Clés & Données | SiyahaMag",
     description:
-      "Les chiffres cles du secteur touristique marocain : evolution annuelle et comparaisons regionales.",
+      "Les chiffres clés du secteur touristique marocain : évolution annuelle et comparaisons régionales.",
   },
 }
 
@@ -104,6 +108,9 @@ export default function StatistiquesPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      {/* Breadcrumbs */}
+      <Breadcrumbs segments={[{ label: "Statistiques" }]} />
+
       {/* Page header */}
       <div className="mb-10">
         <h1 className="text-3xl font-bold tracking-tight text-[#0C4A6E] sm:text-4xl">

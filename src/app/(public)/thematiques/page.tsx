@@ -2,11 +2,15 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Cpu, Scale, BarChart3, GraduationCap } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Thématiques — SiyahaMag",
+  title: "Thématiques Tourisme Maroc — Tech, Réglementation, Données",
   description:
     "Explorez nos thématiques spécialisées : tech, réglementation, tableaux de bord et études académiques du secteur touristique marocain.",
+  alternates: {
+    canonical: "/thematiques",
+  },
 }
 
 const THEMATIQUES = [
@@ -47,6 +51,8 @@ const THEMATIQUES = [
 export default function ThematiquesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Breadcrumbs segments={[{ label: "Thématiques" }]} />
+
       <div className="text-center mb-12">
         <h1 className="text-3xl md:text-4xl font-bold text-ocean">
           Thématiques

@@ -3,11 +3,15 @@ import Link from "next/link"
 import { GraduationCap } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Recherches academiques — Tourisme au Maroc | SiyahaMag",
+  title: "Recherches Académiques — Tourisme au Maroc",
   description:
-    "Recherches, etudes universitaires et publications academiques sur le tourisme au Maroc.",
+    "Recherches, études universitaires et publications académiques sur le tourisme au Maroc.",
+  alternates: {
+    canonical: "/thematiques/academiques",
+  },
 }
 
 const ACADEMIC_ARTICLES = [
@@ -56,6 +60,12 @@ const ACADEMIC_ARTICLES = [
 export default function AcademiquesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Breadcrumbs
+        segments={[
+          { label: "Thématiques", href: "/thematiques" },
+          { label: "Académiques" },
+        ]}
+      />
       <div className="flex items-center gap-3 mb-8">
         <div className="inline-flex p-3 rounded-lg bg-purple-50 text-purple-700">
           <GraduationCap className="h-6 w-6" />

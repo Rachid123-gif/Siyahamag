@@ -3,15 +3,19 @@ import Link from "next/link"
 import { CalendarDays, ArrowLeft } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Evenements touristiques au Maroc | SiyahaMag",
+  title: "Événements Touristiques Maroc — Festivals & Salons",
   description:
-    "Festivals, conferences, salons professionnels et evenements MICE au Maroc.",
+    "Festivals, conférences, salons professionnels et événements MICE au Maroc.",
+  alternates: {
+    canonical: "/actualites/evenements",
+  },
   openGraph: {
-    title: "Evenements touristiques au Maroc | SiyahaMag",
+    title: "Événements Touristiques Maroc — Festivals & Salons | SiyahaMag",
     description:
-      "Festivals, conferences, salons professionnels et evenements MICE au Maroc.",
+      "Festivals, conférences, salons professionnels et événements MICE au Maroc.",
     type: "website",
   },
 }
@@ -62,6 +66,12 @@ const EVENEMENTS_ARTICLES = [
 export default function EvenementsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Breadcrumbs
+        segments={[
+          { label: "Actualités", href: "/actualites" },
+          { label: "Événements" },
+        ]}
+      />
       <div className="flex items-center gap-3 mb-8">
         <div className="inline-flex p-3 rounded-lg bg-rose-50 text-rose-700">
           <CalendarDays className="h-6 w-6" />

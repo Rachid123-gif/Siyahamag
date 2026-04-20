@@ -3,11 +3,15 @@ import Link from "next/link"
 import { BarChart3 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Tableaux de bord du tourisme marocain | SiyahaMag",
+  title: "Tableaux de Bord Tourisme Maroc — Indicateurs & Données",
   description:
-    "Indicateurs cles, donnees et analyses pour suivre la performance du tourisme marocain.",
+    "Indicateurs clés, données et analyses pour suivre la performance du tourisme marocain.",
+  alternates: {
+    canonical: "/thematiques/tableaux-de-bord",
+  },
 }
 
 const DASHBOARD_ARTICLES = [
@@ -43,6 +47,12 @@ const DASHBOARD_ARTICLES = [
 export default function TableauxDeBordPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Breadcrumbs
+        segments={[
+          { label: "Thématiques", href: "/thematiques" },
+          { label: "Tableaux de bord" },
+        ]}
+      />
       <div className="flex items-center gap-3 mb-8">
         <div className="inline-flex p-3 rounded-lg bg-emerald-50 text-emerald-700">
           <BarChart3 className="h-6 w-6" />

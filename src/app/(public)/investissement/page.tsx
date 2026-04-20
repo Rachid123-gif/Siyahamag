@@ -4,6 +4,7 @@ import { Suspense } from "react"
 
 import { INVESTMENT_TYPES } from "@/lib/constants"
 import { InvestmentFilters } from "@/components/investments/InvestmentFilters"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Ruler, Banknote } from "lucide-react"
@@ -11,13 +12,16 @@ import { MapPin, Ruler, Banknote } from "lucide-react"
 // ── SEO ───────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Investissement touristique au Maroc | SiyahaMag",
+  title: "Investissement Touristique Maroc — Hôtels, Riads, Terrains",
   description:
-    "Decouvrez les opportunites d'investissement dans le secteur touristique marocain : hotels, riads, restaurants, terrains.",
+    "Découvrez les opportunités d'investissement dans le secteur touristique marocain : hôtels, riads, restaurants, terrains et projets de resort.",
+  alternates: {
+    canonical: "/investissement",
+  },
   openGraph: {
-    title: "Investissement touristique au Maroc | SiyahaMag",
+    title: "Investissement Touristique Maroc — Hôtels, Riads, Terrains | SiyahaMag",
     description:
-      "Decouvrez les meilleures opportunites d'investissement dans le secteur touristique marocain.",
+      "Découvrez les meilleures opportunités d'investissement dans le secteur touristique marocain.",
     type: "website",
   },
 }
@@ -102,6 +106,9 @@ function formatPrice(price: number): string {
 export default function InvestissementPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Breadcrumbs */}
+      <Breadcrumbs segments={[{ label: "Investissement" }]} />
+
       {/* Hero section */}
       <div className="rounded-2xl bg-gradient-to-r from-ocean to-ocean/80 px-6 py-12 text-center text-white sm:py-16">
         <h1 className="text-3xl font-bold sm:text-4xl">

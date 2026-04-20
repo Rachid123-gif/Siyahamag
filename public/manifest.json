@@ -1,0 +1,16 @@
+{
+  "name": "SiyahaMag",
+  "short_name": "SiyahaMag",
+  "description": "Tourisme, Emploi & Investissement au Maroc",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0C4A6E",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

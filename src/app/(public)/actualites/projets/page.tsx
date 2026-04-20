@@ -3,15 +3,19 @@ import Link from "next/link"
 import { FolderKanban, ArrowLeft } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Projets & Federations | SiyahaMag",
+  title: "Projets & Fédérations Tourisme Maroc — Mondial 2030 & ONMT",
   description:
-    "Coupe du Monde 2030, ONMT, federations du tourisme et grands projets d'infrastructure au Maroc.",
+    "Coupe du Monde 2030, ONMT, fédérations du tourisme et grands projets d'infrastructure au Maroc.",
+  alternates: {
+    canonical: "/actualites/projets",
+  },
   openGraph: {
-    title: "Projets & Federations | SiyahaMag",
+    title: "Projets & Fédérations Tourisme Maroc — Mondial 2030 & ONMT | SiyahaMag",
     description:
-      "Coupe du Monde 2030, ONMT, federations du tourisme et grands projets d'infrastructure au Maroc.",
+      "Coupe du Monde 2030, ONMT, fédérations du tourisme et grands projets d'infrastructure au Maroc.",
     type: "website",
   },
 }
@@ -62,6 +66,12 @@ const PROJETS_ARTICLES = [
 export default function ProjetsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Breadcrumbs
+        segments={[
+          { label: "Actualités", href: "/actualites" },
+          { label: "Projets & Fédérations" },
+        ]}
+      />
       <div className="flex items-center gap-3 mb-8">
         <div className="inline-flex p-3 rounded-lg bg-orange-50 text-orange-700">
           <FolderKanban className="h-6 w-6" />

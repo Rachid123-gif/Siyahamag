@@ -3,15 +3,19 @@ import Link from "next/link"
 import { TrendingUp, ArrowLeft } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Invest — Actualites investissement touristique | SiyahaMag",
+  title: "Actualités Investissement Touristique Maroc — Hôtels & Resorts",
   description:
-    "Investissements hoteliers, projets de resorts et financements d'infrastructures touristiques au Maroc.",
+    "Investissements hôteliers, projets de resorts et financements d'infrastructures touristiques au Maroc.",
+  alternates: {
+    canonical: "/actualites/invest",
+  },
   openGraph: {
-    title: "Invest — Actualites investissement touristique | SiyahaMag",
+    title: "Actualités Investissement Touristique Maroc — Hôtels & Resorts | SiyahaMag",
     description:
-      "Investissements hoteliers, projets de resorts et financements d'infrastructures touristiques au Maroc.",
+      "Investissements hôteliers, projets de resorts et financements d'infrastructures touristiques au Maroc.",
     type: "website",
   },
 }
@@ -62,6 +66,12 @@ const INVEST_ARTICLES = [
 export default function InvestPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Breadcrumbs
+        segments={[
+          { label: "Actualités", href: "/actualites" },
+          { label: "Investissement" },
+        ]}
+      />
       <div className="flex items-center gap-3 mb-8">
         <div className="inline-flex p-3 rounded-lg bg-emerald-50 text-emerald-700">
           <TrendingUp className="h-6 w-6" />

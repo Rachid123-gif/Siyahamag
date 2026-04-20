@@ -3,15 +3,19 @@ import Link from "next/link"
 import { ShoppingCart, ArrowLeft } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Marches — Tendances du marche touristique | SiyahaMag",
+  title: "Marchés Touristiques Maroc — Tendances & Occupation",
   description:
-    "Taux d'occupation, arrivees de touristes et tendances du marche touristique marocain.",
+    "Taux d'occupation, arrivées de touristes et tendances du marché touristique marocain.",
+  alternates: {
+    canonical: "/actualites/marches",
+  },
   openGraph: {
-    title: "Marches — Tendances du marche touristique | SiyahaMag",
+    title: "Marchés Touristiques Maroc — Tendances & Occupation | SiyahaMag",
     description:
-      "Taux d'occupation, arrivees de touristes et tendances du marche touristique marocain.",
+      "Taux d'occupation, arrivées de touristes et tendances du marché touristique marocain.",
     type: "website",
   },
 }
@@ -62,6 +66,12 @@ const MARCHES_ARTICLES = [
 export default function MarchesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Breadcrumbs
+        segments={[
+          { label: "Actualités", href: "/actualites" },
+          { label: "Marchés" },
+        ]}
+      />
       <div className="flex items-center gap-3 mb-8">
         <div className="inline-flex p-3 rounded-lg bg-purple-50 text-purple-700">
           <ShoppingCart className="h-6 w-6" />

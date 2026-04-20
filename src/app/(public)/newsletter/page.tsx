@@ -1,15 +1,21 @@
 import type { Metadata } from "next"
 import { NewsletterForm } from "@/components/newsletter/NewsletterForm"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Newsletter — SiyahaMag",
+  title: "Newsletter Tourisme Maroc — Actualités Hebdomadaires",
   description:
-    "Inscrivez-vous à la newsletter SiyahaMag pour recevoir les dernières actualités du tourisme marocain.",
+    "Inscrivez-vous à la newsletter SiyahaMag pour recevoir les dernières actualités, offres d'emploi et opportunités d'investissement du tourisme marocain.",
+  alternates: {
+    canonical: "/newsletter",
+  },
 }
 
 export default function NewsletterPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Breadcrumbs segments={[{ label: "Newsletter" }]} />
+
       <div className="max-w-2xl mx-auto text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-ocean">
           Newsletter SiyahaMag

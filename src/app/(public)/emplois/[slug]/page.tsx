@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import {
-  ChevronRight,
   MapPin,
   BadgeCheck,
   Building2,
@@ -24,6 +23,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ShareButtons } from "@/components/articles/ShareButtons"
 import { JsonLd } from "@/components/seo/JsonLd"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 // ── Types ────────────────────────────────────────────────────────────
 
@@ -44,10 +44,13 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${job.title} — ${job.company.name} | SiyahaMag`,
+    title: `${job.title} — ${job.company.name}`,
     description: job.description.slice(0, 160),
+    alternates: {
+      canonical: `/emplois/${slug}`,
+    },
     openGraph: {
-      title: `${job.title} — ${job.company.name}`,
+      title: `${job.title} — ${job.company.name} | SiyahaMag`,
       description: job.description.slice(0, 160),
       type: "website",
     },
@@ -75,7 +78,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
       (j.jobCategory === job.jobCategory || j.city === job.city)
   ).slice(0, 3)
 
-  const appUrl = `https://siyahamag.com/emplois/${slug}`
+  const appUrl = `https://siyahamag.ma/emplois/${slug}`
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -105,14 +108,13 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
       {/* JSON-LD SEO */}
       <JsonLd data={jsonLd} />
 
-      {/* Breadcrumb */}
-      <nav className="flex items-center gap-1.5 text-sm text-muted-foreground mb-6">
-        <Link href="/" className="hover:text-ocean">Accueil</Link>
-        <ChevronRight className="h-3.5 w-3.5" />
-        <Link href="/emplois" className="hover:text-ocean">Offres d&apos;emploi</Link>
-        <ChevronRight className="h-3.5 w-3.5" />
-        <span className="text-foreground font-medium truncate max-w-[200px]">{job.title}</span>
-      </nav>
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        segments={[
+          { label: "Offres d'emploi", href: "/emplois" },
+          { label: job.title },
+        ]}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main content */}

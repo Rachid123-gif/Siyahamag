@@ -3,15 +3,19 @@ import Link from "next/link"
 import { Landmark, ArrowLeft } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Gouvernement — Politiques touristiques | SiyahaMag",
+  title: "Politiques Touristiques — Gouvernement & Vision 2030",
   description:
-    "Strategies gouvernementales, politiques de visa et Vision 2030 pour le tourisme marocain.",
+    "Stratégies gouvernementales, politiques de visa et Vision 2030 pour le tourisme marocain.",
+  alternates: {
+    canonical: "/actualites/gouvernement",
+  },
   openGraph: {
-    title: "Gouvernement — Politiques touristiques | SiyahaMag",
+    title: "Politiques Touristiques — Gouvernement & Vision 2030 | SiyahaMag",
     description:
-      "Strategies gouvernementales, politiques de visa et Vision 2030 pour le tourisme marocain.",
+      "Stratégies gouvernementales, politiques de visa et Vision 2030 pour le tourisme marocain.",
     type: "website",
   },
 }
@@ -62,6 +66,12 @@ const GOUVERNEMENT_ARTICLES = [
 export default function GouvernementPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Breadcrumbs
+        segments={[
+          { label: "Actualités", href: "/actualites" },
+          { label: "Gouvernement" },
+        ]}
+      />
       <div className="flex items-center gap-3 mb-8">
         <div className="inline-flex p-3 rounded-lg bg-amber-50 text-amber-700">
           <Landmark className="h-6 w-6" />

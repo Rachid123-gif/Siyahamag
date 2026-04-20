@@ -146,7 +146,7 @@ export default async function ArticleDetailPage(props: ArticlePageProps) {
     article.category
   const colorClass = CATEGORY_COLORS[article.category] ?? "bg-gray-100 text-gray-800"
   const readingTime = calculateReadingTime(article.content)
-  const articleUrl = `https://siyahamag.com/actualites/${article.slug}`
+  const articleUrl = `https://siyahamag.ma/actualites/${article.slug}`
 
   // Map similar articles for ArticleCard
   const similarCards = similarArticles.map((a) => ({
@@ -176,7 +176,7 @@ export default async function ArticleDetailPage(props: ArticlePageProps) {
     publisher: {
       "@type": "Organization",
       name: "SiyahaMag",
-      url: "https://siyahamag.com",
+      url: "https://siyahamag.ma",
     },
     mainEntityOfPage: {
       "@type": "WebPage",

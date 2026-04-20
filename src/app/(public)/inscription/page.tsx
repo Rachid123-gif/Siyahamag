@@ -2,9 +2,12 @@ import type { Metadata } from "next"
 import { SignupCandidateForm } from "@/components/auth/SignupCandidateForm"
 
 export const metadata: Metadata = {
-  title: "Inscription candidat",
+  title: "Inscription Candidat — Postulez aux Offres Tourisme",
   description:
     "Créez votre compte candidat sur SiyahaMag pour postuler aux offres d'emploi dans le tourisme marocain.",
+  alternates: {
+    canonical: "/inscription",
+  },
 }
 
 export default function SignupCandidatePage() {

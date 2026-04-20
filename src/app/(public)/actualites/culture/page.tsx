@@ -3,15 +3,19 @@ import Link from "next/link"
 import { Palette, ArrowLeft } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "Culture & Patrimoine | SiyahaMag",
+  title: "Culture & Patrimoine Maroc — Médinas, Riads & Héritage",
   description:
-    "Medinas, riads, patrimoine culturel, Chefchaouen et heritage architectural du Maroc.",
+    "Médinas, riads, patrimoine culturel, Chefchaouen et héritage architectural du Maroc.",
+  alternates: {
+    canonical: "/actualites/culture",
+  },
   openGraph: {
-    title: "Culture & Patrimoine | SiyahaMag",
+    title: "Culture & Patrimoine Maroc — Médinas, Riads & Héritage | SiyahaMag",
     description:
-      "Medinas, riads, patrimoine culturel, Chefchaouen et heritage architectural du Maroc.",
+      "Médinas, riads, patrimoine culturel, Chefchaouen et héritage architectural du Maroc.",
     type: "website",
   },
 }
@@ -62,6 +66,12 @@ const CULTURE_ARTICLES = [
 export default function CulturePage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Breadcrumbs
+        segments={[
+          { label: "Actualités", href: "/actualites" },
+          { label: "Culture & Patrimoine" },
+        ]}
+      />
       <div className="flex items-center gap-3 mb-8">
         <div className="inline-flex p-3 rounded-lg bg-indigo-50 text-indigo-700">
           <Palette className="h-6 w-6" />
