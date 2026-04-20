@@ -1,10 +1,8 @@
-import type { Metadata } from "next"
 import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
+import { prisma } from "@/lib/prisma"
 
-export const metadata: Metadata = {
-  title: "Tableau de bord",
-}
+export const dynamic = "force-dynamic"
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -14,15 +12,28 @@ export default async function DashboardPage() {
 
   if (!user) redirect("/connexion")
 
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold text-ocean">Tableau de bord</h1>
-      <p className="mt-2 text-muted-foreground">
-        Bienvenue, {user.user_metadata?.name || user.email}
-      </p>
-      <div className="mt-8 text-center py-16 text-muted-foreground">
-        Votre espace personnel sera disponible prochainement.
-      </div>
-    </div>
-  )
+  // Lookup role in Prisma DB and redirect to proper dashboard
+  try {
+    const dbUser = await prisma.user.findUnique({
+      where: { supabaseId: user.id },
+    })
+
+    if (dbUser) {
+      switch (dbUser.role) {
+        case "ADMIN":
+          redirect("/admin")
+        case "EMPLOYER":
+          redirect("/employeur")
+        case "CANDIDATE":
+          redirect("/candidat")
+        case "INVESTOR":
+          redirect("/mes-investissements")
+      }
+    }
+  } catch {
+    // DB not available — show fallback
+  }
+
+  // Fallback if no DB user found
+  redirect("/candidat")
 }
