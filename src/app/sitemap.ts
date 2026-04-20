@@ -110,6 +110,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
+  // ── City job pages ─────────────────────────────────────────────────
+  const cityJobPages: MetadataRoute.Sitemap = [
+    "marrakech",
+    "agadir",
+    "casablanca",
+    "fes",
+    "tanger",
+    "essaouira",
+  ].map((city) => ({
+    url: `${baseUrl}/emplois/${city}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }))
+
+  // ── Guide pages ───────────────────────────────────────────────────
+  const guidePages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/guide/emploi-tourisme-maroc`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/guide/investir-riad-maroc`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/guide/coupe-du-monde-2030-tourisme`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+  ]
+
   // ── Job detail pages ───────────────────────────────────────────────
   const jobPages: MetadataRoute.Sitemap = DEMO_JOBS.map((job) => ({
     url: `${baseUrl}/emplois/${job.slug}`,
@@ -142,6 +179,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...subCategoryPages,
     ...thematiquePages,
     ...articlePages,
+    ...cityJobPages,
+    ...guidePages,
     ...jobPages,
     ...investmentPages,
   ]

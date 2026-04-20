@@ -24,11 +24,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ShareButtons } from "@/components/articles/ShareButtons"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
+import { CityJobsPage, CITY_DATA, CITY_SLUGS } from "@/components/jobs/CityJobsPage"
 
 // ── Types ────────────────────────────────────────────────────────────
 
 interface JobDetailPageProps {
   params: Promise<{ slug: string }>
+}
+
+// ── Static Params (pre-render cities + job slugs) ────────────────────
+
+export function generateStaticParams() {
+  const jobParams = DEMO_JOBS.map((job) => ({ slug: job.slug }))
+  const cityParams = CITY_SLUGS.map((city) => ({ slug: city }))
+  return [...jobParams, ...cityParams]
 }
 
 // ── Metadata ─────────────────────────────────────────────────────────
@@ -37,6 +46,33 @@ export async function generateMetadata({
   params,
 }: JobDetailPageProps): Promise<Metadata> {
   const { slug } = await params
+
+  // Check if this is a city page
+  if (CITY_DATA[slug]) {
+    const cityData = CITY_DATA[slug]
+    return {
+      title: `Emploi Tourisme ${cityData.name} — Offres Hôtellerie & Restauration | SiyahaMag`,
+      description: `Trouvez votre emploi dans le tourisme à ${cityData.name} (${cityData.region}). ${cityData.description}`,
+      alternates: {
+        canonical: `/emplois/${slug}`,
+      },
+      openGraph: {
+        title: `Emploi Tourisme ${cityData.name} — Offres Hôtellerie & Restauration | SiyahaMag`,
+        description: `Offres d'emploi tourisme, hôtellerie et restauration à ${cityData.name}. ${cityData.description}`,
+        type: "website",
+        images: [cityData.image],
+      },
+      keywords: [
+        `emploi tourisme ${cityData.name.toLowerCase()}`,
+        `emploi hotel ${cityData.name.toLowerCase()}`,
+        `travail tourisme ${cityData.name.toLowerCase()}`,
+        `offre emploi hotellerie ${cityData.name.toLowerCase()}`,
+        `recrutement tourisme ${cityData.region.toLowerCase()}`,
+      ],
+    }
+  }
+
+  // Otherwise, it's a job detail page
   const job = DEMO_JOBS.find((j) => j.slug === slug)
 
   if (!job) {
@@ -61,6 +97,12 @@ export async function generateMetadata({
 
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
   const { slug } = await params
+
+  // If it's a city page, render the city landing page
+  if (CITY_DATA[slug]) {
+    return <CityJobsPage city={slug} />
+  }
+
   const job = DEMO_JOBS.find((j) => j.slug === slug)
 
   if (!job) notFound()
