@@ -87,7 +87,7 @@ export function SignupEmployerForm() {
             <Building className="h-5 w-5 text-ocean mt-0.5 shrink-0" />
             <p className="text-ocean">
               Votre compte sera vérifié par notre équipe avant activation.
-              Munissez-vous de votre ICE et de votre email professionnel.
+              Un email professionnel suffit. ICE et site web sont optionnels mais recommandés.
             </p>
           </div>
 
@@ -170,7 +170,7 @@ export function SignupEmployerForm() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="ice">ICE *</Label>
+              <Label htmlFor="ice">ICE (optionnel)</Label>
               <Input
                 id="ice"
                 placeholder="Ex: 001234567000089"
@@ -196,7 +196,7 @@ export function SignupEmployerForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="website">Site web *</Label>
+            <Label htmlFor="website">Site web (optionnel)</Label>
             <Input
               id="website"
               placeholder="https://www.votre-entreprise.ma"

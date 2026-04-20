@@ -14,8 +14,8 @@ export const signupEmployerSchema = z.object({
   password: z.string().min(8, 'Le mot de passe doit contenir au moins 8 caractères'),
   companyName: z.string().min(1, "Le nom de l'entreprise est requis"),
   companyEmail: z.string().email("L'email professionnel n'est pas valide"),
-  ice: z.string().min(1, "L'ICE est requis"),
-  website: z.string().url("L'URL du site web n'est pas valide"),
+  ice: z.string().optional().or(z.literal('')),
+  website: z.string().url("L'URL doit être valide (ex: https://...)").optional().or(z.literal('')),
   city: z.string().min(1, 'La ville est requise'),
   sector: z.string().min(1, 'Le secteur est requis'),
 })

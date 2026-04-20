@@ -1,0 +1,26 @@
+{
+  "runs": [
+    {
+      "date": "2026-04-20T22:47:52.161Z",
+      "feedsChecked": 5,
+      "itemsFetched": 130,
+      "published": [
+        {
+          "slug": "2026-04-17-tourisme-lonmt-met-les-bouchees-double-pour-renforcer-lattractivite-de-la-destin",
+          "title": "Tourisme : l'ONMT met les bouchées double pour renforcer l'attractivité de la destination Dakhla",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-04-15-marrakech-easyjet-officialise-sa-premiere-base-aerienne-en-afrique",
+          "title": "Marrakech : EasyJet officialise sa première base aérienne en Afrique",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-04-15-abdessamad-kayouh-casablanca-doit-devenir-la-plateforme-aerienne-de-reference-du",
+          "title": "\n                \n            \nAbdessamad Kayouh : “Casablanca doit devenir la plateforme aérienne de référence du continent”",
+          "source": "TelQuel"
+        }
+      ]
+    }
+  ]
+}
