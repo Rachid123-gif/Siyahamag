@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-04-21T08:04:12.270Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-04-21-le-festival-de-fes-des-musiques-sacrees-du-monde-devoile-sa-29e-edition",
+          "title": "Le Festival de Fès des Musiques Sacrées du Monde dévoile sa 29è édition ",
+          "source": "Hespress Fr"
+        }
+      ]
+    },
+    {
       "date": "2026-04-20T23:24:57.717Z",
       "feedsChecked": 5,
       "itemsFetched": 120,

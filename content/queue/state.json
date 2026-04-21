@@ -2,13 +2,14 @@
   "publishedSlugs": [
     "2026-04-17-tourisme-lonmt-met-les-bouchees-double-pour-renforcer-lattractivite-de-la-destin",
     "2026-04-15-marrakech-easyjet-officialise-sa-premiere-base-aerienne-en-afrique",
-    "2026-04-15-abdessamad-kayouh-casablanca-doit-devenir-la-plateforme-aerienne-de-reference-du"
+    "2026-04-15-abdessamad-kayouh-casablanca-doit-devenir-la-plateforme-aerienne-de-reference-du",
+    "2026-04-21-le-festival-de-fes-des-musiques-sacrees-du-monde-devoile-sa-29e-edition"
   ],
-  "lastRun": "2026-04-20T23:24:57.716Z",
+  "lastRun": "2026-04-21T08:04:12.246Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 120,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }
