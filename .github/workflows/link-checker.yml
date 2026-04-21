@@ -1,0 +1,105 @@
+name: Daily Link Checker
+
+# Crawl every URL in the sitemap and flag any non-200 / empty page.
+# Runs daily at 9:00 AM UTC (10:00 AM Morocco time), after SEO generation + health check.
+# Safety: this workflow does NOT consume any untrusted user input (no issue title,
+# PR body, commit message, etc.). Only the public sitemap is fetched.
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-links:
+    name: Verify all sitemap URLs return 200
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Fetch sitemap and extract URLs
+        id: sitemap
+        run: |
+          set -e
+          curl -sfk https://siyahamag.ma/sitemap.xml -o sitemap.xml
+          grep -oP '(?<=<loc>)[^<]+' sitemap.xml > urls.txt
+          COUNT=$(wc -l < urls.txt)
+          echo "Found $COUNT URLs in sitemap"
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          if [ "$COUNT" -lt "5" ]; then
+            echo "Sitemap looks too small - aborting."
+            exit 1
+          fi
+
+      - name: Check every URL returns 200 and has content
+        id: check
+        run: |
+          set +e
+          FAILED=0
+          REPORT="broken-links-report.md"
+          echo "# Liens casses detectes - $(date -u +%Y-%m-%d)" > "$REPORT"
+          echo "" >> "$REPORT"
+          echo "| URL | Code HTTP | Taille (octets) |" >> "$REPORT"
+          echo "|-----|-----------|-----------------|" >> "$REPORT"
+
+          while IFS= read -r url; do
+            [ -z "$url" ] && continue
+            RESPONSE=$(curl -sk -o /tmp/body.html -w "%{http_code} %{size_download}" -L "$url" || echo "000 0")
+            CODE=$(echo "$RESPONSE" | awk '{print $1}')
+            SIZE=$(echo "$RESPONSE" | awk '{print $2}')
+
+            if [ "$CODE" != "200" ]; then
+              echo "FAIL $url -> HTTP $CODE"
+              echo "| $url | $CODE | - |" >> "$REPORT"
+              FAILED=$((FAILED + 1))
+            elif [ "$SIZE" -lt "500" ]; then
+              echo "SUSPECT $url -> HTTP 200 but only $SIZE bytes (possible blank page)"
+              echo "| $url | 200 (petit) | $SIZE |" >> "$REPORT"
+              FAILED=$((FAILED + 1))
+            else
+              echo "OK $url ($SIZE bytes)"
+            fi
+          done < urls.txt
+
+          echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
+          echo ""
+          echo "=== Summary ==="
+          echo "Total URLs checked: $(wc -l < urls.txt)"
+          echo "Broken or suspect: $FAILED"
+
+          if [ "$FAILED" -gt "0" ]; then
+            exit 1
+          fi
+
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-checker-report
+          path: broken-links-report.md
+          retention-days: 30
+
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const date = new Date().toISOString().slice(0, 10)
+            let body = `Le controleur de liens quotidien a detecte des liens casses ou pages vides sur https://siyahamag.ma le ${date}.\n\n`
+            try {
+              body += fs.readFileSync('broken-links-report.md', 'utf8')
+            } catch (_) {
+              body += '(Rapport non disponible.)'
+            }
+            body += `\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Liens casses detectes ${date}`,
+              body,
+              labels: ["link-checker", "automated", "bug"],
+            })

@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { JsonLd } from "@/components/seo/JsonLd"
+import { ALL_ARTICLES } from "@/lib/articlesData"
 import type { Metadata } from "next"
 
 // ── SEO Metadata ─────────────────────────────────────────────────────
@@ -68,86 +69,22 @@ const KEY_FIGURES = [
   },
 ]
 
-const ARTICLES = [
-  {
-    id: "1",
-    title: "Les riads de Marrakech : entre tradition et modernite",
-    slug: "riads-marrakech-tradition-modernite",
-    summary:
-      "Decouvrez comment les riads historiques de la medina se reinventent pour seduire une clientele internationale en quete d'authenticite.",
-    coverImage:
-      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&h=400&fit=crop",
-    category: "Culture & Patrimoine",
-    categoryColor: "bg-blue-100 text-blue-800",
-    date: "2 avril 2026",
-    author: "Amina Benali",
-  },
-  {
-    id: "2",
-    title: "Ouverture du nouveau terminal de l'aeroport de Marrakech",
-    slug: "nouveau-terminal-aeroport-marrakech",
-    summary:
-      "Le nouveau terminal T2 vise a tripler la capacite d'accueil de l'aeroport Menara pour accompagner la montee en puissance touristique.",
-    coverImage:
-      "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600&h=400&fit=crop",
-    category: "Investissement",
-    categoryColor: "bg-amber-100 text-amber-800",
-    date: "2 avril 2026",
-    author: "Youssef El Idrissi",
-  },
-  {
-    id: "3",
-    title: "La gastronomie marocaine classee patrimoine immateriel",
-    slug: "gastronomie-marocaine-patrimoine-immateriel",
-    summary:
-      "L'UNESCO reconnait officiellement la richesse culinaire du Maroc, un atout majeur pour l'attractivite touristique du Royaume.",
-    coverImage:
-      "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&h=400&fit=crop",
-    category: "Gastronomie",
-    categoryColor: "bg-rose-100 text-rose-800",
-    date: "2 avril 2026",
-    author: "Fatima Zahra Ouali",
-  },
-  {
-    id: "4",
-    title: "Coupe du Monde 2030 : le Maroc prepare ses infrastructures",
-    slug: "coupe-du-monde-2030-maroc-infrastructures",
-    summary:
-      "Stades, transports, hebergements : le Maroc accelere ses grands chantiers en vue de la coorganisation du Mondial 2030.",
-    coverImage:
-      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=600&h=400&fit=crop",
-    category: "Projets & Federations",
-    categoryColor: "bg-purple-100 text-purple-800",
-    date: "2 avril 2026",
-    author: "Karim Tazi",
-  },
-  {
-    id: "5",
-    title: "Tourisme durable : les eco-lodges du Haut Atlas",
-    slug: "tourisme-durable-eco-lodges-haut-atlas",
-    summary:
-      "Une nouvelle generation d'hebergements ecologiques emerge dans les montagnes de l'Atlas, attirant voyageurs responsables.",
-    coverImage:
-      "https://images.unsplash.com/photo-1489493887464-892be6d1daae?w=600&h=400&fit=crop",
-    category: "Investissement",
-    categoryColor: "bg-amber-100 text-amber-800",
-    date: "2 avril 2026",
-    author: "Nadia Moussaoui",
-  },
-  {
-    id: "6",
-    title: "Record de touristes a Essaouira pendant le festival Gnaoua",
-    slug: "record-touristes-essaouira-festival-gnaoua",
-    summary:
-      "Le festival Gnaoua d'Essaouira attire un nombre record de visiteurs, confirmant le potentiel culturel de la cite des Alizes.",
-    coverImage:
-      "https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=600&h=400&fit=crop",
-    category: "Evenements",
-    categoryColor: "bg-purple-100 text-purple-800",
-    date: "2 avril 2026",
-    author: "Hassan Amrani",
-  },
-]
+// Latest 6 articles from the unified articles source. Keeps homepage in sync
+// with the real detail pages (no more broken links from hardcoded demo slugs).
+const ARTICLES = [...ALL_ARTICLES]
+  .sort((a, b) => b.datePublished.localeCompare(a.datePublished))
+  .slice(0, 6)
+  .map((a) => ({
+    id: a.slug,
+    title: a.title,
+    slug: a.slug,
+    summary: a.summary,
+    coverImage: a.image,
+    category: a.categoryLabel,
+    categoryColor: a.color,
+    date: a.date,
+    author: a.author,
+  }))
 
 const SECTIONS = [
   {
