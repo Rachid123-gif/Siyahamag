@@ -5,6 +5,18 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .slice(0, 80)
+}
+
 export const metadata: Metadata = {
   title: "Projets & Fédérations Tourisme Maroc — Mondial 2030 & ONMT",
   description:
@@ -86,34 +98,40 @@ export default function ProjetsPage() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {PROJETS_ARTICLES.map((article) => (
-          <Card key={article.id} className="h-full gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">
-            <div className="relative aspect-video w-full overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={article.image}
-                alt={article.title}
-                className="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute left-3 top-3">
-                <Badge className="bg-orange-100 text-orange-800 border-0">
-                  {article.tag}
-                </Badge>
+          <Link
+            key={article.id}
+            href={`/actualites/article/${slugify(article.title)}`}
+            className="group block"
+          >
+            <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">
+              <div className="relative aspect-video w-full overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute left-3 top-3">
+                  <Badge className="bg-orange-100 text-orange-800 border-0">
+                    {article.tag}
+                  </Badge>
+                </div>
               </div>
-            </div>
-            <CardContent className="flex flex-1 flex-col gap-2 p-4">
-              <h3 className="line-clamp-2 text-base font-semibold leading-snug text-foreground">
-                {article.title}
-              </h3>
-              <p className="line-clamp-2 text-sm text-muted-foreground">
-                {article.summary}
-              </p>
-              <div className="mt-auto pt-2 flex items-center justify-between text-xs text-muted-foreground">
-                <span>{article.author}</span>
-                <span>{article.date}</span>
-              </div>
-            </CardContent>
-          </Card>
+              <CardContent className="flex flex-1 flex-col gap-2 p-4">
+                <h3 className="line-clamp-2 text-base font-semibold leading-snug text-foreground group-hover:text-ocean transition-colors">
+                  {article.title}
+                </h3>
+                <p className="line-clamp-2 text-sm text-muted-foreground">
+                  {article.summary}
+                </p>
+                <div className="mt-auto pt-2 flex items-center justify-between text-xs text-muted-foreground">
+                  <span>{article.author}</span>
+                  <span>{article.date}</span>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </div>
 

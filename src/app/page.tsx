@@ -349,7 +349,7 @@ export default function HomePage() {
             {ARTICLES.map((article) => (
               <Link
                 key={article.id}
-                href={`/actualites/${article.slug}`}
+                href={`/actualites/article/${article.slug}`}
                 className="group block"
               >
                 <Card className="h-full gap-0 overflow-hidden py-0 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">

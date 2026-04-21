@@ -24,39 +24,61 @@ export const metadata: Metadata = {
 }
 
 export default async function AdminDashboardPage() {
-  const [
-    totalArticles,
-    totalActiveJobs,
-    totalApplications,
-    totalActiveInvestments,
-    totalUsers,
-    verifiedEmployers,
-    pendingJobs,
-    pendingCompanies,
-    pendingInvestments,
-    pendingReports,
-    recentActivity,
-  ] = await Promise.all([
-    prisma.article.count({ where: { status: "PUBLISHED" } }),
-    prisma.jobListing.count({ where: { status: "APPROVED" } }),
-    prisma.application.count(),
-    prisma.investment.count({ where: { status: "APPROVED" } }),
-    prisma.user.count(),
-    prisma.company.count({ where: { verificationStatus: "VERIFIED" } }),
-    prisma.jobListing.count({ where: { status: "PENDING" } }),
-    prisma.company.count({ where: { verificationStatus: "PENDING" } }),
-    prisma.investment.count({ where: { status: "PENDING" } }),
-    prisma.report.count({ where: { status: "PENDING" } }),
-    prisma.moderationLog.findMany({
-      take: 10,
-      orderBy: { createdAt: "desc" },
-      include: {
-        admin: {
-          select: { name: true },
+  let totalArticles = 0
+  let totalActiveJobs = 0
+  let totalApplications = 0
+  let totalActiveInvestments = 0
+  let totalUsers = 0
+  let verifiedEmployers = 0
+  let pendingJobs = 0
+  let pendingCompanies = 0
+  let pendingInvestments = 0
+  let pendingReports = 0
+  type RecentActivityItem = {
+    id: string
+    action: string
+    targetType: string
+    createdAt: Date
+    admin: { name: string } | null
+  }
+  let recentActivity: RecentActivityItem[] = []
+
+  try {
+    const results = await Promise.all([
+      prisma.article.count({ where: { status: "PUBLISHED" } }),
+      prisma.jobListing.count({ where: { status: "APPROVED" } }),
+      prisma.application.count(),
+      prisma.investment.count({ where: { status: "APPROVED" } }),
+      prisma.user.count(),
+      prisma.company.count({ where: { verificationStatus: "VERIFIED" } }),
+      prisma.jobListing.count({ where: { status: "PENDING" } }),
+      prisma.company.count({ where: { verificationStatus: "PENDING" } }),
+      prisma.investment.count({ where: { status: "PENDING" } }),
+      prisma.report.count({ where: { status: "PENDING" } }),
+      prisma.moderationLog.findMany({
+        take: 10,
+        orderBy: { createdAt: "desc" },
+        include: {
+          admin: {
+            select: { name: true },
+          },
         },
-      },
-    }),
-  ])
+      }),
+    ])
+    totalArticles = results[0]
+    totalActiveJobs = results[1]
+    totalApplications = results[2]
+    totalActiveInvestments = results[3]
+    totalUsers = results[4]
+    verifiedEmployers = results[5]
+    pendingJobs = results[6]
+    pendingCompanies = results[7]
+    pendingInvestments = results[8]
+    pendingReports = results[9]
+    recentActivity = results[10] as RecentActivityItem[]
+  } catch {
+    // DB query failed — show zeros
+  }
 
   const metricCards = [
     {
@@ -226,17 +248,12 @@ export default async function AdminDashboardPage() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-sm">
-                        <span className="font-medium">{log.admin.name}</span>
+                        <span className="font-medium">{log.admin?.name ?? "Admin"}</span>
                         {" "}
                         <span className="text-muted-foreground">
                           {ACTION_LABELS[log.action] || log.action}
                         </span>
                       </p>
-                      {log.reason && (
-                        <p className="truncate text-xs text-muted-foreground">
-                          {log.reason}
-                        </p>
-                      )}
                     </div>
                     <div className="flex shrink-0 items-center gap-1.5 text-xs text-muted-foreground">
                       <Clock className="h-3 w-3" />

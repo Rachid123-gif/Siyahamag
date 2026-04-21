@@ -5,6 +5,18 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .slice(0, 80)
+}
+
 export const metadata: Metadata = {
   title: "Recherches Académiques — Tourisme au Maroc",
   description:
@@ -82,7 +94,7 @@ export default function AcademiquesPage() {
         {ACADEMIC_ARTICLES.map((article) => (
           <Link
             key={article.id}
-            href="/thematiques/academiques"
+            href={`/actualites/article/${slugify(article.title)}`}
             className="group block"
           >
             <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">

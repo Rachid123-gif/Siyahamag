@@ -5,6 +5,18 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .slice(0, 80)
+}
+
 export const metadata: Metadata = {
   title: "Tech & Innovation Touristique Maroc — Digitalisation",
   description:
@@ -76,7 +88,11 @@ export default function TechPage() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {TECH_ARTICLES.map((article) => (
-          <Link key={article.id} href="/thematiques/tech" className="group block">
+          <Link
+            key={article.id}
+            href={`/actualites/article/${slugify(article.title)}`}
+            className="group block"
+          >
             <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">
               <div className="relative aspect-video w-full overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}

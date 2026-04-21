@@ -237,7 +237,7 @@ export function ActualitesContent() {
             return (
               <Link
                 key={article.id}
-                href={`/actualites`}
+                href={`/actualites/article/${article.slug}`}
                 className="group block"
               >
                 <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow duration-200 hover:shadow-lg">

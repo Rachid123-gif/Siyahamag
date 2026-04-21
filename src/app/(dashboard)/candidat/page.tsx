@@ -33,9 +33,24 @@ export default async function CandidateDashboardPage() {
   const candidate = await getAuthenticatedCandidate()
   if (!candidate) redirect("/connexion")
 
-  // Fetch metrics in parallel
-  const [totalApplications, unreadApplications, activeAlerts, recentApplications] =
-    await Promise.all([
+  // Fetch metrics in parallel — with graceful fallback if DB fails
+  let totalApplications = 0
+  let unreadApplications = 0
+  let activeAlerts = 0
+  type RecentApp = {
+    id: string
+    status: string
+    createdAt: Date
+    jobListing: {
+      title: string
+      slug: string
+      city: string
+      company: { name: string }
+    }
+  }
+  let recentApplications: RecentApp[] = []
+  try {
+    const results = await Promise.all([
       prisma.application.count({
         where: { userId: candidate.id },
       }),
@@ -63,6 +78,13 @@ export default async function CandidateDashboardPage() {
         },
       }),
     ])
+    totalApplications = results[0]
+    unreadApplications = results[1]
+    activeAlerts = results[2]
+    recentApplications = results[3] as RecentApp[]
+  } catch {
+    // DB query failed — show dashboard with zeros
+  }
 
   const metrics = [
     {
