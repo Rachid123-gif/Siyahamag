@@ -267,12 +267,14 @@ export default async function InvestmentDetailPage(props: PageProps) {
     ? MOROCCO_REGIONS[investment.region as keyof typeof MOROCCO_REGIONS]
     : null
 
-  // Fetch similar investments (non-blocking: empty array on DB failure)
+  // Fetch similar investments (non-blocking: empty array on DB failure).
+  // Cast investmentType through the Prisma enum via `as never` since the
+  // value may come from either the DB (enum) or the static fallback (string).
   const similarInvestments = await prisma.investment
     .findMany({
       where: {
         status: "APPROVED",
-        investmentType: investment.investmentType,
+        investmentType: investment.investmentType as never,
         id: { not: investment.id },
       },
       select: {
@@ -288,16 +290,7 @@ export default async function InvestmentDetailPage(props: PageProps) {
       orderBy: { createdAt: "desc" },
       take: 3,
     })
-    .catch(() => [] as Array<{
-      id: string
-      title: string
-      slug: string
-      investmentType: string
-      city: string
-      price: number | null
-      surface: number | null
-      images: string[]
-    }>)
+    .catch(() => [] as never[])
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
