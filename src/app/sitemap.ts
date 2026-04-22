@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next"
 import { DEMO_JOBS } from "@/lib/demoData"
+import { ALL_ARTICLES } from "@/lib/articlesData"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://siyahamag.ma"
@@ -93,19 +94,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  // ── Demo article slugs ─────────────────────────────────────────────
-  const demoArticleSlugs = [
-    "riads-marrakech-tradition-modernite",
-    "nouveau-terminal-aeroport-marrakech",
-    "gastronomie-marocaine-patrimoine-immateriel",
-    "coupe-du-monde-2030-maroc-infrastructures",
-    "tourisme-durable-eco-lodges-haut-atlas",
-    "record-touristes-essaouira-festival-gnaoua",
-  ]
-
-  const articlePages: MetadataRoute.Sitemap = demoArticleSlugs.map((slug) => ({
-    url: `${baseUrl}/actualites/${slug}`,
-    lastModified: now,
+  // ── Article detail pages ───────────────────────────────────────────
+  // Derived from the single source of truth in src/lib/articlesData.ts,
+  // so every link on every category/thematique page resolves to a real URL.
+  const articlePages: MetadataRoute.Sitemap = ALL_ARTICLES.map((article) => ({
+    url: `${baseUrl}/actualites/article/${article.slug}`,
+    lastModified: new Date(article.datePublished),
     changeFrequency: "weekly" as const,
     priority: 0.6,
   }))

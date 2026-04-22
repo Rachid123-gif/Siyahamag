@@ -45,10 +45,12 @@ function formatPrice(price: number): string {
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const { slug } = await props.params
 
-  const investment = await prisma.investment.findUnique({
-    where: { slug, status: "APPROVED" },
-    select: { title: true, city: true, investmentType: true, images: true },
-  })
+  const investment = await prisma.investment
+    .findUnique({
+      where: { slug, status: "APPROVED" },
+      select: { title: true, city: true, investmentType: true, images: true },
+    })
+    .catch(() => null)
 
   if (!investment) {
     return { title: "Annonce introuvable | SiyahaMag" }
@@ -81,12 +83,19 @@ export const dynamic = "force-dynamic"
 export default async function InvestmentDetailPage(props: PageProps) {
   const { slug } = await props.params
 
-  const investment = await prisma.investment.findUnique({
-    where: { slug, status: "APPROVED" },
-    include: {
-      user: { select: { name: true } },
-    },
-  })
+  // Resilient to transient DB outages — fall back to notFound() instead of
+  // rendering a 500 page so crawlers and users never hit an error screen.
+  const investment = await prisma.investment
+    .findUnique({
+      where: { slug, status: "APPROVED" },
+      include: {
+        user: { select: { name: true } },
+      },
+    })
+    .catch((err) => {
+      console.error("[investment] findUnique failed:", err)
+      return null
+    })
 
   if (!investment) notFound()
 
@@ -111,26 +120,37 @@ export default async function InvestmentDetailPage(props: PageProps) {
     ? MOROCCO_REGIONS[investment.region as keyof typeof MOROCCO_REGIONS]
     : null
 
-  // Fetch similar investments
-  const similarInvestments = await prisma.investment.findMany({
-    where: {
-      status: "APPROVED",
-      investmentType: investment.investmentType,
-      id: { not: investment.id },
-    },
-    select: {
-      id: true,
-      title: true,
-      slug: true,
-      investmentType: true,
-      city: true,
-      price: true,
-      surface: true,
-      images: true,
-    },
-    orderBy: { createdAt: "desc" },
-    take: 3,
-  })
+  // Fetch similar investments (non-blocking: empty array on DB failure)
+  const similarInvestments = await prisma.investment
+    .findMany({
+      where: {
+        status: "APPROVED",
+        investmentType: investment.investmentType,
+        id: { not: investment.id },
+      },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        investmentType: true,
+        city: true,
+        price: true,
+        surface: true,
+        images: true,
+      },
+      orderBy: { createdAt: "desc" },
+      take: 3,
+    })
+    .catch(() => [] as Array<{
+      id: string
+      title: string
+      slug: string
+      investmentType: string
+      city: string
+      price: number | null
+      surface: number | null
+      images: string[]
+    }>)
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

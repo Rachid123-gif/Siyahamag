@@ -4,26 +4,13 @@ import { UtensilsCrossed, ArrowLeft } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
-
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .slice(0, 80)
-}
+import { getArticlesByCategory } from "@/lib/articlesData"
 
 export const metadata: Metadata = {
   title: "Gastronomie Marocaine — Patrimoine Culinaire & Restaurants",
   description:
     "Patrimoine culinaire UNESCO, restaurants, tourisme gastronomique et tendances culinaires au Maroc.",
-  alternates: {
-    canonical: "/actualites/gastronomie",
-  },
+  alternates: { canonical: "/actualites/gastronomie" },
   openGraph: {
     title: "Gastronomie Marocaine — Patrimoine Culinaire & Restaurants | SiyahaMag",
     description:
@@ -32,40 +19,9 @@ export const metadata: Metadata = {
   },
 }
 
-const GASTRONOMIE_ARTICLES = [
-  {
-    id: "gas1",
-    title: "La cuisine marocaine inscrite au patrimoine immateriel de l'UNESCO",
-    summary:
-      "Apres le couscous, c'est l'ensemble de la gastronomie marocaine qui recoit cette distinction mondiale, reconnaissant des siecles de traditions culinaires uniques.",
-    image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&h=500&fit=crop",
-    date: "8 avril 2026",
-    author: "Fatima Zahra Idrissi",
-    tag: "UNESCO",
-  },
-  {
-    id: "gas2",
-    title: "Top 10 des restaurants gastronomiques du Maroc en 2026",
-    summary:
-      "De Marrakech a Tanger, les tables marocaines se renouvellent en fusionnant tradition et modernite, attirant une clientele internationale exigeante.",
-    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&h=500&fit=crop",
-    date: "2 avril 2026",
-    author: "Adil Belkadi",
-    tag: "Restaurants",
-  },
-  {
-    id: "gas3",
-    title: "Tourisme culinaire : les circuits gastronomiques explosent au Maroc",
-    summary:
-      "Food tours dans les medinas, cours de cuisine dans les riads, routes des epices : le tourisme gastronomique represente desormais 15 % des activites touristiques.",
-    image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=800&h=500&fit=crop",
-    date: "24 mars 2026",
-    author: "Nora Alami",
-    tag: "Tourisme culinaire",
-  },
-]
-
 export default function GastronomiePage() {
+  const articles = getArticlesByCategory("GASTRONOMIE")
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <Breadcrumbs
@@ -74,7 +30,7 @@ export default function GastronomiePage() {
           { label: "Gastronomie" },
         ]}
       />
-      <div className="flex items-center gap-3 mb-8">
+      <div className="flex items-center gap-3 mb-8 mt-4">
         <div className="inline-flex p-3 rounded-lg bg-yellow-50 text-yellow-700">
           <UtensilsCrossed className="h-6 w-6" />
         </div>
@@ -87,10 +43,10 @@ export default function GastronomiePage() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        {GASTRONOMIE_ARTICLES.map((article) => (
+        {articles.map((article) => (
           <Link
-            key={article.id}
-            href={`/actualites/article/${slugify(article.title)}`}
+            key={article.slug}
+            href={`/actualites/article/${article.slug}`}
             className="group block"
           >
             <Card className="h-full gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">
@@ -103,7 +59,7 @@ export default function GastronomiePage() {
                   loading="lazy"
                 />
                 <div className="absolute left-3 top-3">
-                  <Badge className="bg-yellow-100 text-yellow-800 border-0">
+                  <Badge className={`${article.color} border-0`}>
                     {article.tag}
                   </Badge>
                 </div>
@@ -131,7 +87,7 @@ export default function GastronomiePage() {
           className="inline-flex items-center gap-2 text-sm font-medium text-ocean hover:underline"
         >
           <ArrowLeft className="h-4 w-4" />
-          Voir toutes les actualites
+          Voir toutes les actualités
         </Link>
       </div>
     </div>

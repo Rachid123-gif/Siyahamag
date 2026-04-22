@@ -4,22 +4,29 @@ import { prisma } from "@/lib/prisma"
 /**
  * Verify that the current request comes from an authenticated admin user.
  * Returns the Prisma User record when valid, or null otherwise.
+ * Returns null instead of throwing on DB errors, so callers can redirect
+ * to /connexion cleanly rather than render a 500 page.
  */
 export async function getAuthenticatedAdmin() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  try {
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-  if (!user) return null
+    if (!user) return null
 
-  const dbUser = await prisma.user.findUnique({
-    where: { supabaseId: user.id },
-  })
+    const dbUser = await prisma.user.findUnique({
+      where: { supabaseId: user.id },
+    })
 
-  if (!dbUser || dbUser.role !== "ADMIN") return null
+    if (!dbUser || dbUser.role !== "ADMIN") return null
 
-  return dbUser
+    return dbUser
+  } catch (err) {
+    console.error("[auth] getAuthenticatedAdmin failed:", err)
+    return null
+  }
 }
 
 /**
@@ -27,20 +34,25 @@ export async function getAuthenticatedAdmin() {
  * Returns the Prisma User record when valid, or null otherwise.
  */
 export async function getAuthenticatedUser() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  try {
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-  if (!user) return null
+    if (!user) return null
 
-  const dbUser = await prisma.user.findUnique({
-    where: { supabaseId: user.id },
-  })
+    const dbUser = await prisma.user.findUnique({
+      where: { supabaseId: user.id },
+    })
 
-  if (!dbUser) return null
+    if (!dbUser) return null
 
-  return dbUser
+    return dbUser
+  } catch (err) {
+    console.error("[auth] getAuthenticatedUser failed:", err)
+    return null
+  }
 }
 
 /**
@@ -48,21 +60,26 @@ export async function getAuthenticatedUser() {
  * Returns the User record with their CandidateProfile, or null.
  */
 export async function getAuthenticatedCandidate() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  try {
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-  if (!user) return null
+    if (!user) return null
 
-  const dbUser = await prisma.user.findUnique({
-    where: { supabaseId: user.id },
-    include: { candidateProfile: true },
-  })
+    const dbUser = await prisma.user.findUnique({
+      where: { supabaseId: user.id },
+      include: { candidateProfile: true },
+    })
 
-  if (!dbUser || dbUser.role !== "CANDIDATE") return null
+    if (!dbUser || dbUser.role !== "CANDIDATE") return null
 
-  return dbUser
+    return dbUser
+  } catch (err) {
+    console.error("[auth] getAuthenticatedCandidate failed:", err)
+    return null
+  }
 }
 
 /**
@@ -70,19 +87,24 @@ export async function getAuthenticatedCandidate() {
  * who owns a company. Returns the User record and their Company, or null.
  */
 export async function getAuthenticatedEmployer() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  try {
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-  if (!user) return null
+    if (!user) return null
 
-  const dbUser = await prisma.user.findUnique({
-    where: { supabaseId: user.id },
-    include: { company: true },
-  })
+    const dbUser = await prisma.user.findUnique({
+      where: { supabaseId: user.id },
+      include: { company: true },
+    })
 
-  if (!dbUser || dbUser.role !== "EMPLOYER" || !dbUser.company) return null
+    if (!dbUser || dbUser.role !== "EMPLOYER" || !dbUser.company) return null
 
-  return { user: dbUser, company: dbUser.company }
+    return { user: dbUser, company: dbUser.company }
+  } catch (err) {
+    console.error("[auth] getAuthenticatedEmployer failed:", err)
+    return null
+  }
 }
