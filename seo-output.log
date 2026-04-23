@@ -1,18 +1,23 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-04-22T08:00:32.928Z
+📅 2026-04-23T08:06:01.657Z
 
 📡 Fetching RSS feeds...
-  ✗ Morocco World News: Status code 403
   ✓ Hespress Fr: 10 items
+  ✗ Morocco World News: Status code 403
   ✓ Medias24: 10 items
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
 
 → Total items fetched: 120
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 3
+  ✓ Created: 2026-04-22-hotellerie-marriott-nomme-denis-laus-a-la-tete-du-futur-resort-de-taghazout-bay
+  ✓ Created: 2026-04-23-essaouira-le-festival-printemps-musical-des-alizes-revient-pour-une-22e-edition
+  ✓ Created: 2026-04-22-casablanca-le-wali-mhidia-interdit-les-locations-de-parasols-chaises-ou-tables-s
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 3 new articles.
+  - Hôtellerie : Marriott nomme Denis Laus à la tête du futur resort de Taghazout Bay
+  - Essaouira : le Festival Printemps Musical des Alizés revient pour une 22è édition
+  - Casablanca : le wali Mhidia interdit les locations de parasols, chaises ou tables sur les plages
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (3 articles)
