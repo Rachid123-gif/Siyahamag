@@ -1,6 +1,28 @@
 {
   "runs": [
     {
+      "date": "2026-04-28T08:35:03.470Z",
+      "feedsChecked": 5,
+      "itemsFetched": 130,
+      "published": [
+        {
+          "slug": "2026-04-27-tourisme-lecture-de-la-trajectoire-dun-secteur-devenu-cle-2008-2025",
+          "title": "Tourisme. Lecture de la trajectoire d’un secteur devenu clé (2008-2025)",
+          "source": "Medias24"
+        },
+        {
+          "slug": "2026-04-28-jidar-rabat-street-art-festival-transforme-rabat-en-galerie-a-ciel-ouvert-pour-s",
+          "title": "JIDAR – Rabat Street Art Festival transforme Rabat en galerie à ciel ouvert pour sa 11e édition",
+          "source": "Hespress Fr"
+        },
+        {
+          "slug": "2026-04-27-mondial-2030-883-mdh-pour-retaper-le-grand-stade-de-marrakech",
+          "title": "\n                \n            \nMondial 2030 : 883 MDH pour retaper le Grand stade de Marrakech",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-04-27T08:36:50.795Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
