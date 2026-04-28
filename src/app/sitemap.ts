@@ -199,6 +199,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/guide/emploi-animateur-tourisme-maroc-2026`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/guide/investissement-hotelier-tanger-2026`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
   ]
 
   // ── Job detail pages ───────────────────────────────────────────────
