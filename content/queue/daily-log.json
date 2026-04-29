@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-04-29T08:28:46.307Z",
+      "feedsChecked": 5,
+      "itemsFetched": 130,
+      "published": [
+        {
+          "slug": "2026-04-28-hilton-veut-plus-que-doubler-sa-presence-au-maroc-avec-louverture-de-15-nouveaux",
+          "title": "Hilton veut plus que doubler sa présence au Maroc avec l'ouverture de 15 nouveaux hôtels",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-04-28T08:35:03.470Z",
       "feedsChecked": 5,
       "itemsFetched": 130,
