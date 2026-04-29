@@ -1,0 +1,34 @@
+name: Keep Supabase Alive
+
+# Supabase Free Tier auto-pauses projects with no DB activity for 7+ days.
+# This workflow pings PostgREST every 2 days to register activity.
+# Safety: no untrusted user input is consumed (no issue body, PR title,
+# commit message, etc.) — only constant env vars are used.
+on:
+  schedule:
+    - cron: "0 5 */2 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping-supabase:
+    name: Generate DB activity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Hit PostgREST to register DB activity
+        env:
+          SUPABASE_URL: https://wqhlpsnsgfzrbkubpxaj.supabase.co
+          SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndxaGxwc25zZ2Z6cmJrdWJweGFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2OTgyMDAsImV4cCI6MjA5MjI3NDIwMH0.r2ClHfcW9o27OgzVTOYnupY_nGYu5qfiGbZIV8fzk3s
+        run: |
+          set -e
+          for TABLE in articles users companies investments tourism_statistics job_listings; do
+            CODE=$(curl -s -o /tmp/r.json -w "%{http_code}" \
+              -H "apikey: $SUPABASE_ANON_KEY" \
+              -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+              "$SUPABASE_URL/rest/v1/$TABLE?select=id&limit=1")
+            echo "$TABLE -> HTTP $CODE"
+          done
+          echo "Supabase project marked as active."
