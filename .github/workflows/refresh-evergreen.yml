@@ -1,0 +1,43 @@
+name: Refresh Evergreen Content
+
+# Bumps the lastModified date on guide pages on the 1st of each month so
+# Google sees them as "fresh" and is more likely to keep ranking them.
+# Safety: no untrusted user input is consumed in run blocks.
+on:
+  schedule:
+    - cron: "0 4 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    name: Touch evergreen guide pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Touch every guide page and write a refresh marker
+        run: |
+          set -e
+          find 'src/app/(public)/guide' -type f -name 'page.tsx' -print | while read -r f; do
+            touch "$f"
+            echo "touched: $f"
+          done
+          mkdir -p content/queue
+          DATE_STR=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          echo "{\"refreshedAt\":\"${DATE_STR}\"}" > content/queue/evergreen-refresh.json
+
+      - name: Commit and push
+        run: |
+          git config user.name "SiyahaMag Bot"
+          git config user.email "bot@siyahamag.ma"
+          DATE_STR=$(date -u +'%Y-%m-%d')
+          git add -A
+          git commit -m "chore(seo): monthly evergreen refresh ${DATE_STR}" || exit 0
+          git push origin main

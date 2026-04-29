@@ -4,6 +4,7 @@ import "./globals.css"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { Toaster } from "@/components/ui/sonner"
+import { JsonLd } from "@/components/seo/JsonLd"
 
 const inter = Inter({
   variable: "--font-sans",
@@ -61,11 +62,63 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // Site-wide structured data: tells Google what SiyahaMag is and how to
+  // recognize the brand across the SERP. Eligible for the Knowledge Panel
+  // and Sitelinks Search Box.
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "NewsMediaOrganization",
+    name: "SiyahaMag",
+    alternateName: "SiyahaMag.com",
+    url: "https://siyahamag.ma",
+    logo: "https://siyahamag.ma/manifest.json",
+    sameAs: [],
+    description:
+      "Première plateforme marocaine du tourisme : actualités, emploi spécialisé, statistiques et investissement.",
+    inLanguage: "fr-MA",
+    areaServed: { "@type": "Country", name: "Morocco" },
+  }
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "SiyahaMag",
+    url: "https://siyahamag.ma",
+    inLanguage: "fr-MA",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://siyahamag.ma/actualites?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+  }
+
   return (
     <html lang="fr" className={`${inter.variable} h-full antialiased`}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0C4A6E" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="SiyahaMag — Actualités tourisme Maroc"
+          href="/feed.xml"
+        />
+        <link
+          rel="sitemap"
+          type="application/xml"
+          title="Sitemap"
+          href="/sitemap.xml"
+        />
+        <link
+          rel="alternate"
+          hrefLang="fr-MA"
+          href="https://siyahamag.ma/"
+        />
+        <link rel="alternate" hrefLang="x-default" href="https://siyahamag.ma/" />
+        <JsonLd data={[orgSchema, websiteSchema]} />
       </head>
       <body className="min-h-full flex flex-col font-sans">
         <Header />

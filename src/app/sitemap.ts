@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 import { DEMO_JOBS } from "@/lib/demoData"
 import { ALL_ARTICLES } from "@/lib/articlesData"
+import dailyLog from "../../content/queue/daily-log.json"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://siyahamag.ma"
@@ -252,6 +253,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
+  // ── Daily-SEO RSS-generated news pages ─────────────────────────────
+  // Pulled from content/queue/daily-log.json so every article published
+  // by scripts/daily-seo.mjs ends up in the sitemap on the same build.
+  const seenNewsSlugs = new Set<string>()
+  const newsPages: MetadataRoute.Sitemap = []
+  type Run = { date?: string; published?: Array<{ slug?: string }> }
+  for (const run of (dailyLog as { runs?: Run[] }).runs || []) {
+    for (const a of run.published || []) {
+      if (!a.slug || seenNewsSlugs.has(a.slug)) continue
+      seenNewsSlugs.add(a.slug)
+      const m = a.slug.match(/^(\d{4}-\d{2}-\d{2})-/)
+      const lastModified = m ? new Date(m[1]) : (run.date ? new Date(run.date) : now)
+      newsPages.push({
+        url: `${baseUrl}/news/${a.slug}`,
+        lastModified,
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      })
+    }
+  }
+
   return [
     ...staticPages,
     ...subCategoryPages,
@@ -261,5 +283,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...guidePages,
     ...jobPages,
     ...investmentPages,
+    ...newsPages,
   ]
 }

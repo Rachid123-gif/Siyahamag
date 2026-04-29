@@ -7,6 +7,10 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin/", "/api/", "/candidat/", "/employeur/"],
     },
-    sitemap: "https://siyahamag.ma/sitemap.xml",
+    // Both sitemaps listed so Bing/Google/Yandex pick up the news feed too.
+    sitemap: [
+      "https://siyahamag.ma/sitemap.xml",
+      "https://siyahamag.ma/news-sitemap.xml",
+    ],
   }
 }

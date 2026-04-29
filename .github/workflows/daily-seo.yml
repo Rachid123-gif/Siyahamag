@@ -1,11 +1,12 @@
 name: Daily SEO Content
 
 # Runs every day at 6:00 AM UTC (7:00 AM Morocco time)
-# No untrusted inputs used - only safe system variables (secrets, run_id)
+# Safety: no untrusted user inputs are consumed in run blocks (only constants
+# and self-generated step outputs).
 on:
   schedule:
     - cron: "0 6 * * *"
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -49,6 +50,21 @@ jobs:
             echo "New content detected"
           fi
 
+      - name: Extract new article URLs
+        id: urls
+        if: steps.check.outputs.has_changes == 'true'
+        run: |
+          NEW_DIRS=$(git diff --name-only --diff-filter=A | grep "src/app/(public)/news/" | awk -F/ '{print $5}' | sort -u)
+          URLS=""
+          for slug in $NEW_DIRS; do
+            [ -n "$slug" ] && URLS="${URLS}https://siyahamag.ma/news/${slug},"
+          done
+          URLS="${URLS}https://siyahamag.ma/,https://siyahamag.ma/news-sitemap.xml,https://siyahamag.ma/feed.xml"
+          URLS="${URLS%,}"
+          echo "urls=$URLS" >> "$GITHUB_OUTPUT"
+          echo "Submitting URLs:"
+          echo "$URLS" | tr ',' '\n'
+
       - name: Commit and push changes
         if: steps.check.outputs.has_changes == 'true'
         run: |
@@ -58,6 +74,21 @@ jobs:
           DATE_STR=$(date -u +'%Y-%m-%d')
           git commit -m "chore(seo): daily news articles ${DATE_STR}" || exit 0
           git push origin main
+
+      - name: Submit URLs to IndexNow (Bing, Yandex)
+        if: steps.check.outputs.has_changes == 'true'
+        env:
+          URLS: ${{ steps.urls.outputs.urls }}
+        run: |
+          sleep 60
+          node scripts/indexnow.mjs
+
+      - name: Ping Google about main sitemap
+        if: steps.check.outputs.has_changes == 'true'
+        run: |
+          curl -s "https://www.google.com/ping?sitemap=https://siyahamag.ma/sitemap.xml" || true
+          curl -s "https://www.google.com/ping?sitemap=https://siyahamag.ma/news-sitemap.xml" || true
+          echo "Google pinged for both sitemaps."
 
       - name: Upload log artifact
         if: always()

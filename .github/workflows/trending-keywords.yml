@@ -1,0 +1,85 @@
+name: Trending Keywords Maroc
+
+# Captures Google's daily-trending searches in Morocco that overlap with
+# tourism/hospitality and opens a GitHub issue listing them. Runs at
+# 5:30 AM UTC, 30 min before the SEO content workflow.
+# Safety: no untrusted user input is consumed in run blocks.
+on:
+  schedule:
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  detect-trends:
+    name: Capture Morocco trending keywords
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fetch Google Trends Morocco RSS and filter tourism
+        id: trends
+        run: |
+          set -e
+          curl -sf 'https://trends.google.com/trends/trendingsearches/daily/rss?geo=MA' -o /tmp/trends.xml \
+            || curl -sf 'https://trends.google.fr/trends/trendingsearches/daily/rss?geo=MA' -o /tmp/trends.xml \
+            || (echo "Both Google Trends endpoints failed" && exit 0)
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET, re, os
+          tree = ET.parse('/tmp/trends.xml')
+          root = tree.getroot()
+          items = []
+          for item in root.iter('item'):
+              t = (item.findtext('title') or '').strip()
+              if t:
+                  items.append(t)
+          tourism_kw = [
+              'tourisme','touriste','touristique','hotel','hotellerie',
+              'riad','vacances','plage','medina','marrakech','agadir',
+              'casablanca','tanger','fes','dakhla','essaouira','chefchaouen',
+              'ouarzazate','onmt','royal air maroc','aeroport',
+              'mondial 2030','coupe du monde','can 2025','festival','gnaoua',
+              'culinaire','gastronomie','tajine','couscous','souk',
+          ]
+          kw_re = re.compile('|'.join(map(re.escape, tourism_kw)), re.IGNORECASE)
+          matched = [t for t in items if kw_re.search(t)]
+          print('Total trending today:', len(items))
+          print('Tourism-related:', len(matched))
+          for m in matched:
+              print(' -', m)
+          out = os.environ['GITHUB_OUTPUT']
+          with open(out, 'a') as f:
+              f.write(f'matched_count={len(matched)}\n')
+              f.write('matched_titles<<EOFTITLES\n')
+              for m in matched[:20]:
+                  f.write(m + '\n')
+              f.write('EOFTITLES\n')
+          PY
+
+      - name: Open issue if matches found
+        if: steps.trends.outputs.matched_count != '0'
+        uses: actions/github-script@v7
+        env:
+          TITLES: ${{ steps.trends.outputs.matched_titles }}
+        with:
+          script: |
+            const date = new Date().toISOString().slice(0,10)
+            const titles = (process.env.TITLES || '').trim().split('\n').filter(Boolean)
+            const body = [
+              "# Mots-cles tourisme tendance au Maroc - " + date,
+              "",
+              "Detectes via Google Trends geo=MA. Cible-les dans le prochain SEO daily.",
+              "",
+              ...titles.map(t => "- [ ] " + t),
+              "",
+              "Pourquoi : un article publie sur un terme qui vient de monter capte le pic de trafic avant les concurrents."
+            ].join("\n")
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Tendances Google Maroc " + date,
+              body,
+              labels: ['seo','trending','automated']
+            })
