@@ -13,8 +13,9 @@ import { Card, CardContent } from "@/components/ui/card"
  * How it works:
  *  - The form name "siyahamag-contact" is registered in /public/__forms.html
  *    at build time (Netlify scans static HTML for forms).
- *  - On submit we POST application/x-www-form-urlencoded to "/" with
- *    `form-name=siyahamag-contact` so Netlify's CDN intercepts it.
+ *  - On submit we POST application/x-www-form-urlencoded to "/contact" with
+ *    `form-name=siyahamag-contact` so Netlify's CDN intercepts it (the
+ *    target page must contain the form HTML for interception to fire).
  *  - Submissions are stored on Netlify and emailed to the configured
  *    notification address (ra.idrissi@gmail.com).
  *  - The hidden `bot-field` (honeypot) catches naive spam bots.
@@ -60,7 +61,7 @@ export function ContactForm() {
         data[k] = typeof v === "string" ? v : ""
       })
       data["form-name"] = FORM_NAME
-      const res = await fetch("/", {
+      const res = await fetch("/contact", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode(data),
