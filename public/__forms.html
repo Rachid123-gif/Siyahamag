@@ -1,0 +1,19 @@
+<!--
+  Static form schema for Netlify Forms detection.
+  Netlify scans this file at deploy time to register form names + fields.
+  The actual user-facing form is in src/components/contact/ContactForm.tsx
+  and posts to "/" with form-name=siyahamag-contact.
+-->
+<html>
+  <head><title>Netlify Forms schema</title></head>
+  <body>
+    <form name="siyahamag-contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="topic" />
+      <input type="text" name="company" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+  </body>
+</html>
