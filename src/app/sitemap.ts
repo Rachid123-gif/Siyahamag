@@ -248,6 +248,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/guide/emploi-tourisme-tanger-2026`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/guide/investissement-touristique-agadir-2026`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
   ]
 
   // ── Job detail pages ───────────────────────────────────────────────
