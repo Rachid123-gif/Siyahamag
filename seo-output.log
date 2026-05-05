@@ -1,18 +1,23 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-05-04T08:38:47.916Z
+📅 2026-05-05T08:21:00.303Z
 
 📡 Fetching RSS feeds...
   ✓ Hespress Fr: 10 items
   ✓ Medias24: 10 items
-  ✓ Morocco World News: 10 items
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
+  ✗ Morocco World News: Timeout
 
-→ Total items fetched: 130
+→ Total items fetched: 120
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 3
+  ✓ Created: 2026-05-04-hebergement-touristique-2500-etablissements-soumis-aux-visites-mysteres-des-mai-
+  ✓ Created: 2026-05-04-lancement-en-octobre-de-deux-liaisons-aeriennes-directes-bordeaux-agadir-et-nant
+  ✓ Created: 2026-05-04-hebergement-touristique-2500-etablissements-sous-visites-mysteres-des-mai-2026
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 3 new articles.
+  - Hébergement touristique : 2.500 établissements soumis aux visites mystères dès mai 2026
+  - Lancement en octobre de deux liaisons aériennes directes Bordeaux-Agadir et Nantes-Essaouira
+  - Hébergement touristique : 2.500 établissements sous visites mystères dès mai 2026
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (3 articles)

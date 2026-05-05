@@ -1,6 +1,28 @@
 {
   "runs": [
     {
+      "date": "2026-05-05T08:21:10.361Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-04-hebergement-touristique-2500-etablissements-soumis-aux-visites-mysteres-des-mai-",
+          "title": "Hébergement touristique : 2.500 établissements soumis aux visites mystères dès mai 2026",
+          "source": "Medias24"
+        },
+        {
+          "slug": "2026-05-04-lancement-en-octobre-de-deux-liaisons-aeriennes-directes-bordeaux-agadir-et-nant",
+          "title": "Lancement en octobre de deux liaisons aériennes directes Bordeaux-Agadir et Nantes-Essaouira",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-05-04-hebergement-touristique-2500-etablissements-sous-visites-mysteres-des-mai-2026",
+          "title": "Hébergement touristique : 2.500 établissements sous visites mystères dès mai 2026",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-05-04T08:38:49.187Z",
       "feedsChecked": 5,
       "itemsFetched": 130,
