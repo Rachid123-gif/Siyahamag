@@ -1,23 +1,19 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-05-05T08:21:00.303Z
+📅 2026-05-07T08:44:01.113Z
 
 📡 Fetching RSS feeds...
   ✓ Hespress Fr: 10 items
+  ✗ Morocco World News: Status code 403
   ✓ Medias24: 10 items
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
-  ✗ Morocco World News: Timeout
 
 → Total items fetched: 120
 
-📰 Tourism-related new articles: 3
-  ✓ Created: 2026-05-04-hebergement-touristique-2500-etablissements-soumis-aux-visites-mysteres-des-mai-
-  ✓ Created: 2026-05-04-lancement-en-octobre-de-deux-liaisons-aeriennes-directes-bordeaux-agadir-et-nant
-  ✓ Created: 2026-05-04-hebergement-touristique-2500-etablissements-sous-visites-mysteres-des-mai-2026
+📰 Tourism-related new articles: 1
+  ✓ Created: 2026-05-05-fes-un-exercice-de-simulation-denvergure-pour-tester-la-preparation-des-secours-
 
-✅ Done. Published 3 new articles.
-  - Hébergement touristique : 2.500 établissements soumis aux visites mystères dès mai 2026
-  - Lancement en octobre de deux liaisons aériennes directes Bordeaux-Agadir et Nantes-Essaouira
-  - Hébergement touristique : 2.500 établissements sous visites mystères dès mai 2026
+✅ Done. Published 1 new articles.
+  - Fès : Un exercice de simulation d’envergure pour tester la préparation des secours dans la médina
 
-✨ Script completed successfully (3 articles)
+✨ Script completed successfully (1 articles)

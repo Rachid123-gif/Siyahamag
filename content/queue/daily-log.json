@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-05-07T08:44:02.608Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-05-fes-un-exercice-de-simulation-denvergure-pour-tester-la-preparation-des-secours-",
+          "title": "Fès : Un exercice de simulation d’envergure pour tester la préparation des secours dans la médina",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-05-05T08:21:10.361Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
