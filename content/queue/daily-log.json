@@ -1,6 +1,28 @@
 {
   "runs": [
     {
+      "date": "2026-05-08T07:50:32.441Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-08-le-festival-de-fes-celebre-les-70-ans-des-relations-maroco-allemandes",
+          "title": "Le Festival de Fès célèbre les 70 ans des relations maroco-allemandes",
+          "source": "Hespress Fr"
+        },
+        {
+          "slug": "2026-05-07-casablanca-accueille-la-4e-edition-du-tournoi-international-dimprovisation",
+          "title": "Casablanca accueille la 4e édition du Tournoi international d'improvisation",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-05-07-bourse-de-casablanca-seduit-les-pme-luxe-sous-surveillance-concurrentielle-tange",
+          "title": "Bourse de Casablanca séduit les PME, luxe sous surveillance concurrentielle, Tanger Med agrège 40 multinationales : les 3 infos business à retenir",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-05-07T08:44:02.608Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
