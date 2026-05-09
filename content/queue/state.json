@@ -24,12 +24,15 @@
     "2026-05-05-fes-un-exercice-de-simulation-denvergure-pour-tester-la-preparation-des-secours-",
     "2026-05-08-le-festival-de-fes-celebre-les-70-ans-des-relations-maroco-allemandes",
     "2026-05-07-casablanca-accueille-la-4e-edition-du-tournoi-international-dimprovisation",
-    "2026-05-07-bourse-de-casablanca-seduit-les-pme-luxe-sous-surveillance-concurrentielle-tange"
+    "2026-05-07-bourse-de-casablanca-seduit-les-pme-luxe-sous-surveillance-concurrentielle-tange",
+    "2026-05-08-rabat-accueillera-son-premier-festival-international-de-danse-du-19-au-24-mai",
+    "2026-05-07-la-bourse-de-casablanca-seduit-les-pme-le-luxe-sous-surveillance-concurrentielle",
+    "2026-05-07-le-diable-shabille-en-prada-2-breaking-a-essaouira-redouane-bougheraba-a-casabla"
   ],
-  "lastRun": "2026-05-08T07:50:32.440Z",
+  "lastRun": "2026-05-09T08:04:17.299Z",
   "lastRunStats": {
     "feedsChecked": 5,
-    "itemsFetched": 120,
+    "itemsFetched": 110,
     "candidates": 3,
     "published": 3
   }
