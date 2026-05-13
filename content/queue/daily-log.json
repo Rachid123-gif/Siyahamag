@@ -1,6 +1,28 @@
 {
   "runs": [
     {
+      "date": "2026-05-13T08:53:19.565Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-12-hotels-les-visites-mystere-vont-elles-vraiment-ameliorer-le-service",
+          "title": "Hôtels. Les visites mystère vont-elles vraiment améliorer le service ?",
+          "source": "Medias24"
+        },
+        {
+          "slug": "2026-05-12-sami-yusuf-donnera-deux-concerts-au-festival-de-fes-des-musiques-sacrees-du-mond",
+          "title": "Sami Yusuf donnera deux concerts au Festival de Fès des musiques sacrées du monde",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-05-12-hotellerie-sofitel-movenpick-sindipark-comment-legyptien-pickalbatros-conquiert-",
+          "title": "\n                \n            \nHôtellerie : Sofitel, Mövenpick, Sindipark... comment l'Égyptien Pickalbatros conquiert Casablanca",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-05-12T08:49:28.844Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
