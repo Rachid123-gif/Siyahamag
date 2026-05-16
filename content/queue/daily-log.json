@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-05-16T08:12:13.891Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-15-karim-lahmamssi-le-maroc-industriel-ne-se-resume-plus-a-laxe-casablanca-tanger",
+          "title": "Karim Lahmamssi : “Le Maroc industriel ne se résume plus à l'axe Casablanca Tanger”",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-05-15T08:57:16.433Z",
       "feedsChecked": 5,
       "itemsFetched": 120,

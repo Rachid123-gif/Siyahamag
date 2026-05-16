@@ -31,13 +31,14 @@
     "2026-05-09-tourisme-la-sfi-prepare-une-feuille-de-route-pour-accelerer-linvestissement-priv",
     "2026-05-12-hotels-les-visites-mystere-vont-elles-vraiment-ameliorer-le-service",
     "2026-05-12-sami-yusuf-donnera-deux-concerts-au-festival-de-fes-des-musiques-sacrees-du-mond",
-    "2026-05-12-hotellerie-sofitel-movenpick-sindipark-comment-legyptien-pickalbatros-conquiert-"
+    "2026-05-12-hotellerie-sofitel-movenpick-sindipark-comment-legyptien-pickalbatros-conquiert-",
+    "2026-05-15-karim-lahmamssi-le-maroc-industriel-ne-se-resume-plus-a-laxe-casablanca-tanger"
   ],
-  "lastRun": "2026-05-15T08:57:16.432Z",
+  "lastRun": "2026-05-16T08:12:13.867Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 120,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }
