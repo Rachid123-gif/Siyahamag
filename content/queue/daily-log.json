@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-05-17T08:29:02.012Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-16-sacrifice-du-aid-al-adha-a-lhotel-le-creneau-qui-seduit-les-familles-et-divise-l",
+          "title": "Sacrifice du Aïd al-Adha à l’hôtel : le créneau qui séduit les familles et divise les hôteliers",
+          "source": "Medias24"
+        }
+      ]
+    },
+    {
       "date": "2026-05-16T08:12:13.891Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
