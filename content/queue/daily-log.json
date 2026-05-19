@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-05-19T09:58:25.042Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-19-coupe-du-monde-2030-bilbao-pourrait-renoncer-a-son-tour-a-lorganisation-de-match",
+          "title": "Coupe du monde 2030 : Bilbao pourrait renoncer à son tour à l’organisation de matchs",
+          "source": "Hespress Fr"
+        }
+      ]
+    },
+    {
       "date": "2026-05-18T10:18:40.798Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
