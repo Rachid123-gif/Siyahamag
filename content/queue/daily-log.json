@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-05-22T09:40:39.825Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-21-festival-de-fes-des-musiques-sacrees-du-monde-plus-de-160-artistes-venus-des-qua",
+          "title": "Festival de Fès des Musiques Sacrées du Monde : plus de 160 artistes venus des quatre continents du 4 au 7 juin",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-05-21T09:55:48.389Z",
       "feedsChecked": 5,
       "itemsFetched": 120,

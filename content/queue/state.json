@@ -35,13 +35,14 @@
     "2026-05-15-karim-lahmamssi-le-maroc-industriel-ne-se-resume-plus-a-laxe-casablanca-tanger",
     "2026-05-16-sacrifice-du-aid-al-adha-a-lhotel-le-creneau-qui-seduit-les-familles-et-divise-l",
     "2026-05-19-coupe-du-monde-2030-bilbao-pourrait-renoncer-a-son-tour-a-lorganisation-de-match",
-    "2026-05-20-29e-festival-de-fes-des-musiques-sacrees-du-monde-un-voyage-au-cur-des-rituels-s"
+    "2026-05-20-29e-festival-de-fes-des-musiques-sacrees-du-monde-un-voyage-au-cur-des-rituels-s",
+    "2026-05-21-festival-de-fes-des-musiques-sacrees-du-monde-plus-de-160-artistes-venus-des-qua"
   ],
-  "lastRun": "2026-05-21T09:55:48.387Z",
+  "lastRun": "2026-05-22T09:40:39.824Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 120,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }
