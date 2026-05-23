@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-05-23T08:27:22.910Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-22-tribune-anciennes-medinas-ce-que-casablanca-aurait-pu-apprendre-dasilah",
+          "title": "[Tribune] Anciennes médinas : ce que Casablanca aurait pu apprendre d'Asilah",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-05-22T09:40:39.825Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
