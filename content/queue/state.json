@@ -37,13 +37,14 @@
     "2026-05-19-coupe-du-monde-2030-bilbao-pourrait-renoncer-a-son-tour-a-lorganisation-de-match",
     "2026-05-20-29e-festival-de-fes-des-musiques-sacrees-du-monde-un-voyage-au-cur-des-rituels-s",
     "2026-05-21-festival-de-fes-des-musiques-sacrees-du-monde-plus-de-160-artistes-venus-des-qua",
-    "2026-05-22-tribune-anciennes-medinas-ce-que-casablanca-aurait-pu-apprendre-dasilah"
+    "2026-05-22-tribune-anciennes-medinas-ce-que-casablanca-aurait-pu-apprendre-dasilah",
+    "2026-05-25-la-justice-cherche-toujours-un-preneur-pour-lhotel-palais-salam-de-taroudant"
   ],
-  "lastRun": "2026-05-25T10:22:32.098Z",
+  "lastRun": "2026-05-26T10:10:21.040Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 120,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }

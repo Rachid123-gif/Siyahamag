@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-05-26T10:10:21.041Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-25-la-justice-cherche-toujours-un-preneur-pour-lhotel-palais-salam-de-taroudant",
+          "title": "\n                \n            \nLa justice cherche toujours un preneur pour l’hôtel Palais Salam de Taroudant",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-05-25T10:22:32.100Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
