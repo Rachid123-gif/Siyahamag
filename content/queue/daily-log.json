@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-05-27T10:08:07.727Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-05-26-tribune-casablanca-rabat-tanger-cette-fatigue-physique-et-mentale-que-nos-villes",
+          "title": "[Tribune] Casablanca, Rabat, Tanger... cette fatigue physique et mentale que nos villes fabriquent",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-05-26-meknes-un-projet-pour-valoriser-le-site-touristique-bab-rmila-a-moulay-idriss-ze",
+          "title": "Meknès : un projet pour valoriser le site touristique Bab Rmila à Moulay Idriss Zerhoun",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-05-26T10:10:21.041Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
