@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-06-03T11:12:48.957Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-02-tribune-mondial-2030-la-pelouse-du-bernabeu-talon-dachille-de-lespagne-pour-accu",
+          "title": "[Tribune] Mondial 2030 : la pelouse du Bernabéu, talon d'Achille de l'Espagne pour accueillir la finale ?",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-06-02-la-biennale-internationale-de-casablanca-se-delocalise-a-essaouira-pour-sa-6e-ed",
+          "title": "La Biennale internationale de Casablanca se délocalise à Essaouira pour sa 6e édition",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-06-02T10:47:36.546Z",
       "feedsChecked": 5,
       "itemsFetched": 120,

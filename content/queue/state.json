@@ -41,13 +41,15 @@
     "2026-05-25-la-justice-cherche-toujours-un-preneur-pour-lhotel-palais-salam-de-taroudant",
     "2026-05-26-tribune-casablanca-rabat-tanger-cette-fatigue-physique-et-mentale-que-nos-villes",
     "2026-05-26-meknes-un-projet-pour-valoriser-le-site-touristique-bab-rmila-a-moulay-idriss-ze",
-    "2026-05-29-tourisme-interne-le-cheque-vacances-sera-t-il-une-priorite-du-prochain-gouvernem"
+    "2026-05-29-tourisme-interne-le-cheque-vacances-sera-t-il-une-priorite-du-prochain-gouvernem",
+    "2026-06-02-tribune-mondial-2030-la-pelouse-du-bernabeu-talon-dachille-de-lespagne-pour-accu",
+    "2026-06-02-la-biennale-internationale-de-casablanca-se-delocalise-a-essaouira-pour-sa-6e-ed"
   ],
-  "lastRun": "2026-06-02T10:47:36.545Z",
+  "lastRun": "2026-06-03T11:12:48.956Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 120,
-    "candidates": 0,
-    "published": 0
+    "candidates": 2,
+    "published": 2
   }
 }
