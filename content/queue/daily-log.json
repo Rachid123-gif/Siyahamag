@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-06-04T10:06:29.205Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-04-contre-les-privileges-categoriels-les-employes-des-aeroports-annoncent-un-sit-in",
+          "title": "Contre les “privilèges catégoriels”, les employés des aéroports annoncent un sit-in d’avertissement à Rabat",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-06-03-tanger-conforte-sa-position-de-quatrieme-destination-touristique-au-1er-trimestr",
+          "title": "Tanger conforte sa position de quatrième destination touristique au 1er trimestre 2026",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-06-03T11:12:48.957Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
