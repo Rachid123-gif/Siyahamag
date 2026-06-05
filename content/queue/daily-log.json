@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-06-05T10:03:43.099Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-05-foot-les-lionnes-de-latlas-affrontent-le-benin-en-amical-le-5-juin-a-rabat",
+          "title": "Foot : les Lionnes de l’Atlas affrontent le Bénin en amical le 5 juin à Rabat",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-06-04-egyptiens-espagnols-qataris-la-ruee-etrangere-sur-lhotellerie-marocaine-avant-20",
+          "title": "\n                \n            \nÉgyptiens, Espagnols, Qataris... La ruée étrangère sur l'hôtellerie marocaine avant 2030 ",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-06-04T10:06:29.205Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
