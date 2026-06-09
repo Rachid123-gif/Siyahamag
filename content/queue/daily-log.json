@@ -1,6 +1,28 @@
 {
   "runs": [
     {
+      "date": "2026-06-09T09:56:38.669Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-09-tourisme-le-maroc-se-hisse-au-22eme-rang-mondial-en-2025",
+          "title": "Tourisme : le Maroc se hisse au 22ème rang mondial en 2025",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-06-08-foot-age-records-formation-le-nouveau-visage-des-lions-de-latlas",
+          "title": "\n                \n            \nFoot : âge, records, formation... le nouveau visage des Lions de l’Atlas",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-06-08-32000-spectateurs-160-artistes-20-pays-le-festival-des-musiques-sacrees-de-fes-c",
+          "title": "32.000 spectateurs, 160 artistes, 20 pays... le Festival des musiques sacrées de Fès clôt sa 29e édition",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-06-08T11:10:14.999Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
