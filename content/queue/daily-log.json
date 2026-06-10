@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-06-10T10:14:28.375Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-09-tourisme-le-maroc-engage-dans-une-nouvelle-phase-de-developpement-selon-ammor",
+          "title": "Tourisme : le Maroc engagé dans une nouvelle phase de développement, selon Ammor",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-06-08-mondial-2030-un-projet-de-loi-pour-lutter-contre-le-piratage-des-matchs-et-la-di",
+          "title": "Mondial 2030 : un projet de loi pour lutter contre le piratage des matchs et la diffusion illégale",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-06-09T09:56:38.669Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
