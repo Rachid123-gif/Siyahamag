@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-06-11T10:49:09.675Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-10-groupement-sanitaire-territorial-apres-lexperience-mitigee-de-tanger-fes-meknes-",
+          "title": "\n                \n            \nGroupement sanitaire territorial : après l’expérience mitigée de Tanger, Fès-Meknès veut servir de modèle",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-06-10-fes-vers-une-meilleure-valorisation-du-patrimoine-historique-bati-de-la-medina",
+          "title": "Fès : vers une meilleure valorisation du patrimoine historique bâti de la médina",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-06-10T10:14:28.375Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
