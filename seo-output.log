@@ -1,18 +1,21 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-06-13T09:26:14.859Z
+📅 2026-06-14T09:47:24.292Z
 
 📡 Fetching RSS feeds...
+  ✗ Morocco World News: Status code 403
   ✓ Hespress Fr: 10 items
   ✓ Medias24: 10 items
-  ✗ Morocco World News: Status code 403
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
 
 → Total items fetched: 120
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 2
+  ✓ Created: 2026-06-13-mondial-2026-des-fan-zones-a-casablanca-et-rabat-pour-vivre-les-matchs
+  ✓ Created: 2026-06-13-air-transat-lance-sa-premiere-liaison-aerienne-directe-entre-montreal-et-agadir
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 2 new articles.
+  - Mondial 2026 : des fan zones à Casablanca et Rabat pour vivre les matchs
+  - Air Transat lance sa première liaison aérienne directe entre Montréal et Agadir
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (2 articles)

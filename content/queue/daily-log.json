@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-06-14T09:47:25.596Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-13-mondial-2026-des-fan-zones-a-casablanca-et-rabat-pour-vivre-les-matchs",
+          "title": "Mondial 2026 : des fan zones à Casablanca et Rabat pour vivre les matchs",
+          "source": "Medias24"
+        },
+        {
+          "slug": "2026-06-13-air-transat-lance-sa-premiere-liaison-aerienne-directe-entre-montreal-et-agadir",
+          "title": "Air Transat lance sa première liaison aérienne directe entre Montréal et Agadir",
+          "source": "Medias24"
+        }
+      ]
+    },
+    {
       "date": "2026-06-13T09:26:16.088Z",
       "feedsChecked": 5,
       "itemsFetched": 120,

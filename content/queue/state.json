@@ -60,13 +60,15 @@
     "2026-06-10-groupement-sanitaire-territorial-apres-lexperience-mitigee-de-tanger-fes-meknes-",
     "2026-06-10-fes-vers-une-meilleure-valorisation-du-patrimoine-historique-bati-de-la-medina",
     "2026-06-12-tourisme-pour-tenir-ses-ambitions-le-maroc-mise-sur-la-certification-des-metiers",
-    "2026-06-12-tourisme-et-programme-kafaa-plus-de-6000-professionnels-certifies"
+    "2026-06-12-tourisme-et-programme-kafaa-plus-de-6000-professionnels-certifies",
+    "2026-06-13-mondial-2026-des-fan-zones-a-casablanca-et-rabat-pour-vivre-les-matchs",
+    "2026-06-13-air-transat-lance-sa-premiere-liaison-aerienne-directe-entre-montreal-et-agadir"
   ],
-  "lastRun": "2026-06-13T09:26:16.086Z",
+  "lastRun": "2026-06-14T09:47:25.595Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 120,
-    "candidates": 0,
-    "published": 0
+    "candidates": 2,
+    "published": 2
   }
 }
