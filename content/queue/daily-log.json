@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-06-16T11:24:54.320Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-15-essaouira-lancement-du-projet-wiqaya-pour-renforcer-la-securite-sanitaire-dans-l",
+          "title": "Essaouira : lancement du projet “Wiqaya+” pour renforcer la sécurité sanitaire dans les établissements touristiques",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-06-15T12:31:36.062Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
