@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-06-21T09:59:11.136Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-20-sortie-de-lacier-tensions-geopolitiques-mondial-2030-la-strategie-daluminium-du-",
+          "title": "Sortie de l'acier, tensions géopolitiques, Mondial 2030... La stratégie d'Aluminium du Maroc expliquée par Abdeslam El Alami",
+          "source": "Medias24"
+        },
+        {
+          "slug": "2026-06-21-transport-touristique-la-profession-presse-le-pas-de-la-modernisation-avant-2030",
+          "title": "Transport touristique : la profession presse le pas de la modernisation avant 2030",
+          "source": "Hespress Fr"
+        }
+      ]
+    },
+    {
       "date": "2026-06-20T09:28:48.636Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
