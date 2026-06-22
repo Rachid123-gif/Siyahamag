@@ -73,10 +73,9 @@ jobs:
             exit 1
           fi
 
-      - name: Ping Google about sitemap
-        run: |
-          curl -s "https://www.google.com/ping?sitemap=https://siyahamag.ma/sitemap.xml" || true
-          echo "Google notified of sitemap"
+      # NOTE: the Google sitemap "ping" endpoint was removed by Google in 2023
+      # and is now a no-op — discovery happens via Search Console + the
+      # Indexing API (see scripts/google-index.mjs). Step intentionally dropped.
 
       - name: Create issue on failure
         if: failure()
