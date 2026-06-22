@@ -66,6 +66,14 @@ jobs:
           URLS="${URLS}https://siyahamag.ma/,https://siyahamag.ma/news-sitemap.xml,https://siyahamag.ma/feed.xml"
           URLS="${URLS%,}"
           echo "urls=$URLS" >> "$GITHUB_OUTPUT"
+          # Only deploy + notify search engines when REAL new /news pages exist
+          # (state/log files change every run — don't trigger a deploy for those).
+          if [ -z "$NEW_DIRS" ]; then
+            echo "has_new=false" >> "$GITHUB_OUTPUT"
+            echo "No new article pages — will commit logs only, skip deploy."
+          else
+            echo "has_new=true" >> "$GITHUB_OUTPUT"
+          fi
           echo "Submitting URLs:"
           echo "$URLS" | tr ',' '\n'
 
@@ -84,7 +92,7 @@ jobs:
         # git push does NOT auto-deploy. We build + deploy explicitly here so the
         # new pages actually go live before we notify search engines. The CLI
         # pulls the site's env vars from Netlify via NETLIFY_AUTH_TOKEN.
-        if: steps.check.outputs.has_changes == 'true'
+        if: steps.urls.outputs.has_new == 'true'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
@@ -97,7 +105,7 @@ jobs:
             --message "daily SEO content $(date -u +'%Y-%m-%d')"
 
       - name: Submit URLs to IndexNow (Bing, Yandex)
-        if: steps.check.outputs.has_changes == 'true'
+        if: steps.urls.outputs.has_new == 'true'
         env:
           URLS: ${{ steps.urls.outputs.urls }}
         run: |
@@ -108,7 +116,7 @@ jobs:
         # Notifies Google directly (faster than waiting for a crawl). No-op if
         # GOOGLE_INDEXING_SA_JSON isn't configured. Replaces the deprecated
         # sitemap "ping" endpoint, which Google removed in 2023.
-        if: steps.check.outputs.has_changes == 'true'
+        if: steps.urls.outputs.has_new == 'true'
         env:
           URLS: ${{ steps.urls.outputs.urls }}
           GOOGLE_INDEXING_SA_JSON: ${{ secrets.GOOGLE_INDEXING_SA_JSON }}
