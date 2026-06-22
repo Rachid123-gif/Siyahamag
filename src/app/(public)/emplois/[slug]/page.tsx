@@ -18,7 +18,7 @@ import {
   CONTRACT_TYPES,
 } from "@/lib/constants"
 import { DEMO_JOBS } from "@/lib/demoData"
-import { getDbJobBySlug } from "@/lib/jobsDb"
+import { getDbJobBySlug, getApprovedJobCards } from "@/lib/jobsDb"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -38,10 +38,18 @@ interface JobDetailPageProps {
 export const revalidate = 1800
 export const dynamicParams = true // DB job slugs render on-demand
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   const jobParams = DEMO_JOBS.map((job) => ({ slug: job.slug }))
   const cityParams = CITY_SLUGS.map((city) => ({ slug: city }))
-  return [...jobParams, ...cityParams]
+  // Prerender DB job slugs at build time (DB is reachable during the build),
+  // so detail pages don't depend on runtime DB access from serverless.
+  let dbParams: { slug: string }[] = []
+  try {
+    dbParams = (await getApprovedJobCards()).map((j) => ({ slug: j.slug }))
+  } catch {
+    /* fall back to demo + city only */
+  }
+  return [...jobParams, ...cityParams, ...dbParams]
 }
 
 // ── Metadata ─────────────────────────────────────────────────────────
