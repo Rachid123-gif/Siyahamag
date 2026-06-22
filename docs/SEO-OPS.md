@@ -25,10 +25,10 @@ Le script `scripts/daily-seo.mjs` :
 1. Récupère les flux RSS marocains.
 2. Filtre **strictement** par mot-clé tourisme fort dans le titre (le bruit sport/festival/politique/santé est exclu).
 3. Pour chaque sujet retenu :
-   - **Si `ANTHROPIC_API_KEY` est défini** → `scripts/ai-content.mjs` génère un **article original** (900-1400 mots, intro, sections H2, FAQ, JSON-LD NewsArticle + FAQPage, maillage interne) → page **indexable**.
+   - **Si `GEMINI_API_KEY` est défini** → `scripts/ai-content.mjs` génère un **article original** via l'API Gemini gratuite (900-1400 mots, intro, sections H2, FAQ, JSON-LD NewsArticle + FAQPage, maillage interne) → page **indexable**.
    - **Sinon** → page résumé **mince marquée `noindex`** (ne dilue pas le domaine).
 
-> Tant que `ANTHROPIC_API_KEY` n'est pas configuré, le système reste sûr : il publie du contenu mince en `noindex` plutôt que du *thin content* indexé.
+> Tant que `GEMINI_API_KEY` n'est pas configuré, le système reste sûr : il publie du contenu mince en `noindex` plutôt que du *thin content* indexé.
 
 ---
 
@@ -47,14 +47,19 @@ Le script `scripts/daily-seo.mjs` :
 
 Dans **Settings → Secrets and variables → Actions** du dépôt :
 
-### 4.1 `ANTHROPIC_API_KEY` (recommandé — active le contenu premium)
-1. Créer une clé sur https://console.anthropic.com/
-2. Ajouter le secret `ANTHROPIC_API_KEY`.
+### 4.1 `GEMINI_API_KEY` (recommandé — contenu premium, GRATUIT)
+1. Créer une clé **gratuite** sur https://aistudio.google.com/apikey (compte Google, sans carte bancaire).
+2. Ajouter le secret `GEMINI_API_KEY`.
 3. Le prochain run de `daily-seo` générera des articles originaux.
 
-Modèle par défaut : `claude-opus-4-8` (surchargeable via la variable `AI_MODEL`).
+Modèle par défaut : `gemini-2.0-flash` (surchargeable via la variable `GEMINI_MODEL`). L'offre gratuite (≈1500 requêtes/jour) couvre largement 1-3 articles/jour.
 
-### 4.2 `GOOGLE_INDEXING_SA_JSON` (recommandé — indexation rapide Google)
+### 4.2 `NETLIFY_AUTH_TOKEN` (indispensable — déploie réellement le site)
+Le site Netlify **n'est pas connecté à GitHub** : sans ce token, le cron publie sur le dépôt mais ne met PAS le site à jour.
+1. Créer un token sur https://app.netlify.com/user/applications (Personal access tokens).
+2. Ajouter le secret `NETLIFY_AUTH_TOKEN`.
+
+### 4.3 `GOOGLE_INDEXING_SA_JSON` (optionnel — indexation rapide Google)
 1. Google Cloud Console → créer un projet → activer **Indexing API**.
 2. Créer un **service account**, générer une **clé JSON**.
 3. Dans **Google Search Console** → propriété siyahamag.ma → Paramètres → Utilisateurs → ajouter l'email du service account en **Propriétaire**.
@@ -68,8 +73,8 @@ Modèle par défaut : `claude-opus-4-8` (surchargeable via la variable `AI_MODEL
 # Le filtre tourisme et la génération (sans clé = mode thin)
 node scripts/daily-seo.mjs
 
-# Avec génération IA en local
-ANTHROPIC_API_KEY=sk-ant-... node scripts/daily-seo.mjs
+# Avec génération IA en local (clé Gemini gratuite)
+GEMINI_API_KEY=AIza... node scripts/daily-seo.mjs
 
 # Soumettre une URL à Google
 URLS="https://siyahamag.ma/emplois/marrakech" \

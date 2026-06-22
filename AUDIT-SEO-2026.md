@@ -42,7 +42,7 @@
 - Analytics (engagement).
 
 ### Phase 2 — Contenu premium qui ranke
-- **Génération d'articles originaux via Claude API** (1000-1500 mots, FAQ, JSON-LD, maillage interne) — voir `scripts/ai-content.mjs`.
+- **Génération d'articles originaux via l'API Gemini (gratuite)** (900-1400 mots, FAQ, JSON-LD, maillage interne) — voir `scripts/ai-content.mjs`.
 - Clusters thématiques (pillar + cluster).
 - Version arabe des pages piliers (hreflang `ar`).
 - E-E-A-T : auteurs, expertise.
@@ -59,7 +59,7 @@
 | Heure (Maroc) | Tâche | Workflow |
 |---------------|-------|----------|
 | 06h00 | Détection de sujets (Trends MA + RSS + requêtes GSC pos. 5-20) | `trending-keywords.yml` + GSC |
-| 06h30 | **Génération 1-2 articles ORIGINAUX (Claude API)** | `daily-seo.yml` → `ai-content.mjs` |
+| 06h30 | **Génération 1-2 articles ORIGINAUX (Gemini, gratuit)** | `daily-seo.yml` → `ai-content.mjs` |
 | 07h00 | Publication (commit + push + déploiement, sitemaps) | `daily-seo.yml` |
 | 07h15 | Soumission index (Google Indexing API + IndexNow) | `daily-seo.yml` → `google-index.mjs` + `indexnow.mjs` |
 | 08h00 | Maillage interne automatique | `daily-seo.yml` |
@@ -85,6 +85,6 @@ Voir `docs/SEO-OPS.md` pour la procédure complète.
 
 | Secret | Usage |
 |--------|-------|
-| `ANTHROPIC_API_KEY` | Génération d'articles originaux (Claude API) |
-| `GOOGLE_INDEXING_SA_JSON` | Service account Google Indexing API (JSON) |
-| `INDEXNOW_KEY` | Soumission Bing/Yandex (déjà en place) |
+| `GEMINI_API_KEY` | Génération d'articles originaux (API Gemini **gratuite**) |
+| `NETLIFY_AUTH_TOKEN` | Déploiement automatique du site (le repo n'est pas connecté à Netlify) |
+| `GOOGLE_INDEXING_SA_JSON` | Service account Google Indexing API (JSON, optionnel) |

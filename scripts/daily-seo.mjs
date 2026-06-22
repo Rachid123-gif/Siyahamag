@@ -232,8 +232,8 @@ async function main() {
   console.log(`📅 ${new Date().toISOString()}`)
   console.log(
     isAiEnabled()
-      ? "🤖 AI mode: ON — generating original articles via Claude API"
-      : "📝 AI mode: OFF (no ANTHROPIC_API_KEY) — thin summary pages (noindex)"
+      ? "🤖 AI mode: ON — generating original articles via Gemini (free)"
+      : "📝 AI mode: OFF (no GEMINI_API_KEY) — thin summary pages (noindex)"
   )
 
   const state = await readJsonSafe(STATE_FILE, { publishedSlugs: [], lastRun: null })

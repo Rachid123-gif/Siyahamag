@@ -3,74 +3,72 @@
  * AI content generation for SiyahaMag.ma
  *
  * Turns a raw RSS item (a Moroccan tourism headline + snippet) into an ORIGINAL,
- * long-form French article via the Claude API — instead of re-publishing a thin
- * scraped summary. This is the core of the "rank on Google" strategy: Google
- * indexes and ranks original, useful content, not copied snippets.
+ * long-form French article — instead of re-publishing a thin scraped summary.
+ * This is the core of the "rank on Google" strategy: Google indexes and ranks
+ * original, useful content, not copied snippets.
+ *
+ * Uses the FREE Google Gemini API (no credit card required for the free tier).
+ * Get a key at https://aistudio.google.com/apikey and set GEMINI_API_KEY.
+ * Pure REST via fetch — no SDK dependency.
  *
  * Exports:
- *   - isAiEnabled(): whether ANTHROPIC_API_KEY is set
+ *   - isAiEnabled(): whether GEMINI_API_KEY is set
  *   - generateArticle(item): Promise<ArticleBody | null>
  *   - buildArticlePage({ ...body, slug, source, sourceUrl, publishedAt }): string (page.tsx source)
  *
- * Designed to fail gracefully: any API error, refusal, or missing key returns
+ * Designed to fail gracefully: any API error, block, or missing key returns
  * null so the caller can fall back to a thin (noindex) summary page.
  */
 
-import Anthropic from "@anthropic-ai/sdk"
-
-// claude-api skill default: use Opus 4.8 unless explicitly overridden.
-const MODEL = process.env.AI_MODEL || "claude-opus-4-8"
+// Free-tier Gemini model. Override with GEMINI_MODEL if needed.
+const MODEL = process.env.GEMINI_MODEL || "gemini-2.0-flash"
+const API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY
 
 export function isAiEnabled() {
-  return Boolean(process.env.ANTHROPIC_API_KEY)
+  return Boolean(API_KEY)
 }
 
-// ── JSON schema for the structured article output ────────────────────
-// Structured-output constraints: no minLength/maxLength, additionalProperties:false.
+// ── Gemini responseSchema (OpenAPI subset: UPPERCASE types, no additionalProperties) ──
 const ARTICLE_SCHEMA = {
-  type: "object",
-  additionalProperties: false,
+  type: "OBJECT",
   properties: {
-    title: { type: "string", description: "Titre SEO original, 50-65 caractères, en français" },
-    metaDescription: { type: "string", description: "Meta description, 120-155 caractères" },
-    intro: { type: "string", description: "Paragraphe d'introduction (2-4 phrases)" },
+    title: { type: "STRING", description: "Titre SEO original, 50-65 caractères, en français" },
+    metaDescription: { type: "STRING", description: "Meta description, 120-155 caractères" },
+    intro: { type: "STRING", description: "Paragraphe d'introduction (2-4 phrases)" },
     sections: {
-      type: "array",
+      type: "ARRAY",
       description: "3 à 5 sections de corps d'article",
       items: {
-        type: "object",
-        additionalProperties: false,
+        type: "OBJECT",
         properties: {
-          heading: { type: "string", description: "Sous-titre H2 en français" },
+          heading: { type: "STRING", description: "Sous-titre H2 en français" },
           paragraphs: {
-            type: "array",
+            type: "ARRAY",
             description: "1 à 3 paragraphes de texte",
-            items: { type: "string" },
+            items: { type: "STRING" },
           },
         },
         required: ["heading", "paragraphs"],
+        propertyOrdering: ["heading", "paragraphs"],
       },
     },
     faq: {
-      type: "array",
+      type: "ARRAY",
       description: "2 à 4 questions/réponses fréquentes",
       items: {
-        type: "object",
-        additionalProperties: false,
+        type: "OBJECT",
         properties: {
-          question: { type: "string" },
-          answer: { type: "string" },
+          question: { type: "STRING" },
+          answer: { type: "STRING" },
         },
         required: ["question", "answer"],
+        propertyOrdering: ["question", "answer"],
       },
     },
-    tags: {
-      type: "array",
-      description: "3 à 6 mots-clés SEO",
-      items: { type: "string" },
-    },
+    tags: { type: "ARRAY", description: "3 à 6 mots-clés SEO", items: { type: "STRING" } },
   },
   required: ["title", "metaDescription", "intro", "sections", "faq", "tags"],
+  propertyOrdering: ["title", "metaDescription", "intro", "sections", "faq", "tags"],
 }
 
 const SYSTEM_PROMPT = `Tu es journaliste spécialisé dans le tourisme marocain pour SiyahaMag.ma, la première plateforme marocaine du tourisme (actualités, emploi hôtellerie-restauration, statistiques, investissement).
@@ -84,13 +82,12 @@ Tu écris des articles ORIGINAUX en français, jamais une copie de la source. À
 - Reste strictement sur le tourisme/hôtellerie/voyage/investissement touristique ; si le sujet n'est pas touristique, renvoie quand même un article centré sur l'angle touristique le plus proche.`
 
 /**
- * Generate an original article body from an RSS item.
+ * Generate an original article body from an RSS item via the free Gemini API.
  * @returns {Promise<object|null>} validated article body, or null on any failure.
  */
 export async function generateArticle(item) {
   if (!isAiEnabled()) return null
 
-  const client = new Anthropic()
   const sourceText = (item.contentSnippet || item.content || item.summary || "")
     .replace(/<[^>]+>/g, "")
     .trim()
@@ -101,29 +98,47 @@ export async function generateArticle(item) {
 Extrait de la source (${item.source || "source externe"}) :
 ${sourceText || "(pas d'extrait disponible — appuie-toi sur le titre)"}
 
-Rédige l'article original complet en respectant le schéma demandé.`
+Rédige l'article original complet en respectant le schéma JSON demandé.`
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 90000)
 
   try {
-    const response = await client.messages.create({
-      model: MODEL,
-      max_tokens: 12000,
-      thinking: { type: "adaptive" },
-      system: SYSTEM_PROMPT,
-      messages: [{ role: "user", content: userPrompt }],
-      output_config: { format: { type: "json_schema", schema: ARTICLE_SCHEMA } },
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": API_KEY },
+      signal: controller.signal,
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        contents: [{ role: "user", parts: [{ text: userPrompt }] }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          responseSchema: ARTICLE_SCHEMA,
+          temperature: 0.7,
+          maxOutputTokens: 8192,
+        },
+      }),
     })
 
-    // Safety classifiers / model refusals: skip and let caller fall back.
-    if (response.stop_reason === "refusal") {
-      console.log("  ⚠️  AI refused to generate; falling back.")
+    if (!res.ok) {
+      const txt = await res.text()
+      console.log(`  ⚠️  Gemini HTTP ${res.status}: ${txt.slice(0, 160)}`)
       return null
     }
 
-    const textBlock = response.content.find((b) => b.type === "text")
-    if (!textBlock) return null
+    const data = await res.json()
+    if (data.promptFeedback?.blockReason) {
+      console.log(`  ⚠️  Gemini blocked: ${data.promptFeedback.blockReason}`)
+      return null
+    }
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text
+    if (!text) {
+      console.log("  ⚠️  Gemini returned no content; falling back.")
+      return null
+    }
 
-    const body = JSON.parse(textBlock.text)
-    // Minimal validation.
+    const body = JSON.parse(text)
     if (!body.title || !Array.isArray(body.sections) || body.sections.length === 0) {
       return null
     }
@@ -131,6 +146,8 @@ Rédige l'article original complet en respectant le schéma demandé.`
   } catch (err) {
     console.log(`  ⚠️  AI generation failed: ${err.message}`)
     return null
+  } finally {
+    clearTimeout(timer)
   }
 }
 
