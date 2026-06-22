@@ -21,7 +21,8 @@
  */
 
 // Free-tier Gemini model. Override with GEMINI_MODEL if needed.
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.0-flash"
+// (gemini-2.5-flash has a working free tier; 2.0-flash free quota can be 0.)
+const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash"
 const API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY
 
 export function isAiEnabled() {
