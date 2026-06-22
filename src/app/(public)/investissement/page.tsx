@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Ruler, Banknote } from "lucide-react"
+import { getApprovedInvestmentCards } from "@/lib/investmentsDb"
 
 // ── SEO ───────────────────────────────────────────────────────────────
 
@@ -103,7 +104,13 @@ function formatPrice(price: number): string {
 
 // ── Page ─────────────────────────────────────────────────────────────
 
-export default function InvestissementPage() {
+// Build-time only (DB reached at build, not from serverless runtime).
+export const dynamic = "force-static"
+
+export default async function InvestissementPage() {
+  // Real DB listings first, demo content as fallback/filler.
+  const dbInvestments = await getApprovedInvestmentCards()
+  const investments = [...dbInvestments, ...DEMO_INVESTMENTS]
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Breadcrumbs */}
@@ -130,13 +137,13 @@ export default function InvestissementPage() {
       {/* Results count */}
       <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
         <span>
-          {DEMO_INVESTMENTS.length} opportunites disponibles
+          {investments.length} opportunites disponibles
         </span>
       </div>
 
       {/* Investment grid */}
       <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {DEMO_INVESTMENTS.map((investment) => {
+        {investments.map((investment) => {
           const typeLabel =
             INVESTMENT_TYPES[
               investment.investmentType as keyof typeof INVESTMENT_TYPES
@@ -176,12 +183,14 @@ export default function InvestissementPage() {
                   {/* Price + Surface */}
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                     <span className="text-base font-bold text-ocean">
-                      {formatPrice(investment.price)}
+                      {investment.price != null ? formatPrice(investment.price) : "Prix sur demande"}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
-                      <Ruler className="size-3.5" />
-                      {investment.surface.toLocaleString("fr-FR")} m&sup2;
-                    </span>
+                    {investment.surface != null && (
+                      <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
+                        <Ruler className="size-3.5" />
+                        {investment.surface.toLocaleString("fr-FR")} m&sup2;
+                      </span>
+                    )}
                   </div>
                 </CardContent>
               </Card>

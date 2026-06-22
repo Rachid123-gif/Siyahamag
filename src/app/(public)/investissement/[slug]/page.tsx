@@ -223,7 +223,27 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 
 // ── Page ─────────────────────────────────────────────────────────────
 
-export const dynamic = "force-dynamic"
+// Build-time only: the DB is reached during the build (Mac / CI), never from
+// the serverless runtime (Supabase direct connection is unreachable there).
+export const dynamic = "force-static"
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const demo = Object.keys(DEMO_INVESTMENTS).map((slug) => ({ slug }))
+  let db: { slug: string }[] = []
+  try {
+    const rows = await prisma.investment.findMany({
+      where: { status: "APPROVED" },
+      select: { slug: true },
+    })
+    db = rows.map((r) => ({ slug: r.slug }))
+  } catch {
+    /* fall back to demo slugs only */
+  }
+  // Dedupe (a DB slug could match a demo slug).
+  const seen = new Set<string>()
+  return [...db, ...demo].filter((p) => (seen.has(p.slug) ? false : seen.add(p.slug)))
+}
 
 export default async function InvestmentDetailPage(props: PageProps) {
   const { slug } = await props.params

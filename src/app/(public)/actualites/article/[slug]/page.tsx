@@ -12,18 +12,31 @@ import {
   getArticleBySlug,
   getRelatedArticles,
 } from "@/lib/articlesData"
+import { getDbArticles, getDbArticleBySlug } from "@/lib/articlesDb"
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-export function generateStaticParams() {
-  return ALL_ARTICLES.map((a) => ({ slug: a.slug }))
+// Build-time only (DB reached at build, not from serverless runtime).
+export const dynamic = "force-static"
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const demo = ALL_ARTICLES.map((a) => ({ slug: a.slug }))
+  let db: { slug: string }[] = []
+  try {
+    db = (await getDbArticles()).map((a) => ({ slug: a.slug }))
+  } catch {
+    /* demo only */
+  }
+  const seen = new Set<string>()
+  return [...db, ...demo].filter((p) => (seen.has(p.slug) ? false : seen.add(p.slug)))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const article = getArticleBySlug(slug)
+  const article = getArticleBySlug(slug) ?? (await getDbArticleBySlug(slug))
   if (!article) {
     return { title: "Article introuvable | SiyahaMag" }
   }
@@ -43,7 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ArticleDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const article = getArticleBySlug(slug)
+  const article = getArticleBySlug(slug) ?? (await getDbArticleBySlug(slug))
   if (!article) notFound()
 
   const related = getRelatedArticles(slug, 3)

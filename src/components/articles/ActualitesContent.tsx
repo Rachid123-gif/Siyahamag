@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import { ALL_ARTICLES, type Category } from "@/lib/articlesData"
+import { ALL_ARTICLES, type Category, type Article } from "@/lib/articlesData"
 
 // ── Categories shown in the filter bar ───────────────────────────────
 
@@ -22,10 +22,14 @@ const CATEGORIES: Array<{ key: "ALL" | Category; label: string }> = [
 
 // ── Component ────────────────────────────────────────────────────────
 
-export function ActualitesContent() {
+export function ActualitesContent({
+  articles = ALL_ARTICLES,
+}: {
+  articles?: Article[]
+}) {
   const [activeCategory, setActiveCategory] = useState<"ALL" | Category>("ALL")
 
-  const sorted = [...ALL_ARTICLES].sort((a, b) =>
+  const sorted = [...articles].sort((a, b) =>
     b.datePublished.localeCompare(a.datePublished)
   )
 
