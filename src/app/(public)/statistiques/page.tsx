@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     "Consultez les chiffres officiels du tourisme au Maroc : nombre de touristes, recettes, nuitées, taux d'occupation par région et évolution annuelle.",
   alternates: {
     canonical: "/statistiques",
+    languages: {
+      "fr-MA": "https://siyahamag.ma/statistiques",
+      "ar-MA": "https://siyahamag.ma/ar/statistiques",
+    },
   },
   openGraph: {
     title: "Statistiques Tourisme Maroc 2025 — Chiffres Clés & Données | SiyahaMag",

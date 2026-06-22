@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     "Trouvez votre emploi dans le secteur touristique marocain : hôtellerie, restauration, animation, guide touristique, management hôtelier.",
   alternates: {
     canonical: "/emplois",
+    languages: {
+      "fr-MA": "https://siyahamag.ma/emplois",
+      "ar-MA": "https://siyahamag.ma/ar/emploi-tourisme",
+    },
   },
   openGraph: {
     title: "Offres d'Emploi Tourisme Maroc — Hôtellerie, Restauration | SiyahaMag",

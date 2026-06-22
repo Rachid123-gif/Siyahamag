@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     "Découvrez les opportunités d'investissement dans le secteur touristique marocain : hôtels, riads, restaurants, terrains et projets de resort.",
   alternates: {
     canonical: "/investissement",
+    languages: {
+      "fr-MA": "https://siyahamag.ma/investissement",
+      "ar-MA": "https://siyahamag.ma/ar/investissement",
+    },
   },
   openGraph: {
     title: "Investissement Touristique Maroc — Hôtels, Riads, Terrains | SiyahaMag",

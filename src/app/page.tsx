@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     "La première plateforme marocaine dédiée au tourisme : actualités du secteur, offres d'emploi hôtellerie et restauration, statistiques et opportunités d'investissement.",
   alternates: {
     canonical: "/",
+    languages: {
+      "fr-MA": "https://siyahamag.ma/",
+      "ar-MA": "https://siyahamag.ma/ar",
+      "x-default": "https://siyahamag.ma/",
+    },
   },
   openGraph: {
     title: "Tourisme Maroc — Actualités, Emploi & Investissement | SiyahaMag",

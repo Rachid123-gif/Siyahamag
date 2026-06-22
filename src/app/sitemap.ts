@@ -316,8 +316,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
+  // ── Arabic (RTL) pillar pages ──────────────────────────────────────
+  const arPages: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/ar`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/ar/emploi-tourisme`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/ar/investissement`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/ar/statistiques`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+  ]
+
   return [
     ...staticPages,
+    ...arPages,
     ...subCategoryPages,
     ...thematiquePages,
     ...articlePages,
