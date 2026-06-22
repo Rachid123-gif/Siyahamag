@@ -14,6 +14,7 @@ import { JsonLd } from "@/components/seo/JsonLd"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Building2, Clock, BadgeCheck, Banknote } from "lucide-react"
+import { getApprovedJobCards } from "@/lib/jobsDb"
 
 // ── SEO ───────────────────────────────────────────────────────────────
 
@@ -151,9 +152,15 @@ const DEMO_JOBS = [
 
 // ── Page ─────────────────────────────────────────────────────────────
 
-export default function EmploisPage() {
+export const revalidate = 1800
+
+export default async function EmploisPage() {
+  // Real DB listings first, demo content as fallback/filler (never empties out).
+  const dbJobs = await getApprovedJobCards()
+  const jobs = [...dbJobs, ...DEMO_JOBS]
+
   // Build JobPosting JSON-LD for each job
-  const jobPostingsJsonLd = DEMO_JOBS.map((job) => ({
+  const jobPostingsJsonLd = jobs.map((job) => ({
     "@context": "https://schema.org",
     "@type": "JobPosting",
     title: job.title,
@@ -226,13 +233,13 @@ export default function EmploisPage() {
       {/* Results count */}
       <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
         <span>
-          {DEMO_JOBS.length} offres disponibles
+          {jobs.length} offres disponibles
         </span>
       </div>
 
       {/* Job list */}
       <div className="mt-6 space-y-4">
-        {DEMO_JOBS.map((job) => {
+        {jobs.map((job) => {
           const categoryLabel =
             JOB_CATEGORIES[job.jobCategory as keyof typeof JOB_CATEGORIES] ??
             job.jobCategory

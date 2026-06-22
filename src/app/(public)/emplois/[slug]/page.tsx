@@ -18,6 +18,7 @@ import {
   CONTRACT_TYPES,
 } from "@/lib/constants"
 import { DEMO_JOBS } from "@/lib/demoData"
+import { getDbJobBySlug } from "@/lib/jobsDb"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -33,6 +34,9 @@ interface JobDetailPageProps {
 }
 
 // ── Static Params (pre-render cities + job slugs) ────────────────────
+
+export const revalidate = 1800
+export const dynamicParams = true // DB job slugs render on-demand
 
 export function generateStaticParams() {
   const jobParams = DEMO_JOBS.map((job) => ({ slug: job.slug }))
@@ -72,8 +76,8 @@ export async function generateMetadata({
     }
   }
 
-  // Otherwise, it's a job detail page
-  const job = DEMO_JOBS.find((j) => j.slug === slug)
+  // Otherwise, it's a job detail page (demo first, then DB)
+  const job = DEMO_JOBS.find((j) => j.slug === slug) ?? (await getDbJobBySlug(slug))
 
   if (!job) {
     return { title: "Offre introuvable | SiyahaMag" }
@@ -103,7 +107,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
     return <CityJobsPage city={slug} />
   }
 
-  const job = DEMO_JOBS.find((j) => j.slug === slug)
+  const job = DEMO_JOBS.find((j) => j.slug === slug) ?? (await getDbJobBySlug(slug))
 
   if (!job) notFound()
 
