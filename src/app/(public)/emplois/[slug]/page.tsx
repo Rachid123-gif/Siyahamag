@@ -35,8 +35,10 @@ interface JobDetailPageProps {
 
 // ── Static Params (pre-render cities + job slugs) ────────────────────
 
-export const revalidate = 1800
-export const dynamicParams = true // DB job slugs render on-demand
+// Build-time only (DB reached at build, never at serverless runtime).
+// All demo + city + DB slugs are prebuilt; unknown slugs 404 cleanly.
+export const dynamic = "force-static"
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const jobParams = DEMO_JOBS.map((job) => ({ slug: job.slug }))

@@ -152,7 +152,10 @@ const DEMO_JOBS = [
 
 // ── Page ─────────────────────────────────────────────────────────────
 
-export const revalidate = 1800
+// Build-time only: the DB is reached during the build (Mac / CI runner), never
+// from the serverless runtime (Supabase direct connection is unreachable there).
+// Served as an immutable static page; refreshed on each deploy.
+export const dynamic = "force-static"
 
 export default async function EmploisPage() {
   // Real DB listings first, demo content as fallback/filler (never empties out).
