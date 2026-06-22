@@ -79,6 +79,23 @@ jobs:
           git commit -m "chore(seo): daily news articles ${DATE_STR}" || exit 0
           git push origin main
 
+      - name: Deploy to Netlify
+        # IMPORTANT: this Netlify site is NOT connected to the GitHub repo, so a
+        # git push does NOT auto-deploy. We build + deploy explicitly here so the
+        # new pages actually go live before we notify search engines. The CLI
+        # pulls the site's env vars from Netlify via NETLIFY_AUTH_TOKEN.
+        if: steps.check.outputs.has_changes == 'true'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "::warning::NETLIFY_AUTH_TOKEN not set — skipping deploy (site won't update)."
+            exit 0
+          fi
+          npx --yes netlify-cli@latest deploy --build --prod \
+            --site dbdfdf5f-5f95-4a00-9c86-8faa87423c6f \
+            --message "daily SEO content $(date -u +'%Y-%m-%d')"
+
       - name: Submit URLs to IndexNow (Bing, Yandex)
         if: steps.check.outputs.has_changes == 'true'
         env:
