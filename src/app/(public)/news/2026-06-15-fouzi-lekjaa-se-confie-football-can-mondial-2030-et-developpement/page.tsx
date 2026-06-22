@@ -6,6 +6,8 @@ import { Calendar, ExternalLink, ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
+  // Off-topic legacy page — noindex so it doesn't dilute the tourism domain.
+  robots: { index: false, follow: true },
   title: `Fouzi Lekjaa se confie : football, CAN, Mondial 2030 et développement | SiyahaMag`,
   description: `Dans un long entretien accordé au podcast Maghreb, enregistré au Complexe Mohammed VI de football à Rabat à la veille du départ de la sélection pour les Ét`,
   alternates: { canonical: "/news/2026-06-15-fouzi-lekjaa-se-confie-football-can-mondial-2030-et-developpement" },

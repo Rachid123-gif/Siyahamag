@@ -6,6 +6,8 @@ import { Calendar, ExternalLink, ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
+  // Off-topic legacy page — noindex so it doesn't dilute the tourism domain.
+  robots: { index: false, follow: true },
   title: `Essaouira : lancement du projet “Wiqaya+” pour renforcer la sécurité sanitaire dans les établissements touristiques | SiyahaMag`,
   description: `Le projet “Wiqaya+”, une initiative ayant pour objectif de promouvoir un modèle renouvelé de sécurité sanitaire et d’améliorer les pratiques préventives au`,
   alternates: { canonical: "/news/2026-06-15-essaouira-lancement-du-projet-wiqaya-pour-renforcer-la-securite-sanitaire-dans-l" },

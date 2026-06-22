@@ -6,6 +6,8 @@ import { Calendar, ExternalLink, ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
+  // Off-topic legacy page — noindex so it doesn't dilute the tourism domain.
+  robots: { index: false, follow: true },
   title: `Foot : les Lionnes de l’Atlas affrontent le Bénin en amical le 5 juin à Rabat | SiyahaMag`,
   description: `L’équipe nationale féminine « A » affrontera, vendredi au Stade Moulay El Hassan à Rabat, son homologue béninoise en match amical. Ce match amical, prévu à`,
   alternates: { canonical: "/news/2026-06-05-foot-les-lionnes-de-latlas-affrontent-le-benin-en-amical-le-5-juin-a-rabat" },

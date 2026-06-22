@@ -17,6 +17,12 @@ import Parser from "rss-parser"
 import fs from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
+import {
+  isAiEnabled,
+  generateArticle,
+  buildArticlePage,
+  buildThinPage,
+} from "./ai-content.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -76,32 +82,32 @@ function slugify(text) {
     .slice(0, 80)
 }
 
-// Negative keywords — exclude if present even if other keywords match
+// Negative keywords — exclude if present even if other keywords match.
+// Expanded to kill the off-topic noise that was diluting topical authority
+// (sport, politics, crime, health, industry, music festivals, etc.).
 const NEGATIVE_KEYWORDS = [
+  // crime / faits divers
   "meurtre", "assassinat", "cocaïne", "cocaine", "drogue", "trafic",
   "suicide", "suicides", "enquête judiciaire", "enquete judiciaire",
   "prison", "détenu", "detenu", "accident mortel", "décès", "deces",
   "cadavre", "agression", "viol", "crime",
+  // sport
+  "foot", "football", "match", "matchs", "lionnes", "lions de l'atlas",
+  "can 2025", "can-2025", "botola", "raja", "wydad", "stade",
+  // santé / industrie / autres hors-sujet
+  "sanitaire", "hôpital", "hopital", "industriel", "industrie",
+  "poésie", "poesie", "concert", "élections", "elections",
 ]
 
 function isTourismRelated(title, content) {
   const titleLower = (title || "").toLowerCase()
   const text = `${title || ""} ${content || ""}`.toLowerCase()
-  // Exclude if any negative keyword is present (title or content)
+  // Exclude if any negative keyword is present (title or content).
   if (NEGATIVE_KEYWORDS.some((kw) => text.includes(kw))) return false
-  // STRICT : tourism keywords must be in the TITLE only
-  // (not just mentioned in passing in the content)
-  if (TOURISM_STRONG.some((kw) => titleLower.includes(kw))) return true
-  // Otherwise, need 2 weak keywords in title
-  const weakInTitle = TOURISM_WEAK.filter((kw) => titleLower.includes(kw)).length
-  return weakInTitle >= 2
-}
-
-function escapeJsx(text) {
-  return String(text)
-    .replace(/\\/g, "\\\\")
-    .replace(/`/g, "\\`")
-    .replace(/\$/g, "\\$")
+  // STRICT: require at least one STRONG tourism keyword in the TITLE.
+  // The old "2 weak keywords" path let through sport/festival/politics noise
+  // (e.g. "festival" + a city name), so it has been removed entirely.
+  return TOURISM_STRONG.some((kw) => titleLower.includes(kw))
 }
 
 async function readJsonSafe(filePath, fallback) {
@@ -159,125 +165,10 @@ async function fetchAllFeeds() {
 }
 
 // ── Article Generation ───────────────────────────────────────────────
-
-function buildArticleContent({ title, summary, source, sourceUrl, publishedAt, slug }) {
-  const dateIso = publishedAt ? new Date(publishedAt).toISOString() : new Date().toISOString()
-  const dateFr = new Date(dateIso).toLocaleDateString("fr-FR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  })
-
-  const escTitle = escapeJsx(title)
-  const escSummary = escapeJsx(summary || title)
-  const escSource = escapeJsx(source || "Source externe")
-  const escSourceUrl = escapeJsx(sourceUrl || "")
-
-  return `import type { Metadata } from "next"
-import Link from "next/link"
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs"
-import { JsonLd } from "@/components/seo/JsonLd"
-import { Calendar, ExternalLink, ArrowLeft } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-
-export const metadata: Metadata = {
-  title: \`${escTitle} | SiyahaMag\`,
-  description: \`${escSummary.slice(0, 155)}\`,
-  alternates: { canonical: "/news/${slug}" },
-  openGraph: {
-    title: \`${escTitle}\`,
-    description: \`${escSummary.slice(0, 155)}\`,
-    type: "article",
-    publishedTime: "${dateIso}",
-  },
-}
-
-const ARTICLE = {
-  title: \`${escTitle}\`,
-  summary: \`${escSummary}\`,
-  source: \`${escSource}\`,
-  sourceUrl: \`${escSourceUrl}\`,
-  publishedAt: "${dateIso}",
-  dateFr: "${dateFr}",
-}
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "NewsArticle",
-  headline: ARTICLE.title,
-  description: ARTICLE.summary,
-  datePublished: ARTICLE.publishedAt,
-  dateModified: ARTICLE.publishedAt,
-  author: { "@type": "Organization", name: "SiyahaMag" },
-  publisher: {
-    "@type": "Organization",
-    name: "SiyahaMag",
-    url: "https://siyahamag.ma",
-  },
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": "https://siyahamag.ma/news/${slug}",
-  },
-}
-
-export default function NewsArticlePage() {
-  return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <JsonLd data={jsonLd} />
-      <Breadcrumbs segments={[{ label: "Actualités", href: "/actualites" }, { label: ARTICLE.title }]} />
-
-      <article className="mt-6 space-y-6">
-        <header className="space-y-4">
-          <Badge className="bg-ocean-50 text-ocean border-0">Actualité</Badge>
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-            {ARTICLE.title}
-          </h1>
-          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1.5">
-              <Calendar className="h-4 w-4" />
-              {ARTICLE.dateFr}
-            </span>
-            <span className="flex items-center gap-1.5">
-              Source : <strong className="text-foreground">{ARTICLE.source}</strong>
-            </span>
-          </div>
-        </header>
-
-        <div className="prose prose-lg max-w-none">
-          <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-            {ARTICLE.summary}
-          </p>
-        </div>
-
-        {ARTICLE.sourceUrl && (
-          <div className="border-t border-border pt-6">
-            <a
-              href={ARTICLE.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-ocean hover:underline font-medium"
-            >
-              Lire l&apos;article original sur {ARTICLE.source}
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </div>
-        )}
-
-        <div className="border-t border-border pt-6 mt-8">
-          <Link
-            href="/actualites"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-ocean"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Retour aux actualités
-          </Link>
-        </div>
-      </article>
-    </div>
-  )
-}
-`
-}
+//
+// When ANTHROPIC_API_KEY is set, each RSS item becomes an ORIGINAL long-form
+// article (indexable, with FAQ + internal links). Without a key, we fall back
+// to a thin summary page marked noindex so it never dilutes domain quality.
 
 async function writeArticle(item) {
   const baseSlug = slugify(item.title || "sans-titre")
@@ -297,23 +188,41 @@ async function writeArticle(item) {
     // Doesn't exist, proceed
   }
 
-  const summary = (item.contentSnippet || item.content || item.summary || item.title || "")
-    .replace(/<[^>]+>/g, "")
-    .trim()
-    .slice(0, 800)
+  const publishedAt = item.pubDate || item.isoDate
+  let content
+  let mode
 
-  const content = buildArticleContent({
-    title: item.title,
-    summary,
-    source: item.source,
-    sourceUrl: item.link,
-    publishedAt: item.pubDate || item.isoDate,
-    slug,
-  })
+  // Try original AI generation first.
+  const body = await generateArticle(item)
+  if (body) {
+    content = buildArticlePage({
+      body,
+      slug,
+      source: item.source,
+      sourceUrl: item.link,
+      publishedAt,
+    })
+    mode = "ai"
+  } else {
+    // Fallback: thin, noindex summary page.
+    const summary = (item.contentSnippet || item.content || item.summary || item.title || "")
+      .replace(/<[^>]+>/g, "")
+      .trim()
+      .slice(0, 800)
+    content = buildThinPage({
+      title: item.title,
+      summary,
+      source: item.source,
+      sourceUrl: item.link,
+      publishedAt,
+      slug,
+    })
+    mode = "thin"
+  }
 
   await fs.mkdir(dir, { recursive: true })
   await fs.writeFile(filePath, content, "utf8")
-  return { slug, skipped: false }
+  return { slug, skipped: false, mode }
 }
 
 // ── Main ─────────────────────────────────────────────────────────────
@@ -321,6 +230,11 @@ async function writeArticle(item) {
 async function main() {
   console.log("🚀 SiyahaMag Daily SEO Automation")
   console.log(`📅 ${new Date().toISOString()}`)
+  console.log(
+    isAiEnabled()
+      ? "🤖 AI mode: ON — generating original articles via Claude API"
+      : "📝 AI mode: OFF (no ANTHROPIC_API_KEY) — thin summary pages (noindex)"
+  )
 
   const state = await readJsonSafe(STATE_FILE, { publishedSlugs: [], lastRun: null })
   const publishedSet = new Set(state.publishedSlugs || [])
@@ -347,7 +261,7 @@ async function main() {
       if (!res.skipped) {
         publishedSet.add(res.slug)
         results.push({ slug: res.slug, title: item.title, source: item.source })
-        console.log(`  ✓ Created: ${res.slug}`)
+        console.log(`  ✓ Created (${res.mode}): ${res.slug}`)
       }
     } catch (err) {
       console.log(`  ✗ Failed for "${item.title}": ${err.message}`)
@@ -385,8 +299,9 @@ async function main() {
   return results.length
 }
 
-// Global hard timeout — script must finish within 2 minutes
-const GLOBAL_TIMEOUT_MS = 120000
+// Global hard timeout. AI generation needs more headroom than plain RSS, but
+// must still finish well inside the workflow's 10-minute job timeout.
+const GLOBAL_TIMEOUT_MS = isAiEnabled() ? 480000 : 120000
 const hardTimeout = setTimeout(() => {
   console.error(`\n⏱️  Global timeout after ${GLOBAL_TIMEOUT_MS / 1000}s — forcing exit`)
   process.exit(0) // exit 0 so CI doesn't fail

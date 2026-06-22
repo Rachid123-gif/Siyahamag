@@ -6,6 +6,8 @@ import { Calendar, ExternalLink, ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
+  // Off-topic legacy page — noindex so it doesn't dilute the tourism domain.
+  robots: { index: false, follow: true },
   title: `
                 
             

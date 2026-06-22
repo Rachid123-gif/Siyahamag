@@ -6,6 +6,8 @@ import { Calendar, ExternalLink, ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
+  // Off-topic legacy page — noindex so it doesn't dilute the tourism domain.
+  robots: { index: false, follow: true },
   title: `Rabat : le festival « Bustan Al-Qassid » célèbre la poésie et rend hommage à Mourad El Kadiri | SiyahaMag`,
   description: `À l’occasion de la Journée mondiale de la poésie, le festival « Bustan Al-Qassid » organise sa première édition du 30 avril au 2 mai 2026 à Rabat, dans le `,
   alternates: { canonical: "/news/2026-04-30-rabat-le-festival-bustan-al-qassid-celebre-la-poesie-et-rend-hommage-a-mourad-el" },

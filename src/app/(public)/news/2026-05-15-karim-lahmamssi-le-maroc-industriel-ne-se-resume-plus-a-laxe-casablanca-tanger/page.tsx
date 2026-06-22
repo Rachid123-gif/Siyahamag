@@ -6,6 +6,8 @@ import { Calendar, ExternalLink, ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
+  // Off-topic legacy page — noindex so it doesn't dilute the tourism domain.
+  robots: { index: false, follow: true },
   title: `Karim Lahmamssi : “Le Maroc industriel ne se résume plus à l'axe Casablanca Tanger” | SiyahaMag`,
   description: `À l’occasion de Logismed 2026, Karim Lahmamssi, Directeur Général d’ALF Holding — regroupant les filiales TST et TRO-DSV — revient sur la manière dont le g`,
   alternates: { canonical: "/news/2026-05-15-karim-lahmamssi-le-maroc-industriel-ne-se-resume-plus-a-laxe-casablanca-tanger" },

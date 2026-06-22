@@ -6,6 +6,8 @@ import { Calendar, ExternalLink, ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
+  // Off-topic legacy page — noindex so it doesn't dilute the tourism domain.
+  robots: { index: false, follow: true },
   title: `Tanger et Casablanca, vitrines du potentiel industriel marocain pour les entreprises basques | SiyahaMag`,
   description: `Une délégation réunissant une vingtaine de sociétés du Pays basque espagnol, aux côtés de leur chambre de commerce et des autorités provinciales, a multipl`,
   alternates: { canonical: "/news/2026-04-29-tanger-et-casablanca-vitrines-du-potentiel-industriel-marocain-pour-les-entrepri" },

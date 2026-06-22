@@ -6,6 +6,8 @@ import { Calendar, ExternalLink, ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
+  // Off-topic legacy page — noindex so it doesn't dilute the tourism domain.
+  robots: { index: false, follow: true },
   title: `Sortie de l'acier, tensions géopolitiques, Mondial 2030... La stratégie d'Aluminium du Maroc expliquée par Abdeslam El Alami | SiyahaMag`,
   description: `Le groupe industriel installé à Tanger a validé la sortie de son activité acier lors de son conseil d'administration du 12 mai dernier. Son PDG, Abdeslam E`,
   alternates: { canonical: "/news/2026-06-20-sortie-de-lacier-tensions-geopolitiques-mondial-2030-la-strategie-daluminium-du-" },
