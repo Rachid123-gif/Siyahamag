@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "Tout savoir pour investir dans un riad au Maroc : prix, juridique, rentabilité, villes les plus attractives.",
     type: "article",
     images: [
-      "https://images.unsplash.com/photo-1548018560-c7196e1525ad?w=1200&h=630&fit=crop",
+      "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=1200&h=630&fit=crop",
     ],
   },
   keywords: [
@@ -150,7 +150,7 @@ export default function GuideInvestirRiadMarocPage() {
       {/* Hero image */}
       <div className="rounded-xl overflow-hidden mb-10">
         <img
-          src="https://images.unsplash.com/photo-1548018560-c7196e1525ad?w=1200&h=500&fit=crop"
+          src="https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=1200&h=500&fit=crop"
           alt="Riad traditionnel au Maroc avec patio et fontaine"
           className="w-full h-64 sm:h-80 object-cover"
           width={1200}

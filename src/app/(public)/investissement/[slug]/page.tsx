@@ -174,7 +174,7 @@ const DEMO_INVESTMENTS: Record<string, StaticInvestment> = {
     surface: 280,
     rooms: 6,
     condition: "EN_ACTIVITE",
-    images: ["https://images.unsplash.com/photo-1553899017-43a2e746f73a?w=1200&h=800&fit=crop"],
+    images: ["https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&h=800&fit=crop"],
     description: para("Maison d'hôtes classée de 6 chambres dans le cœur bleu de Chefchaouen. Patio traditionnel, terrasse panoramique sur le Rif, salon marocain, hammam privatif. En activité depuis 8 ans, excellente e-réputation (4,8/5 sur Booking)."),
     contactName: "SiyahaMag",
     contactCompany: null,

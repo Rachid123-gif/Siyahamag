@@ -370,7 +370,7 @@ export default function EmploiAnimateurTourismeMarocPage() {
             </div>
 
             <img
-              src="https://images.unsplash.com/photo-1528495612343-9ca9f755c4f7?w=900&h=400&fit=crop"
+              src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&h=400&fit=crop"
               alt="Activités de plage animées dans un resort marocain avec touristes et animateurs"
               className="rounded-xl my-6 w-full"
               width={900}

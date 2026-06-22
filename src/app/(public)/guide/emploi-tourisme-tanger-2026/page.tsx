@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       "Tanger ouvre 18 nouveaux hôtels d'ici 2030. Découvrez les opportunités, salaires et secteurs qui recrutent dans le tourisme tangérois.",
     type: "article",
     images: [
-      "https://images.unsplash.com/photo-1539634936668-ed40b6242b56?w=1200&h=630&fit=crop",
+      "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1200&h=630&fit=crop",
     ],
   },
   keywords: [
@@ -62,7 +62,7 @@ const pageJsonLd = {
   mainEntityOfPage:
     "https://siyahamag.ma/guide/emploi-tourisme-tanger-2026",
   image:
-    "https://images.unsplash.com/photo-1539634936668-ed40b6242b56?w=1200&h=630&fit=crop",
+    "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1200&h=630&fit=crop",
 }
 
 const faqJsonLd = {
@@ -196,7 +196,7 @@ export default function GuideEmploiTourismeTangerPage() {
       {/* Hero image */}
       <figure className="mb-10 rounded-xl overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1539634936668-ed40b6242b56?w=1200&h=500&fit=crop"
+          src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1200&h=500&fit=crop"
           alt="Vue panoramique de la baie de Tanger et de la corniche"
           className="w-full h-64 sm:h-80 object-cover"
           width={1200}

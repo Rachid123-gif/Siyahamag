@@ -506,7 +506,7 @@ L'édition anniversaire rassemblera des artistes de 25 pays, dont plusieurs icô
 Le Conseil Régional Fès-Meknès a renforcé ses moyens pour cette édition anniversaire : une campagne de communication internationale est déployée, un partenariat avec Arte pour une diffusion télévisée de plusieurs concerts, et des formations d'accueil dédiées pour les professionnels de la ville.
 
 Plus de 100 000 festivaliers sont attendus, un record pour cet événement historiquement confidentiel. Les retombées économiques estimées pour la région dépassent les 150 millions de dirhams, toutes activités touristiques confondues.`,
-    image: "https://images.unsplash.com/photo-1553899017-43a2e746f73a?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&h=500&fit=crop",
     date: "3 avril 2026",
     datePublished: "2026-04-03",
     author: "Ahmed Tazi",
@@ -629,7 +629,7 @@ Ce phénomène s'explique par plusieurs facteurs. D'abord, les réseaux sociaux 
 Mais cette popularité soudaine pose aussi des défis. Les autorités locales mettent en place un plan de gestion des flux pour préserver l'authenticité de la médina. Quotas journaliers, aménagement de parcours alternatifs et sensibilisation au respect des habitants sont au programme.
 
 Pour les investisseurs, Chefchaouen représente une opportunité attractive. Les maisons d'hôtes sont en forte demande, avec un retour sur investissement moyen de 8 ans selon les agences locales. Le secteur crée aussi de nombreux emplois : guides, restaurateurs, artisans d'art.`,
-    image: "https://images.unsplash.com/photo-1553899017-43a2e746f73a?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&h=500&fit=crop",
     date: "7 mars 2026",
     datePublished: "2026-03-07",
     author: "Amina Kettani",
@@ -646,7 +646,7 @@ Le jury de journalistes et professionnels du tourisme souligne l'harmonie unique
 Cette distinction s'inscrit dans une série de reconnaissances internationales dont bénéficie Chefchaouen. National Geographic l'avait déjà désignée comme "une des plus belles petites villes du monde", et la ville apparaît régulièrement dans les listes de destinations Instagram les plus photographiées.
 
 Le Conseil Régional Tanger-Tétouan-Al Hoceima annonce à cette occasion un plan de préservation ambitieux. Il prévoit une régulation renforcée des locations touristiques, la restauration de 150 bâtisses traditionnelles et la création d'un musée du bleu dédié à cette couleur emblématique.`,
-    image: "https://images.unsplash.com/photo-1553899017-43a2e746f73a?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&h=500&fit=crop",
     date: "11 avril 2026",
     datePublished: "2026-04-11",
     author: "Yasmine Tazi",
@@ -733,7 +733,7 @@ Les aéroports et gares principales sont équipés de bornes interactives multil
 L'application mobile "VisitMorocco" a été complètement repensée et intègre désormais des expériences en réalité augmentée. En pointant son téléphone vers un monument, le visiteur obtient instantanément des informations historiques, des reconstitutions 3D et des anecdotes culturelles.
 
 Le programme comprend également la formation de 400 agents d'accueil aux outils numériques et la création d'un centre d'appel international opérationnel 24h/24. L'objectif : offrir une expérience d'accueil digne des plus grandes destinations mondiales.`,
-    image: "https://images.unsplash.com/photo-1548018560-c7196e1525ad?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800&h=500&fit=crop",
     date: "8 mars 2026",
     datePublished: "2026-03-08",
     author: "Khalid Mansouri",
@@ -786,7 +786,7 @@ Les principales nouveautés : obligation d'enregistrement auprès de la Wilaya, 
 Les plateformes ont 6 mois pour se mettre en conformité. Elles devront vérifier les numéros d'enregistrement avant publication d'annonces, transmettre les données de réservation aux autorités fiscales, et informer leurs utilisateurs des obligations locales.
 
 Pour les propriétaires de riads et maisons d'hôtes, cette loi clarifie enfin un cadre qui restait flou. Elle favorise une concurrence saine entre l'offre professionnelle et les locations occasionnelles, tout en protégeant le tissu urbain contre la gentrification excessive des médinas historiques.`,
-    image: "https://images.unsplash.com/photo-1548018560-c7196e1525ad?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800&h=500&fit=crop",
     date: "20 mars 2026",
     datePublished: "2026-03-20",
     author: "Mounia Fassi",
@@ -943,7 +943,7 @@ Le diagnostic est contrasté. Si 92 % des établissements utilisent un site web 
 Les freins identifiés sont multiples : coût perçu comme élevé des solutions, manque de compétences internes, méconnaissance de l'offre technologique. Les établissements les plus avancés sont souvent dirigés par des propriétaires jeunes ou rentrés au Maroc après une expérience à l'international.
 
 Le rapport formule plusieurs recommandations : création de bouquets d'outils mutualisés à faible coût, subventions à la digitalisation dans les zones prioritaires, partenariats renforcés entre écoles de management et PME. Le ministère du Tourisme a annoncé un programme dédié de 100 millions de dirhams pour accompagner cette transition.`,
-    image: "https://images.unsplash.com/photo-1531219572328-a0171b4448a7?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop",
     date: "20 février 2026",
     datePublished: "2026-02-20",
     author: "Université Mohammed V",

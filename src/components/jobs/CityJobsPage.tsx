@@ -50,7 +50,7 @@ export const CITY_DATA: Record<string, { name: string; region: string; descripti
     name: "Fès",
     region: "Fès-Meknès",
     description: "Ville impériale et spirituelle, Fès recherche des guides touristiques, des artisans et des spécialistes du patrimoine.",
-    image: "https://images.unsplash.com/photo-1548018560-c7196e1525ad?w=800&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800&h=400&fit=crop",
     highlights: [
       "Médina classée UNESCO — forte demande de guides spécialisés",
       "Secteur des riads-boutiques en pleine expansion",
@@ -62,7 +62,7 @@ export const CITY_DATA: Record<string, { name: string; region: string; descripti
     name: "Tanger",
     region: "Tanger-Tétouan-Al Hoceïma",
     description: "Porte de l'Afrique sur l'Europe, Tanger connaît un boom hôtelier avec de nombreux projets en cours.",
-    image: "https://images.unsplash.com/photo-1553899017-43a2e746f73a?w=800&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&h=400&fit=crop",
     highlights: [
       "Boom hôtelier : dizaines de nouveaux établissements en construction",
       "Proximité de l'Europe — clientèle internationale à fort pouvoir d'achat",

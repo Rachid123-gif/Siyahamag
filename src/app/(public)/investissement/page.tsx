@@ -92,7 +92,7 @@ const DEMO_INVESTMENTS = [
     city: "Chefchaouen",
     price: 4200000,
     surface: 280,
-    image: "https://images.unsplash.com/photo-1553899017-43a2e746f73a?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&h=400&fit=crop",
   },
 ]
 

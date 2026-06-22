@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Chefchaouen attire 1,2M de visiteurs/an. Découvrez les prix, rendements et démarches pour investir dans une maison d'hôtes dans la ville bleue.",
     type: "article",
     images: [
-      "https://images.unsplash.com/photo-1553244998-9bf61eb31a8d?w=1200&h=630&fit=crop",
+      "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&h=630&fit=crop",
     ],
   },
   keywords: [
@@ -63,7 +63,7 @@ const pageJsonLd = {
   mainEntityOfPage:
     "https://siyahamag.ma/guide/investissement-maison-hotes-chefchaouen-2026",
   image:
-    "https://images.unsplash.com/photo-1553244998-9bf61eb31a8d?w=1200&h=630&fit=crop",
+    "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&h=630&fit=crop",
 }
 
 const faqJsonLd = {
@@ -197,7 +197,7 @@ export default function GuideInvestissementMaisonHotesChefchaouenPage() {
       {/* Hero image */}
       <figure className="mb-10 rounded-xl overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1553244998-9bf61eb31a8d?w=1200&h=500&fit=crop"
+          src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&h=500&fit=crop"
           alt="Vue de la médina bleue de Chefchaouen au Maroc"
           className="w-full h-64 sm:h-80 object-cover"
           width={1200}
@@ -353,7 +353,7 @@ export default function GuideInvestissementMaisonHotesChefchaouenPage() {
 
         <figure className="not-prose my-8 rounded-xl overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1531219572328-a0171b4448a3?w=900&h=400&fit=crop"
+            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&h=400&fit=crop"
             alt="Ruelle bleue typique de Chefchaouen"
             className="w-full h-56 object-cover"
             width={900}
