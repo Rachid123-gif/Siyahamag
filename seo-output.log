@@ -1,5 +1,5 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-06-23T09:55:23.844Z
+📅 2026-06-24T09:42:16.306Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
@@ -11,9 +11,14 @@
 
 → Total items fetched: 120
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 1
+  ⚠️  Gemini HTTP 503: {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later
+  ✓ Created (thin): 2026-06-23-tourisme-interne-plus-de-4-millions-de-nuitees-en-cinq-mois
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 1 new articles.
+  - Tourisme interne : plus de 4 millions de nuitées en cinq mois
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (1 articles)

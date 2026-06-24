@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-06-24T09:42:18.911Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-23-tourisme-interne-plus-de-4-millions-de-nuitees-en-cinq-mois",
+          "title": "Tourisme interne : plus de 4 millions de nuitées en cinq mois",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-06-23T09:55:25.261Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
