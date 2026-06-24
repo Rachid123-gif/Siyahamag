@@ -22,19 +22,31 @@ jobs:
       - name: Fetch Google Trends Morocco RSS and filter tourism
         id: trends
         run: |
-          set -e
+          # Non-fatal: Google Trends' geo RSS is unreliable/deprecated. If it's
+          # unavailable, skip cleanly (matched_count=0) instead of failing.
           curl -sf 'https://trends.google.com/trends/trendingsearches/daily/rss?geo=MA' -o /tmp/trends.xml \
             || curl -sf 'https://trends.google.fr/trends/trendingsearches/daily/rss?geo=MA' -o /tmp/trends.xml \
-            || (echo "Both Google Trends endpoints failed" && exit 0)
+            || true
+          if [ ! -s /tmp/trends.xml ]; then
+            echo "Google Trends unavailable — skipping (non-fatal)."
+            echo "matched_count=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           python3 - <<'PY'
           import xml.etree.ElementTree as ET, re, os
-          tree = ET.parse('/tmp/trends.xml')
-          root = tree.getroot()
           items = []
-          for item in root.iter('item'):
-              t = (item.findtext('title') or '').strip()
-              if t:
-                  items.append(t)
+          try:
+              tree = ET.parse('/tmp/trends.xml')
+              root = tree.getroot()
+              for item in root.iter('item'):
+                  t = (item.findtext('title') or '').strip()
+                  if t:
+                      items.append(t)
+          except Exception as e:
+              print('Trends parse failed (non-fatal):', e)
+              with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                  f.write('matched_count=0\n')
+              raise SystemExit(0)
           tourism_kw = [
               'tourisme','touriste','touristique','hotel','hotellerie',
               'riad','vacances','plage','medina','marrakech','agadir',
