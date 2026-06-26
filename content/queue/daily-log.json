@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-06-26T09:40:25.545Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-26-tourisme-le-maroc-maintient-une-forte-dynamique-a-lapproche-de-la-saison-estival",
+          "title": "Tourisme : le Maroc maintient une forte dynamique à l'approche de la saison estivale",
+          "source": "Hespress Fr"
+        }
+      ]
+    },
+    {
       "date": "2026-06-25T09:34:21.281Z",
       "feedsChecked": 5,
       "itemsFetched": 120,

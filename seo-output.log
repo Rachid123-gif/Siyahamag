@@ -1,30 +1,20 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-06-25T09:34:18.225Z
+📅 2026-06-26T09:40:07.728Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
   ✓ Hespress Fr: 10 items
-  ✓ Medias24: 10 items
   ✗ Morocco World News: Status code 403
+  ✓ Medias24: 10 items
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
 
 → Total items fetched: 120
 
-📰 Tourism-related new articles: 2
-  ⚠️  Gemini HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later
-  ✓ Created (thin): 2026-06-24-fatim-zahra-ammor-les-prix-des-services-touristiques-obeissent-a-la-logique-de-l
-  ⚠️  Gemini HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later
-  ✓ Created (thin): 2026-06-24-le-maroc-veut-attirer-23-millions-de-touristes-daffaires-et-de-congres-a-lhorizo
+📰 Tourism-related new articles: 1
+  ✓ Created (ai): 2026-06-26-tourisme-le-maroc-maintient-une-forte-dynamique-a-lapproche-de-la-saison-estival
 
-✅ Done. Published 2 new articles.
-  - Fatim-Zahra Ammor : “Les prix des services touristiques obéissent à la logique de l'offre et de la demande”
-  - Le Maroc veut attirer 2,3 millions de touristes d'affaires et de congrès à l'horizon 2030
+✅ Done. Published 1 new articles.
+  - Tourisme : le Maroc maintient une forte dynamique à l'approche de la saison estivale
 
-✨ Script completed successfully (2 articles)
+✨ Script completed successfully (1 articles)
