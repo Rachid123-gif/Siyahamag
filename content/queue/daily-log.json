@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-06-30T09:53:27.803Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-06-30-hotellerie-les-dessous-du-plan-marocain-a-350-millions-de-dollars-de-pickalbatro",
+          "title": "Hôtellerie : les dessous du plan marocain à 350 millions de dollars de Pickalbatros",
+          "source": "Medias24"
+        }
+      ]
+    },
+    {
       "date": "2026-06-29T11:12:56.923Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
