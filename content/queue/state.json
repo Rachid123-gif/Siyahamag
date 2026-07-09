@@ -75,13 +75,14 @@
     "2026-06-24-fatim-zahra-ammor-les-prix-des-services-touristiques-obeissent-a-la-logique-de-l",
     "2026-06-24-le-maroc-veut-attirer-23-millions-de-touristes-daffaires-et-de-congres-a-lhorizo",
     "2026-06-26-tourisme-le-maroc-maintient-une-forte-dynamique-a-lapproche-de-la-saison-estival",
-    "2026-06-30-hotellerie-les-dessous-du-plan-marocain-a-350-millions-de-dollars-de-pickalbatro"
+    "2026-06-30-hotellerie-les-dessous-du-plan-marocain-a-350-millions-de-dollars-de-pickalbatro",
+    "2026-07-09-tourisme-le-maroc-face-au-defi-de-lapres-record"
   ],
-  "lastRun": "2026-07-08T08:38:36.980Z",
+  "lastRun": "2026-07-09T09:51:30.508Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 120,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }

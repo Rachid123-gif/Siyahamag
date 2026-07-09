@@ -1,19 +1,20 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-07-08T08:38:35.143Z
+📅 2026-07-09T09:51:08.735Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
-  ✓ Medias24: 10 items
-  ✗ Morocco World News: Status code 403
   ✓ Hespress Fr: 10 items
+  ✗ Morocco World News: Status code 403
   ✗ Le360 Fr: Status code 404
+  ✓ Medias24: 10 items
   ✓ TelQuel: 100 items
 
 → Total items fetched: 120
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 1
+  ✓ Created (ai): 2026-07-09-tourisme-le-maroc-face-au-defi-de-lapres-record
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 1 new articles.
+  - Tourisme : le Maroc face au défi de l’après-record
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (1 articles)
