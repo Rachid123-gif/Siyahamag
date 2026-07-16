@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-07-16T08:24:34.766Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-07-15-casablanca-spa-rooftop-piscine-cinq-adresses-dhotels-de-luxe-qui-font-lete",
+          "title": "Casablanca : spa, rooftop, piscine… cinq adresses d'hôtels de luxe qui font l'été",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-07-15T08:25:06.065Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
