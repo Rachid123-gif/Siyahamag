@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-07-22T08:37:48.471Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": []
+    },
+    {
       "date": "2026-07-21T08:38:28.545Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
@@ -927,28 +933,6 @@
         {
           "slug": "2026-04-23-mondial-2030-mise-en-place-officielle-de-la-societe-fes-region-sport",
           "title": "\n                \n            \nMondial 2030 : mise en place officielle de la société Fès Région Sport",
-          "source": "TelQuel"
-        }
-      ]
-    },
-    {
-      "date": "2026-04-23T08:06:03.093Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-04-22-hotellerie-marriott-nomme-denis-laus-a-la-tete-du-futur-resort-de-taghazout-bay",
-          "title": "Hôtellerie : Marriott nomme Denis Laus à la tête du futur resort de Taghazout Bay",
-          "source": "Medias24"
-        },
-        {
-          "slug": "2026-04-23-essaouira-le-festival-printemps-musical-des-alizes-revient-pour-une-22e-edition",
-          "title": "Essaouira : le Festival Printemps Musical des Alizés revient pour une 22è édition",
-          "source": "Hespress Fr"
-        },
-        {
-          "slug": "2026-04-22-casablanca-le-wali-mhidia-interdit-les-locations-de-parasols-chaises-ou-tables-s",
-          "title": "Casablanca : le wali Mhidia interdit les locations de parasols, chaises ou tables sur les plages",
           "source": "TelQuel"
         }
       ]
