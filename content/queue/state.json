@@ -77,13 +77,14 @@
     "2026-06-26-tourisme-le-maroc-maintient-une-forte-dynamique-a-lapproche-de-la-saison-estival",
     "2026-06-30-hotellerie-les-dessous-du-plan-marocain-a-350-millions-de-dollars-de-pickalbatro",
     "2026-07-09-tourisme-le-maroc-face-au-defi-de-lapres-record",
-    "2026-07-15-casablanca-spa-rooftop-piscine-cinq-adresses-dhotels-de-luxe-qui-font-lete"
+    "2026-07-15-casablanca-spa-rooftop-piscine-cinq-adresses-dhotels-de-luxe-qui-font-lete",
+    "2026-07-23-essaouira-hausse-de-4-des-nuitees-dans-les-ehtc-a-fin-avril"
   ],
-  "lastRun": "2026-07-22T08:37:48.469Z",
+  "lastRun": "2026-07-23T08:39:56.976Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 120,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }

@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-07-23T08:39:56.977Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-07-23-essaouira-hausse-de-4-des-nuitees-dans-les-ehtc-a-fin-avril",
+          "title": "Essaouira: hausse de 4% des nuitées dans les EHTC à fin avril ",
+          "source": "Hespress Fr"
+        }
+      ]
+    },
+    {
       "date": "2026-07-22T08:37:48.471Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
@@ -916,23 +928,6 @@
         {
           "slug": "2026-04-24-sahel-les-pays-de-laes-signent-lacte-de-creation-dune-compagnie-aerienne-commune",
           "title": "Sahel : les pays de l’AES signent l’acte de création d’une compagnie aérienne commune",
-          "source": "TelQuel"
-        }
-      ]
-    },
-    {
-      "date": "2026-04-24T08:14:38.255Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-04-23-ryanair-gpc-dans-la-region-fes-meknes-risma-prend-la-gestion-de-ses-hotels-les-3",
-          "title": "Ryanair, GPC dans la région Fès-Meknès, Risma prend la gestion de ses hôtels : les 3 infos business à retenir",
-          "source": "TelQuel"
-        },
-        {
-          "slug": "2026-04-23-mondial-2030-mise-en-place-officielle-de-la-societe-fes-region-sport",
-          "title": "\n                \n            \nMondial 2030 : mise en place officielle de la société Fès Région Sport",
           "source": "TelQuel"
         }
       ]
