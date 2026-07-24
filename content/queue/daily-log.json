@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-07-24T08:35:29.488Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": []
+    },
+    {
       "date": "2026-07-23T08:39:56.977Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
@@ -914,23 +920,6 @@
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
-    },
-    {
-      "date": "2026-04-25T07:39:32.866Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-04-25-mondial-2030-lespagne-decouvre-que-la-finale-nest-pas-acquise",
-          "title": "Mondial 2030 : l’Espagne découvre que la finale n’est pas acquise",
-          "source": "Hespress Fr"
-        },
-        {
-          "slug": "2026-04-24-sahel-les-pays-de-laes-signent-lacte-de-creation-dune-compagnie-aerienne-commune",
-          "title": "Sahel : les pays de l’AES signent l’acte de création d’une compagnie aérienne commune",
-          "source": "TelQuel"
-        }
-      ]
     }
   ]
 }
