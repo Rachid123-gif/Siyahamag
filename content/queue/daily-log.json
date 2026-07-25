@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-07-25T08:16:39.372Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-07-25-pres-de-94-millions-de-touristes-se-sont-rendus-au-maroc-a-fin-juin",
+          "title": "Près de 9,4 millions de touristes se sont rendus au Maroc à fin juin",
+          "source": "Hespress Fr"
+        },
+        {
+          "slug": "2026-07-24-le-maroc-remet-au-mali-un-complexe-de-formation-professionnelle-dans-le-btp-et-l",
+          "title": "Le Maroc remet au Mali un complexe de formation professionnelle dans le BTP et le tourisme",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-07-24T08:35:29.488Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
@@ -911,12 +928,6 @@
     },
     {
       "date": "2026-04-27T08:36:50.795Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
-    },
-    {
-      "date": "2026-04-26T07:48:44.666Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []

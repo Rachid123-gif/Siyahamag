@@ -1,19 +1,22 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-07-24T08:35:27.890Z
+📅 2026-07-25T08:15:55.083Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
-  ✓ Medias24: 10 items
-  ✗ Morocco World News: Status code 403
   ✓ Hespress Fr: 10 items
+  ✗ Morocco World News: Status code 403
+  ✓ Medias24: 10 items
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
 
 → Total items fetched: 120
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 2
+  ✓ Created (ai): 2026-07-25-pres-de-94-millions-de-touristes-se-sont-rendus-au-maroc-a-fin-juin
+  ✓ Created (ai): 2026-07-24-le-maroc-remet-au-mali-un-complexe-de-formation-professionnelle-dans-le-btp-et-l
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 2 new articles.
+  - Près de 9,4 millions de touristes se sont rendus au Maroc à fin juin
+  - Le Maroc remet au Mali un complexe de formation professionnelle dans le BTP et le tourisme
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (2 articles)
