@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-07-26T08:35:11.536Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-07-26-littoral-nord-la-flambee-des-tarifs-hoteliers-fait-fuir-les-marocains-et-penalis",
+          "title": "Littoral nord : la flambée des tarifs hôteliers fait fuir les Marocains et pénalise les commerçants",
+          "source": "Medias24"
+        }
+      ]
+    },
+    {
       "date": "2026-07-25T08:16:39.372Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
@@ -925,12 +937,6 @@
           "source": "TelQuel"
         }
       ]
-    },
-    {
-      "date": "2026-04-27T08:36:50.795Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
     }
   ]
 }
