@@ -1,19 +1,20 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-07-28T08:45:13.273Z
+📅 2026-07-29T08:49:54.130Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
   ✓ Hespress Fr: 10 items
   ✗ Morocco World News: Status code 403
   ✓ Medias24: 10 items
-  ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
+  ✗ Le360 Fr: Status code 404
 
 → Total items fetched: 120
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 1
+  ✓ Created (ai): 2026-07-28-singapour-autrement-14-adresses-loin-des-cliches-touristiques
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 1 new articles.
+  - Singapour autrement : 14 adresses loin des clichés touristiques
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (1 articles)

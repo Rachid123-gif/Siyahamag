@@ -81,13 +81,14 @@
     "2026-07-23-essaouira-hausse-de-4-des-nuitees-dans-les-ehtc-a-fin-avril",
     "2026-07-25-pres-de-94-millions-de-touristes-se-sont-rendus-au-maroc-a-fin-juin",
     "2026-07-24-le-maroc-remet-au-mali-un-complexe-de-formation-professionnelle-dans-le-btp-et-l",
-    "2026-07-26-littoral-nord-la-flambee-des-tarifs-hoteliers-fait-fuir-les-marocains-et-penalis"
+    "2026-07-26-littoral-nord-la-flambee-des-tarifs-hoteliers-fait-fuir-les-marocains-et-penalis",
+    "2026-07-28-singapour-autrement-14-adresses-loin-des-cliches-touristiques"
   ],
-  "lastRun": "2026-07-28T08:45:14.549Z",
+  "lastRun": "2026-07-29T08:50:22.868Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 120,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }
