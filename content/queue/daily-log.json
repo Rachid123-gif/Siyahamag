@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-07-30T08:38:54.427Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": [
+        {
+          "slug": "2026-07-29-la-smit-prepare-la-reconversion-de-quatre-kasbahs-en-etablissements-hoteliers",
+          "title": "La SMIT prépare la reconversion de quatre kasbahs en établissements hôteliers",
+          "source": "Medias24"
+        }
+      ]
+    },
+    {
       "date": "2026-07-29T08:50:22.870Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
@@ -898,12 +910,6 @@
       "date": "2026-05-02T07:53:21.006Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
-      "published": []
-    },
-    {
-      "date": "2026-05-01T08:21:49.158Z",
-      "feedsChecked": 5,
-      "itemsFetched": 130,
       "published": []
     }
   ]
