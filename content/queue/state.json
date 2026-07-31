@@ -85,11 +85,11 @@
     "2026-07-28-singapour-autrement-14-adresses-loin-des-cliches-touristiques",
     "2026-07-29-la-smit-prepare-la-reconversion-de-quatre-kasbahs-en-etablissements-hoteliers"
   ],
-  "lastRun": "2026-07-30T08:38:54.426Z",
+  "lastRun": "2026-07-31T09:10:42.128Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 120,
-    "candidates": 1,
-    "published": 1
+    "candidates": 0,
+    "published": 0
   }
 }
