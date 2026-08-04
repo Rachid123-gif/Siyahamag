@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-08-04T08:48:18.123Z",
+      "feedsChecked": 5,
+      "itemsFetched": 120,
+      "published": []
+    },
+    {
       "date": "2026-08-03T09:57:44.318Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
@@ -880,18 +886,6 @@
         {
           "slug": "2026-05-07-bourse-de-casablanca-seduit-les-pme-luxe-sous-surveillance-concurrentielle-tange",
           "title": "Bourse de Casablanca séduit les PME, luxe sous surveillance concurrentielle, Tanger Med agrège 40 multinationales : les 3 infos business à retenir",
-          "source": "TelQuel"
-        }
-      ]
-    },
-    {
-      "date": "2026-05-07T08:44:02.608Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-05-05-fes-un-exercice-de-simulation-denvergure-pour-tester-la-preparation-des-secours-",
-          "title": "Fès : Un exercice de simulation d’envergure pour tester la préparation des secours dans la médina",
           "source": "TelQuel"
         }
       ]
