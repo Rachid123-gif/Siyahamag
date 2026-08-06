@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-08-06T08:46:54.195Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-08-05T08:45:29.924Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -849,28 +855,6 @@
           "slug": "2026-05-09-tourisme-la-sfi-prepare-une-feuille-de-route-pour-accelerer-linvestissement-priv",
           "title": "Tourisme : la SFI prépare une feuille de route pour accélérer l’investissement privé au Maroc",
           "source": "Medias24"
-        }
-      ]
-    },
-    {
-      "date": "2026-05-09T08:04:17.310Z",
-      "feedsChecked": 5,
-      "itemsFetched": 110,
-      "published": [
-        {
-          "slug": "2026-05-08-rabat-accueillera-son-premier-festival-international-de-danse-du-19-au-24-mai",
-          "title": "Rabat accueillera son premier festival international de danse du 19 au 24 mai",
-          "source": "TelQuel"
-        },
-        {
-          "slug": "2026-05-07-la-bourse-de-casablanca-seduit-les-pme-le-luxe-sous-surveillance-concurrentielle",
-          "title": "La Bourse de Casablanca séduit les PME, le luxe sous surveillance concurrentielle, Tanger Med agrège 40 multinationales : les 3 infos business à retenir",
-          "source": "TelQuel"
-        },
-        {
-          "slug": "2026-05-07-le-diable-shabille-en-prada-2-breaking-a-essaouira-redouane-bougheraba-a-casabla",
-          "title": "Le Diable s'habille en Prada 2, breaking à Essaouira, Redouane Bougheraba à Casablanca… Les sorties de la semaine",
-          "source": "TelQuel"
         }
       ]
     }
