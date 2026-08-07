@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-08-07T07:25:48.077Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-08-06-la-fifa-dement-avoir-propose-au-maroc-daccueillir-la-finale-du-mondial-2030",
+          "title": "La FIFA dément avoir proposé au Maroc d’accueillir la finale du Mondial 2030",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-08-06T08:46:54.195Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -845,18 +857,6 @@
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
-    },
-    {
-      "date": "2026-05-10T08:17:48.006Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-05-09-tourisme-la-sfi-prepare-une-feuille-de-route-pour-accelerer-linvestissement-priv",
-          "title": "Tourisme : la SFI prépare une feuille de route pour accélérer l’investissement privé au Maroc",
-          "source": "Medias24"
-        }
-      ]
     }
   ]
 }
