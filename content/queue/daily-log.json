@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-08-08T07:02:58.123Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-08-07T07:25:48.077Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -848,12 +854,6 @@
     },
     {
       "date": "2026-05-12T08:49:28.844Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
-    },
-    {
-      "date": "2026-05-11T09:53:40.052Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
