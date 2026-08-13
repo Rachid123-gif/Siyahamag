@@ -84,13 +84,14 @@
     "2026-07-26-littoral-nord-la-flambee-des-tarifs-hoteliers-fait-fuir-les-marocains-et-penalis",
     "2026-07-28-singapour-autrement-14-adresses-loin-des-cliches-touristiques",
     "2026-07-29-la-smit-prepare-la-reconversion-de-quatre-kasbahs-en-etablissements-hoteliers",
-    "2026-08-06-la-fifa-dement-avoir-propose-au-maroc-daccueillir-la-finale-du-mondial-2030"
+    "2026-08-06-la-fifa-dement-avoir-propose-au-maroc-daccueillir-la-finale-du-mondial-2030",
+    "2026-08-12-marrakech-hausse-de-10-des-nuitees-dans-les-hebergements-touristiques-classes"
   ],
-  "lastRun": "2026-08-12T07:41:23.154Z",
+  "lastRun": "2026-08-13T07:43:27.750Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }

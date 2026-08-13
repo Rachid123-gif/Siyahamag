@@ -1,19 +1,20 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-08-12T07:41:20.780Z
+📅 2026-08-13T07:43:03.038Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
   ✗ Medias24: Status code 403
-  ✓ Hespress Fr: 10 items
   ✗ Morocco World News: Status code 403
+  ✓ Hespress Fr: 10 items
   ✓ TelQuel: 100 items
   ✗ Le360 Fr: Status code 404
 
 → Total items fetched: 110
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 1
+  ✓ Created (ai): 2026-08-12-marrakech-hausse-de-10-des-nuitees-dans-les-hebergements-touristiques-classes
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 1 new articles.
+  - Marrakech : hausse de 10% des nuitées dans les hébergements touristiques classés
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (1 articles)

@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-08-13T07:43:27.751Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-08-12-marrakech-hausse-de-10-des-nuitees-dans-les-hebergements-touristiques-classes",
+          "title": "Marrakech : hausse de 10% des nuitées dans les hébergements touristiques classés",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-08-12T07:41:23.156Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -827,18 +839,6 @@
           "slug": "2026-05-16-sacrifice-du-aid-al-adha-a-lhotel-le-creneau-qui-seduit-les-familles-et-divise-l",
           "title": "Sacrifice du Aïd al-Adha à l’hôtel : le créneau qui séduit les familles et divise les hôteliers",
           "source": "Medias24"
-        }
-      ]
-    },
-    {
-      "date": "2026-05-16T08:12:13.891Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-05-15-karim-lahmamssi-le-maroc-industriel-ne-se-resume-plus-a-laxe-casablanca-tanger",
-          "title": "Karim Lahmamssi : “Le Maroc industriel ne se résume plus à l'axe Casablanca Tanger”",
-          "source": "TelQuel"
         }
       ]
     }
