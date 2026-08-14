@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-08-14T07:42:27.747Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-08-13-mondial-2030-281-milliards-de-dirhams-pour-la-mise-a-niveau-du-complexe-sportif-",
+          "title": "Mondial 2030 : 2,81 milliards de dirhams pour la mise à niveau du Complexe sportif de Fès",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-08-13T07:43:27.751Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -829,18 +841,6 @@
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
-    },
-    {
-      "date": "2026-05-17T08:29:02.012Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-05-16-sacrifice-du-aid-al-adha-a-lhotel-le-creneau-qui-seduit-les-familles-et-divise-l",
-          "title": "Sacrifice du Aïd al-Adha à l’hôtel : le créneau qui séduit les familles et divise les hôteliers",
-          "source": "Medias24"
-        }
-      ]
     }
   ]
 }

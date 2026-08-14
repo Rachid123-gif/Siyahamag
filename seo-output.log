@@ -1,20 +1,21 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-08-13T07:43:03.038Z
+📅 2026-08-14T07:40:56.062Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
   ✗ Medias24: Status code 403
   ✗ Morocco World News: Status code 403
   ✓ Hespress Fr: 10 items
-  ✓ TelQuel: 100 items
   ✗ Le360 Fr: Status code 404
+  ✓ TelQuel: 100 items
 
 → Total items fetched: 110
 
 📰 Tourism-related new articles: 1
-  ✓ Created (ai): 2026-08-12-marrakech-hausse-de-10-des-nuitees-dans-les-hebergements-touristiques-classes
+  ⚠️  AI generation failed: This operation was aborted
+  ✓ Created (thin): 2026-08-13-mondial-2030-281-milliards-de-dirhams-pour-la-mise-a-niveau-du-complexe-sportif-
 
 ✅ Done. Published 1 new articles.
-  - Marrakech : hausse de 10% des nuitées dans les hébergements touristiques classés
+  - Mondial 2030 : 2,81 milliards de dirhams pour la mise à niveau du Complexe sportif de Fès
 
 ✨ Script completed successfully (1 articles)
