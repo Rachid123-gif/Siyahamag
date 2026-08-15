@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-08-15T06:48:52.107Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-08-14T07:42:27.747Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -835,12 +841,6 @@
           "source": "Hespress Fr"
         }
       ]
-    },
-    {
-      "date": "2026-05-18T10:18:40.798Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
     }
   ]
 }
