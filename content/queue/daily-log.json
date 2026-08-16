@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-08-16T06:50:16.828Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-08-15T06:48:52.107Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -826,18 +832,6 @@
         {
           "slug": "2026-05-20-29e-festival-de-fes-des-musiques-sacrees-du-monde-un-voyage-au-cur-des-rituels-s",
           "title": "29è Festival de Fès des Musiques Sacrées du Monde : un voyage au cœur des rituels sacrés des civilisations",
-          "source": "Hespress Fr"
-        }
-      ]
-    },
-    {
-      "date": "2026-05-19T09:58:25.042Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-05-19-coupe-du-monde-2030-bilbao-pourrait-renoncer-a-son-tour-a-lorganisation-de-match",
-          "title": "Coupe du monde 2030 : Bilbao pourrait renoncer à son tour à l’organisation de matchs",
           "source": "Hespress Fr"
         }
       ]
