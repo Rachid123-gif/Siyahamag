@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-08-27T17:32:22.739Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-08-26T06:58:28.175Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -788,18 +794,6 @@
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
-    },
-    {
-      "date": "2026-05-30T08:35:28.588Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-05-29-tourisme-interne-le-cheque-vacances-sera-t-il-une-priorite-du-prochain-gouvernem",
-          "title": "Tourisme interne : le chèque-vacances sera-t-il une priorité du prochain gouvernement ?",
-          "source": "Medias24"
-        }
-      ]
     }
   ]
 }
