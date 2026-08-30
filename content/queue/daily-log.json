@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-08-30T11:42:13.666Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-08-29T12:34:35.842Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -788,12 +794,6 @@
           "source": "TelQuel"
         }
       ]
-    },
-    {
-      "date": "2026-06-02T10:47:36.546Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
     }
   ]
 }
