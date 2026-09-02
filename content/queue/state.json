@@ -86,13 +86,14 @@
     "2026-07-29-la-smit-prepare-la-reconversion-de-quatre-kasbahs-en-etablissements-hoteliers",
     "2026-08-06-la-fifa-dement-avoir-propose-au-maroc-daccueillir-la-finale-du-mondial-2030",
     "2026-08-12-marrakech-hausse-de-10-des-nuitees-dans-les-hebergements-touristiques-classes",
-    "2026-08-13-mondial-2030-281-milliards-de-dirhams-pour-la-mise-a-niveau-du-complexe-sportif-"
+    "2026-08-13-mondial-2030-281-milliards-de-dirhams-pour-la-mise-a-niveau-du-complexe-sportif-",
+    "2026-09-01-tourisme-79-milliards-de-dirhams-de-recettes-voyages-a-fin-juillet"
   ],
-  "lastRun": "2026-09-01T11:27:55.668Z",
+  "lastRun": "2026-09-02T11:02:59.881Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }

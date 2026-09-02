@@ -1,19 +1,20 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-09-01T11:27:54.336Z
+📅 2026-09-02T11:02:20.086Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
   ✗ Medias24: Status code 403
-  ✗ Morocco World News: Status code 403
   ✓ Hespress Fr: 10 items
+  ✗ Morocco World News: Status code 403
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
 
 → Total items fetched: 110
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 1
+  ✓ Created (ai): 2026-09-01-tourisme-79-milliards-de-dirhams-de-recettes-voyages-a-fin-juillet
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 1 new articles.
+  - Tourisme : 79 milliards de dirhams de recettes voyages à fin juillet
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (1 articles)

@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-09-02T11:02:59.883Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-09-01-tourisme-79-milliards-de-dirhams-de-recettes-voyages-a-fin-juillet",
+          "title": "Tourisme : 79 milliards de dirhams de recettes voyages à fin juillet",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-09-01T11:27:55.670Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -752,23 +764,6 @@
         {
           "slug": "2026-06-05-plus-de-77-millions-de-touristes-au-maroc-a-fin-mai",
           "title": "Plus de 7,7 millions de touristes au Maroc à fin mai",
-          "source": "TelQuel"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-05T10:03:43.099Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-06-05-foot-les-lionnes-de-latlas-affrontent-le-benin-en-amical-le-5-juin-a-rabat",
-          "title": "Foot : les Lionnes de l’Atlas affrontent le Bénin en amical le 5 juin à Rabat",
-          "source": "TelQuel"
-        },
-        {
-          "slug": "2026-06-04-egyptiens-espagnols-qataris-la-ruee-etrangere-sur-lhotellerie-marocaine-avant-20",
-          "title": "\n                \n            \nÉgyptiens, Espagnols, Qataris... La ruée étrangère sur l'hôtellerie marocaine avant 2030 ",
           "source": "TelQuel"
         }
       ]
