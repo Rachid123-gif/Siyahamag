@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-09-03T11:00:20.658Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-09-02T11:02:59.883Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -743,28 +749,6 @@
           "slug": "2026-06-07-agriculture-investissement-tourisme-les-moteurs-de-la-croissance-marocaine-selon",
           "title": "Agriculture, investissement, tourisme : les moteurs de la croissance marocaine selon l’OCDE",
           "source": "Hespress Fr"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-06T08:42:17.039Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-06-05-plus-de-77-millions-de-touristes-au-maroc-a-fin-mai-2026",
-          "title": "Plus de 7,7 millions de touristes au Maroc à fin mai 2026",
-          "source": "Medias24"
-        },
-        {
-          "slug": "2026-06-05-nabyla-maan-jai-grandi-avec-le-festival-des-musiques-sacrees-de-fes",
-          "title": "Nabyla Maan : “J'ai grandi avec le Festival des musiques sacrées de Fès”",
-          "source": "TelQuel"
-        },
-        {
-          "slug": "2026-06-05-plus-de-77-millions-de-touristes-au-maroc-a-fin-mai",
-          "title": "Plus de 7,7 millions de touristes au Maroc à fin mai",
-          "source": "TelQuel"
         }
       ]
     }
