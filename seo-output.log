@@ -1,19 +1,25 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-09-03T11:00:18.979Z
+📅 2026-09-04T11:05:10.131Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
   ✗ Medias24: Status code 403
-  ✗ Morocco World News: Status code 403
   ✓ Hespress Fr: 10 items
+  ✗ Morocco World News: Status code 403
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
 
 → Total items fetched: 110
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 2
+  ✓ Created (ai): 2026-09-04-legislatives-2026-le-pam-erige-le-mondial-2030-en-moteur-economique-et-vise-un-m
+  ✓ Created (ai): 2026-09-03-marrakech-26-etablissements-hoteliers-feront-lobjet-dun-audit-energetique
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 2 new articles.
+  - Législatives 2026 : le PAM érige le Mondial 2030 en moteur économique et vise un million d'emplois
+  - 
+                
+            
+Marrakech : 26 établissements hôteliers feront l’objet d’un audit énergétique
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (2 articles)
