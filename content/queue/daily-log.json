@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-09-05T10:23:31.858Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-09-04-plus-de-14-millions-de-touristes-accueillis-au-maroc-a-fin-aout-2026",
+          "title": "Plus de 14 millions de touristes accueillis au Maroc à fin août 2026",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-09-04T11:05:44.280Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -750,12 +762,6 @@
           "source": "TelQuel"
         }
       ]
-    },
-    {
-      "date": "2026-06-08T11:10:14.999Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
     }
   ]
 }
