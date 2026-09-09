@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-09-09T11:05:35.216Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-09-08T11:00:39.788Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -707,23 +713,6 @@
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
-    },
-    {
-      "date": "2026-06-12T10:24:21.930Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-06-12-tourisme-pour-tenir-ses-ambitions-le-maroc-mise-sur-la-certification-des-metiers",
-          "title": "Tourisme : pour tenir ses ambitions, le Maroc mise sur la certification des métiers",
-          "source": "Medias24"
-        },
-        {
-          "slug": "2026-06-12-tourisme-et-programme-kafaa-plus-de-6000-professionnels-certifies",
-          "title": "Tourisme et programme “Kafaa” : plus de 6.000 professionnels certifiés",
-          "source": "TelQuel"
-        }
-      ]
     }
   ]
 }
