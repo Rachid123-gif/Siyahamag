@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-09-10T11:02:09.051Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-09-09-hotellerie-de-luxe-la-cdg-cree-une-filiale-pour-le-projet-du-ritz-carlton-a-mdiq",
+          "title": "\n                \n            \nHôtellerie de luxe : la CDG crée une filiale pour le projet du Ritz-Carlton à M’diq",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-09-09T11:05:35.216Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -707,12 +719,6 @@
           "source": "Medias24"
         }
       ]
-    },
-    {
-      "date": "2026-06-13T09:26:16.088Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
     }
   ]
 }

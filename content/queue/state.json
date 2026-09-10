@@ -90,13 +90,14 @@
     "2026-09-01-tourisme-79-milliards-de-dirhams-de-recettes-voyages-a-fin-juillet",
     "2026-09-04-legislatives-2026-le-pam-erige-le-mondial-2030-en-moteur-economique-et-vise-un-m",
     "2026-09-03-marrakech-26-etablissements-hoteliers-feront-lobjet-dun-audit-energetique",
-    "2026-09-04-plus-de-14-millions-de-touristes-accueillis-au-maroc-a-fin-aout-2026"
+    "2026-09-04-plus-de-14-millions-de-touristes-accueillis-au-maroc-a-fin-aout-2026",
+    "2026-09-09-hotellerie-de-luxe-la-cdg-cree-une-filiale-pour-le-projet-du-ritz-carlton-a-mdiq"
   ],
-  "lastRun": "2026-09-09T11:05:35.124Z",
+  "lastRun": "2026-09-10T11:02:09.050Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }
