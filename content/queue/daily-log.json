@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-09-11T11:00:16.660Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-09-10T11:02:09.051Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -700,23 +706,6 @@
           "slug": "2026-06-15-fouzi-lekjaa-se-confie-football-can-mondial-2030-et-developpement",
           "title": "Fouzi Lekjaa se confie : football, CAN, Mondial 2030 et développement",
           "source": "TelQuel"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-14T09:47:25.596Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-06-13-mondial-2026-des-fan-zones-a-casablanca-et-rabat-pour-vivre-les-matchs",
-          "title": "Mondial 2026 : des fan zones à Casablanca et Rabat pour vivre les matchs",
-          "source": "Medias24"
-        },
-        {
-          "slug": "2026-06-13-air-transat-lance-sa-premiere-liaison-aerienne-directe-entre-montreal-et-agadir",
-          "title": "Air Transat lance sa première liaison aérienne directe entre Montréal et Agadir",
-          "source": "Medias24"
         }
       ]
     }

@@ -93,11 +93,11 @@
     "2026-09-04-plus-de-14-millions-de-touristes-accueillis-au-maroc-a-fin-aout-2026",
     "2026-09-09-hotellerie-de-luxe-la-cdg-cree-une-filiale-pour-le-projet-du-ritz-carlton-a-mdiq"
   ],
-  "lastRun": "2026-09-10T11:02:09.050Z",
+  "lastRun": "2026-09-11T11:00:16.659Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 1,
-    "published": 1
+    "candidates": 0,
+    "published": 0
   }
 }
