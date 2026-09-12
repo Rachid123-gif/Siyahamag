@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-09-12T10:29:05.858Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-09-11T11:00:16.660Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -688,23 +694,6 @@
         {
           "slug": "2026-06-15-essaouira-lancement-du-projet-wiqaya-pour-renforcer-la-securite-sanitaire-dans-l",
           "title": "Essaouira : lancement du projet “Wiqaya+” pour renforcer la sécurité sanitaire dans les établissements touristiques",
-          "source": "TelQuel"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-15T12:31:36.062Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-06-15-gnaoua-2026-le-festival-qui-transforme-essaouira-en-capitale-mondiale-de-la-musi",
-          "title": "Gnaoua 2026 : Le festival qui transforme Essaouira en capitale mondiale de la musique",
-          "source": "Hespress Fr"
-        },
-        {
-          "slug": "2026-06-15-fouzi-lekjaa-se-confie-football-can-mondial-2030-et-developpement",
-          "title": "Fouzi Lekjaa se confie : football, CAN, Mondial 2030 et développement",
           "source": "TelQuel"
         }
       ]
