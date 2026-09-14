@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-09-14T12:25:41.953Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-09-13T11:32:09.773Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -677,18 +683,6 @@
           "slug": "2026-06-18-chadi-riad-lobjectif-est-de-gagner-la-coupe-du-monde-il-ny-a-pas-dautre-but",
           "title": "Chadi Riad : “L'objectif est de gagner la Coupe du monde. Il n'y a pas d'autre but”",
           "source": "TelQuel"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-17T11:09:04.779Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-06-17-chadi-riad-le-maroc-a-pour-objectif-de-remporter-la-coupe-du-monde-2026",
-          "title": "Chadi Riad : « Le Maroc a pour objectif de remporter la Coupe du monde 2026 »",
-          "source": "Hespress Fr"
         }
       ]
     }
