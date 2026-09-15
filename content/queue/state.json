@@ -91,13 +91,14 @@
     "2026-09-04-legislatives-2026-le-pam-erige-le-mondial-2030-en-moteur-economique-et-vise-un-m",
     "2026-09-03-marrakech-26-etablissements-hoteliers-feront-lobjet-dun-audit-energetique",
     "2026-09-04-plus-de-14-millions-de-touristes-accueillis-au-maroc-a-fin-aout-2026",
-    "2026-09-09-hotellerie-de-luxe-la-cdg-cree-une-filiale-pour-le-projet-du-ritz-carlton-a-mdiq"
+    "2026-09-09-hotellerie-de-luxe-la-cdg-cree-une-filiale-pour-le-projet-du-ritz-carlton-a-mdiq",
+    "2026-09-15-koy-group-de-yanja-el-khattat-cree-une-filiale-dediee-au-tourisme-a-dakhla"
   ],
-  "lastRun": "2026-09-14T12:25:41.952Z",
+  "lastRun": "2026-09-15T11:30:36.577Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }
