@@ -1,23 +1,24 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-09-15T11:30:18.000Z
+📅 2026-09-16T11:16:37.725Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
   ✗ Medias24: Status code 403
-  ✓ Hespress Fr: 10 items
   ✗ Morocco World News: Status code 403
+  ✓ Hespress Fr: 10 items
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
 
 → Total items fetched: 110
 
 📰 Tourism-related new articles: 1
-  ✓ Created (ai): 2026-09-15-koy-group-de-yanja-el-khattat-cree-une-filiale-dediee-au-tourisme-a-dakhla
+  ⚠️  Gemini HTTP 503: {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later
+  ✓ Created (thin): 2026-09-16-finale-du-mondial-2030-au-maroc-javier-tebas-brandit-la-menace-dun-retrait-espag
 
 ✅ Done. Published 1 new articles.
-  - 
-                
-            
-Koy Group de Yanja El Khattat crée une filiale dédiée au tourisme à Dakhla
+  - Finale du Mondial 2030 au Maroc : Javier Tebas brandit la menace d’un retrait espagnol
 
 ✨ Script completed successfully (1 articles)

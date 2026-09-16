@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-09-16T11:16:39.669Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-09-16-finale-du-mondial-2030-au-maroc-javier-tebas-brandit-la-menace-dun-retrait-espag",
+          "title": "Finale du Mondial 2030 au Maroc : Javier Tebas brandit la menace d’un retrait espagnol",
+          "source": "Hespress Fr"
+        }
+      ]
+    },
+    {
       "date": "2026-09-15T11:30:36.579Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -679,12 +691,6 @@
           "source": "TelQuel"
         }
       ]
-    },
-    {
-      "date": "2026-06-19T10:48:31.664Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
     }
   ]
 }
