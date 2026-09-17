@@ -1,5 +1,5 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-09-16T11:16:37.725Z
+📅 2026-09-17T11:24:53.309Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
@@ -11,14 +11,9 @@
 
 → Total items fetched: 110
 
-📰 Tourism-related new articles: 1
-  ⚠️  Gemini HTTP 503: {
-  "error": {
-    "code": 503,
-    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later
-  ✓ Created (thin): 2026-09-16-finale-du-mondial-2030-au-maroc-javier-tebas-brandit-la-menace-dun-retrait-espag
+📰 Tourism-related new articles: 0
 
-✅ Done. Published 1 new articles.
-  - Finale du Mondial 2030 au Maroc : Javier Tebas brandit la menace d’un retrait espagnol
+✅ Done. Published 0 new articles.
 
-✨ Script completed successfully (1 articles)
+
+✨ Script completed successfully (0 articles)

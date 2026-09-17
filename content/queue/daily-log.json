@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-09-17T11:24:54.924Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-09-16T11:16:39.669Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -677,18 +683,6 @@
           "slug": "2026-06-21-transport-touristique-la-profession-presse-le-pas-de-la-modernisation-avant-2030",
           "title": "Transport touristique : la profession presse le pas de la modernisation avant 2030",
           "source": "Hespress Fr"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-20T09:28:48.636Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-06-19-essaouira-vibre-avec-gnaoua-du-cinema-en-plein-air-a-casablanca-une-nuit-au-muse",
-          "title": "Essaouira vibre avec Gnaoua, du cinéma en plein air à Casablanca, une nuit au musée... Les sorties de la semaine",
-          "source": "TelQuel"
         }
       ]
     }
