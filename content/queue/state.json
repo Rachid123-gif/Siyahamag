@@ -93,13 +93,14 @@
     "2026-09-04-plus-de-14-millions-de-touristes-accueillis-au-maroc-a-fin-aout-2026",
     "2026-09-09-hotellerie-de-luxe-la-cdg-cree-une-filiale-pour-le-projet-du-ritz-carlton-a-mdiq",
     "2026-09-15-koy-group-de-yanja-el-khattat-cree-une-filiale-dediee-au-tourisme-a-dakhla",
-    "2026-09-16-finale-du-mondial-2030-au-maroc-javier-tebas-brandit-la-menace-dun-retrait-espag"
+    "2026-09-16-finale-du-mondial-2030-au-maroc-javier-tebas-brandit-la-menace-dun-retrait-espag",
+    "2026-09-19-marrakech-hausse-de-10-des-nuitees-dans-les-ehtc-a-fin-juillet-2026"
   ],
-  "lastRun": "2026-09-18T10:58:21.901Z",
+  "lastRun": "2026-09-19T10:42:35.994Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }
