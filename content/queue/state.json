@@ -94,13 +94,14 @@
     "2026-09-09-hotellerie-de-luxe-la-cdg-cree-une-filiale-pour-le-projet-du-ritz-carlton-a-mdiq",
     "2026-09-15-koy-group-de-yanja-el-khattat-cree-une-filiale-dediee-au-tourisme-a-dakhla",
     "2026-09-16-finale-du-mondial-2030-au-maroc-javier-tebas-brandit-la-menace-dun-retrait-espag",
-    "2026-09-19-marrakech-hausse-de-10-des-nuitees-dans-les-ehtc-a-fin-juillet-2026"
+    "2026-09-19-marrakech-hausse-de-10-des-nuitees-dans-les-ehtc-a-fin-juillet-2026",
+    "2026-09-21-tribune-tourisme-marocain-apres-la-course-aux-chiffres-la-bataille-de-la-valeur"
   ],
-  "lastRun": "2026-09-21T12:32:24.301Z",
+  "lastRun": "2026-09-22T11:20:58.109Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }

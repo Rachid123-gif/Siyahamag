@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-09-22T11:20:58.111Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-09-21-tribune-tourisme-marocain-apres-la-course-aux-chiffres-la-bataille-de-la-valeur",
+          "title": "[Tribune] Tourisme marocain : après la course aux chiffres, la bataille de la valeur",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-09-21T12:32:24.304Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -665,18 +677,6 @@
         {
           "slug": "2026-06-24-le-maroc-veut-attirer-23-millions-de-touristes-daffaires-et-de-congres-a-lhorizo",
           "title": "Le Maroc veut attirer 2,3 millions de touristes d'affaires et de congrès à l'horizon 2030",
-          "source": "TelQuel"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-24T09:42:18.911Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-06-23-tourisme-interne-plus-de-4-millions-de-nuitees-en-cinq-mois",
-          "title": "Tourisme interne : plus de 4 millions de nuitées en cinq mois",
           "source": "TelQuel"
         }
       ]
