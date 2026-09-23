@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-09-23T11:15:54.967Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-09-22-hotellerie-les-murs-avant-les-clients",
+          "title": "\n                \n            \nHôtellerie : les murs avant les clients ?",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-09-22T11:20:58.111Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -661,23 +673,6 @@
           "slug": "2026-06-26-tourisme-le-maroc-maintient-une-forte-dynamique-a-lapproche-de-la-saison-estival",
           "title": "Tourisme : le Maroc maintient une forte dynamique à l'approche de la saison estivale",
           "source": "Hespress Fr"
-        }
-      ]
-    },
-    {
-      "date": "2026-06-25T09:34:21.281Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-06-24-fatim-zahra-ammor-les-prix-des-services-touristiques-obeissent-a-la-logique-de-l",
-          "title": "Fatim-Zahra Ammor : “Les prix des services touristiques obéissent à la logique de l'offre et de la demande”",
-          "source": "TelQuel"
-        },
-        {
-          "slug": "2026-06-24-le-maroc-veut-attirer-23-millions-de-touristes-daffaires-et-de-congres-a-lhorizo",
-          "title": "Le Maroc veut attirer 2,3 millions de touristes d'affaires et de congrès à l'horizon 2030",
-          "source": "TelQuel"
         }
       ]
     }
