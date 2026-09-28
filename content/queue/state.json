@@ -99,11 +99,11 @@
     "2026-09-22-hotellerie-les-murs-avant-les-clients",
     "2026-09-27-ont-hausse-de-7-des-nuitees-dans-les-ehtc-de-fes-a-fin-juillet"
   ],
-  "lastRun": "2026-09-27T11:49:05.095Z",
+  "lastRun": "2026-09-28T13:31:19.797Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 1,
-    "published": 1
+    "candidates": 0,
+    "published": 0
   }
 }

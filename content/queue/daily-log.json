@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-09-28T13:31:19.801Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-09-27T11:49:05.098Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -663,18 +669,6 @@
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
-    },
-    {
-      "date": "2026-06-30T09:53:27.803Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-06-30-hotellerie-les-dessous-du-plan-marocain-a-350-millions-de-dollars-de-pickalbatro",
-          "title": "Hôtellerie : les dessous du plan marocain à 350 millions de dollars de Pickalbatros",
-          "source": "Medias24"
-        }
-      ]
     }
   ]
 }
