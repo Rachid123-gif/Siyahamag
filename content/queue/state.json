@@ -97,13 +97,15 @@
     "2026-09-19-marrakech-hausse-de-10-des-nuitees-dans-les-ehtc-a-fin-juillet-2026",
     "2026-09-21-tribune-tourisme-marocain-apres-la-course-aux-chiffres-la-bataille-de-la-valeur",
     "2026-09-22-hotellerie-les-murs-avant-les-clients",
-    "2026-09-27-ont-hausse-de-7-des-nuitees-dans-les-ehtc-de-fes-a-fin-juillet"
+    "2026-09-27-ont-hausse-de-7-des-nuitees-dans-les-ehtc-de-fes-a-fin-juillet",
+    "2026-09-30-marrakech-safi-hamid-bentahar-reelu-a-la-presidence-du-conseil-regional-du-touri",
+    "2026-09-29-les-etablissements-touristiques-classes-enregistrent-259-millions-de-nuitees-a-f"
   ],
-  "lastRun": "2026-09-29T12:33:17.920Z",
+  "lastRun": "2026-09-30T12:22:23.464Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 0,
-    "published": 0
+    "candidates": 2,
+    "published": 2
   }
 }

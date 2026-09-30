@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-09-30T12:22:23.465Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-09-30-marrakech-safi-hamid-bentahar-reelu-a-la-presidence-du-conseil-regional-du-touri",
+          "title": "Marrakech-Safi : Hamid Bentahar réélu à la présidence du Conseil régional du tourisme",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-09-29-les-etablissements-touristiques-classes-enregistrent-259-millions-de-nuitees-a-f",
+          "title": "Les établissements touristiques classés enregistrent 25,9 millions de nuitées à fin juillet 2026",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-09-29T12:33:17.921Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -660,12 +677,6 @@
     },
     {
       "date": "2026-07-03T09:28:56.615Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
-    },
-    {
-      "date": "2026-07-02T09:24:47.889Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
