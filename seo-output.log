@@ -1,22 +1,20 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-09-30T12:21:47.412Z
+📅 2026-10-01T12:54:09.223Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
   ✗ Medias24: Status code 403
-  ✓ Hespress Fr: 10 items
   ✗ Morocco World News: Status code 403
-  ✗ Le360 Fr: Status code 404
+  ✓ Hespress Fr: 10 items
   ✓ TelQuel: 100 items
+  ✗ Le360 Fr: Status code 404
 
 → Total items fetched: 110
 
-📰 Tourism-related new articles: 2
-  ✓ Created (ai): 2026-09-30-marrakech-safi-hamid-bentahar-reelu-a-la-presidence-du-conseil-regional-du-touri
-  ✓ Created (ai): 2026-09-29-les-etablissements-touristiques-classes-enregistrent-259-millions-de-nuitees-a-f
+📰 Tourism-related new articles: 1
+  ✓ Created (ai): 2026-10-01-recettes-touristiques-hausse-de-pres-de-10-a-fin-aout
 
-✅ Done. Published 2 new articles.
-  - Marrakech-Safi : Hamid Bentahar réélu à la présidence du Conseil régional du tourisme
-  - Les établissements touristiques classés enregistrent 25,9 millions de nuitées à fin juillet 2026
+✅ Done. Published 1 new articles.
+  - Recettes touristiques : hausse de près de 10% à fin août
 
-✨ Script completed successfully (2 articles)
+✨ Script completed successfully (1 articles)

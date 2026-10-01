@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-10-01T12:54:30.630Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-10-01-recettes-touristiques-hausse-de-pres-de-10-a-fin-aout",
+          "title": "Recettes touristiques : hausse de près de 10% à fin août",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-09-30T12:22:23.465Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -671,12 +683,6 @@
     },
     {
       "date": "2026-07-04T08:46:15.333Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
-    },
-    {
-      "date": "2026-07-03T09:28:56.615Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
