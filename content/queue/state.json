@@ -100,13 +100,14 @@
     "2026-09-27-ont-hausse-de-7-des-nuitees-dans-les-ehtc-de-fes-a-fin-juillet",
     "2026-09-30-marrakech-safi-hamid-bentahar-reelu-a-la-presidence-du-conseil-regional-du-touri",
     "2026-09-29-les-etablissements-touristiques-classes-enregistrent-259-millions-de-nuitees-a-f",
-    "2026-10-01-recettes-touristiques-hausse-de-pres-de-10-a-fin-aout"
+    "2026-10-01-recettes-touristiques-hausse-de-pres-de-10-a-fin-aout",
+    "2026-10-04-tunisie-des-touristes-marocains-denoncent-des-restrictions-et-des-traitements-hu"
   ],
-  "lastRun": "2026-10-03T11:27:24.512Z",
+  "lastRun": "2026-10-04T12:08:58.208Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }
