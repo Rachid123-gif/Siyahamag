@@ -103,11 +103,11 @@
     "2026-10-01-recettes-touristiques-hausse-de-pres-de-10-a-fin-aout",
     "2026-10-04-tunisie-des-touristes-marocains-denoncent-des-restrictions-et-des-traitements-hu"
   ],
-  "lastRun": "2026-10-04T12:08:58.208Z",
+  "lastRun": "2026-10-05T14:14:47.569Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 1,
-    "published": 1
+    "candidates": 0,
+    "published": 0
   }
 }
