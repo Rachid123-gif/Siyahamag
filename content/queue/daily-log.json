@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-10-06T13:10:13.435Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-10-06-tourisme-hausse-de-10-du-nombre-de-nuitees-dans-les-hotels-de-la-region-de-rabat",
+          "title": "Tourisme : hausse de 10% du nombre de nuitées dans les hôtels de la région de Rabat",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-10-05-lonmt-et-gnv-vont-developper-les-flux-touristiques-maritimes-entre-litalie-et-le",
+          "title": "L'ONMT et GNV vont développer les flux touristiques maritimes entre l'Italie et le Maroc",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-10-05T14:14:47.651Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -686,12 +703,6 @@
           "source": "Hespress Fr"
         }
       ]
-    },
-    {
-      "date": "2026-07-08T08:38:36.982Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
     }
   ]
 }
