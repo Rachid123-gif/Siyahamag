@@ -105,11 +105,11 @@
     "2026-10-06-tourisme-hausse-de-10-du-nombre-de-nuitees-dans-les-hotels-de-la-region-de-rabat",
     "2026-10-05-lonmt-et-gnv-vont-developper-les-flux-touristiques-maritimes-entre-litalie-et-le"
   ],
-  "lastRun": "2026-10-06T13:10:13.433Z",
+  "lastRun": "2026-10-07T13:04:28.937Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 2,
-    "published": 2
+    "candidates": 0,
+    "published": 0
   }
 }

@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-10-07T13:04:28.955Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-10-06T13:10:13.435Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -691,18 +697,6 @@
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
-    },
-    {
-      "date": "2026-07-09T09:51:30.510Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-07-09-tourisme-le-maroc-face-au-defi-de-lapres-record",
-          "title": "Tourisme : le Maroc face au défi de l’après-record",
-          "source": "Hespress Fr"
-        }
-      ]
     }
   ]
 }
