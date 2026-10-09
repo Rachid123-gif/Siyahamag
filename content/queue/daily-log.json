@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-10-09T12:59:17.127Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-10-08-royal-air-maroc-sept-boeing-vont-beneficier-dun-lifting-interieur-a-lapproche-du",
+          "title": "Royal Air Maroc : sept Boeing vont bénéficier d’un lifting intérieur à l’approche du Mondial 2030",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-10-08-fes-meknes-lancement-dun-nouvel-appel-a-projets-pour-cinq-investissements-touris",
+          "title": "Fès-Meknès : lancement d’un nouvel appel à projets pour cinq investissements touristiques",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-10-08T13:12:51.342Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -694,12 +711,6 @@
     },
     {
       "date": "2026-07-12T08:26:32.052Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
-    },
-    {
-      "date": "2026-07-11T08:05:42.269Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []

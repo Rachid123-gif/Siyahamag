@@ -104,13 +104,15 @@
     "2026-10-04-tunisie-des-touristes-marocains-denoncent-des-restrictions-et-des-traitements-hu",
     "2026-10-06-tourisme-hausse-de-10-du-nombre-de-nuitees-dans-les-hotels-de-la-region-de-rabat",
     "2026-10-05-lonmt-et-gnv-vont-developper-les-flux-touristiques-maritimes-entre-litalie-et-le",
-    "2026-10-08-157-millions-de-touristes-accueillis-au-maroc-a-fin-septembre-2026"
+    "2026-10-08-157-millions-de-touristes-accueillis-au-maroc-a-fin-septembre-2026",
+    "2026-10-08-royal-air-maroc-sept-boeing-vont-beneficier-dun-lifting-interieur-a-lapproche-du",
+    "2026-10-08-fes-meknes-lancement-dun-nouvel-appel-a-projets-pour-cinq-investissements-touris"
   ],
-  "lastRun": "2026-10-08T13:12:51.340Z",
+  "lastRun": "2026-10-09T12:59:17.126Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 1,
-    "published": 1
+    "candidates": 2,
+    "published": 2
   }
 }
