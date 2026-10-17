@@ -106,13 +106,14 @@
     "2026-10-05-lonmt-et-gnv-vont-developper-les-flux-touristiques-maritimes-entre-litalie-et-le",
     "2026-10-08-157-millions-de-touristes-accueillis-au-maroc-a-fin-septembre-2026",
     "2026-10-08-royal-air-maroc-sept-boeing-vont-beneficier-dun-lifting-interieur-a-lapproche-du",
-    "2026-10-08-fes-meknes-lancement-dun-nouvel-appel-a-projets-pour-cinq-investissements-touris"
+    "2026-10-08-fes-meknes-lancement-dun-nouvel-appel-a-projets-pour-cinq-investissements-touris",
+    "2026-10-16-jalal-charaf-de-lum6p-au-tourisme"
   ],
-  "lastRun": "2026-10-16T11:08:09.100Z",
+  "lastRun": "2026-10-17T10:27:51.306Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }
