@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-10-20T11:17:41.709Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-10-20-maroc-le-tourisme-pese-desormais-75-du-pib-en-hausse-de-117-en-2025",
+          "title": "Maroc : le tourisme pèse désormais 7,5% du PIB, en hausse de 11,7% en 2025",
+          "source": "Hespress Fr"
+        },
+        {
+          "slug": "2026-10-20-le-pib-touristique-en-hausse-de-103-atteint-pres-de-130-milliards-de-dirhams-en-",
+          "title": "Le PIB touristique, en hausse de 10,3%, atteint près de 130 milliards de dirhams en 2025",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-10-19T12:46:51.719Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -708,12 +725,6 @@
           "source": "Hespress Fr"
         }
       ]
-    },
-    {
-      "date": "2026-07-22T08:37:48.471Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
     }
   ]
 }
