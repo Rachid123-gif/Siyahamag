@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-10-21T11:32:56.919Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-10-20T11:17:41.709Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -713,18 +719,6 @@
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
-    },
-    {
-      "date": "2026-07-23T08:39:56.977Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-07-23-essaouira-hausse-de-4-des-nuitees-dans-les-ehtc-a-fin-avril",
-          "title": "Essaouira: hausse de 4% des nuitées dans les EHTC à fin avril ",
-          "source": "Hespress Fr"
-        }
-      ]
     }
   ]
 }
