@@ -1,6 +1,28 @@
 {
   "runs": [
     {
+      "date": "2026-10-23T11:23:49.214Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-10-23-tourisme-rural-selection-de-projets-dans-quatre-villages-de-la-region-fes-meknes",
+          "title": "Tourisme rural : sélection de projets dans quatre villages de la région Fès-Meknès",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-10-22-sebta-chiffre-a-75-millions-deuros-les-pertes-liees-a-la-crise-et-a-90-la-chute-",
+          "title": "Sebta chiffre à 75 millions d’euros les pertes liées à la crise et à 90 % la chute du tourisme",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-10-22-moroccos-hotel-boom-60000-new-beds-but-who-will-fill-them",
+          "title": "Morocco’s hotel boom: 60,000 new beds, but who will fill them?",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-10-22T11:33:09.161Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -700,23 +722,6 @@
           "slug": "2026-07-26-littoral-nord-la-flambee-des-tarifs-hoteliers-fait-fuir-les-marocains-et-penalis",
           "title": "Littoral nord : la flambée des tarifs hôteliers fait fuir les Marocains et pénalise les commerçants",
           "source": "Medias24"
-        }
-      ]
-    },
-    {
-      "date": "2026-07-25T08:16:39.372Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-07-25-pres-de-94-millions-de-touristes-se-sont-rendus-au-maroc-a-fin-juin",
-          "title": "Près de 9,4 millions de touristes se sont rendus au Maroc à fin juin",
-          "source": "Hespress Fr"
-        },
-        {
-          "slug": "2026-07-24-le-maroc-remet-au-mali-un-complexe-de-formation-professionnelle-dans-le-btp-et-l",
-          "title": "Le Maroc remet au Mali un complexe de formation professionnelle dans le BTP et le tourisme",
-          "source": "TelQuel"
         }
       ]
     }
