@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-10-24T10:41:38.066Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-10-23-mondial-2030-le-plf-2027-accorde-un-regime-fiscal-dexception-a-la-fifa",
+          "title": "Mondial 2030 : le PLF 2027 accorde un régime fiscal d’exception à la FIFA",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-10-23T11:23:49.214Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -712,18 +724,6 @@
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
-    },
-    {
-      "date": "2026-07-26T08:35:11.536Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-07-26-littoral-nord-la-flambee-des-tarifs-hoteliers-fait-fuir-les-marocains-et-penalis",
-          "title": "Littoral nord : la flambée des tarifs hôteliers fait fuir les Marocains et pénalise les commerçants",
-          "source": "Medias24"
-        }
-      ]
     }
   ]
 }
