@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-10-27T11:56:10.746Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-10-27-onmt-plus-de-221-mmdh-dinvestissements-prevus-en-2027",
+          "title": "ONMT : plus de 2,21 MMDH d'investissements prévus en 2027",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-10-26T12:39:55.394Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -710,18 +722,6 @@
           "slug": "2026-07-29-la-smit-prepare-la-reconversion-de-quatre-kasbahs-en-etablissements-hoteliers",
           "title": "La SMIT prépare la reconversion de quatre kasbahs en établissements hôteliers",
           "source": "Medias24"
-        }
-      ]
-    },
-    {
-      "date": "2026-07-29T08:50:22.870Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": [
-        {
-          "slug": "2026-07-28-singapour-autrement-14-adresses-loin-des-cliches-touristiques",
-          "title": "Singapour autrement : 14 adresses loin des clichés touristiques",
-          "source": "TelQuel"
         }
       ]
     }
