@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-10-29T12:43:52.814Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-10-29-plf-2027-une-transition-budgetaire-strategique-pour-soutenir-lessor-du-tourisme-",
+          "title": "PLF 2027 : une transition budgétaire stratégique pour soutenir l'essor du tourisme marocain vers le cap de 2030",
+          "source": "Hespress Fr"
+        }
+      ]
+    },
+    {
       "date": "2026-10-28T12:32:42.186Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -709,12 +721,6 @@
     },
     {
       "date": "2026-08-01T08:29:15.199Z",
-      "feedsChecked": 5,
-      "itemsFetched": 120,
-      "published": []
-    },
-    {
-      "date": "2026-07-31T09:10:42.129Z",
       "feedsChecked": 5,
       "itemsFetched": 120,
       "published": []
