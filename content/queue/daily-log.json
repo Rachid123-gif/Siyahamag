@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-11-03T13:57:43.533Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-11-03-lagune-de-marchica-un-complexe-hotelier-haut-de-gamme-de-585-mdh-a-nador",
+          "title": "Lagune de Marchica : un complexe hôtelier haut de gamme de 585 MDH à Nador",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-11-02T15:23:39.548Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -715,12 +727,6 @@
     },
     {
       "date": "2026-08-06T08:46:54.195Z",
-      "feedsChecked": 5,
-      "itemsFetched": 110,
-      "published": []
-    },
-    {
-      "date": "2026-08-05T08:45:29.924Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
       "published": []
