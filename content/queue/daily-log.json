@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-11-05T14:27:22.113Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-11-04T14:11:41.921Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -718,18 +724,6 @@
       "feedsChecked": 5,
       "itemsFetched": 110,
       "published": []
-    },
-    {
-      "date": "2026-08-07T07:25:48.077Z",
-      "feedsChecked": 5,
-      "itemsFetched": 110,
-      "published": [
-        {
-          "slug": "2026-08-06-la-fifa-dement-avoir-propose-au-maroc-daccueillir-la-finale-du-mondial-2030",
-          "title": "La FIFA dément avoir proposé au Maroc d’accueillir la finale du Mondial 2030",
-          "source": "TelQuel"
-        }
-      ]
     }
   ]
 }
