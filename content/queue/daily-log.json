@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-11-06T14:03:19.715Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-11-06-mondial-2030-feijoo-menace-de-retirer-lespagne-de-lorganisation-si-la-finale-est",
+          "title": "Mondial 2030 : Feijoo menace de retirer l’Espagne de l’organisation si la finale est attribuée au Maroc",
+          "source": "Hespress Fr"
+        }
+      ]
+    },
+    {
       "date": "2026-11-05T14:27:22.113Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -715,12 +727,6 @@
     },
     {
       "date": "2026-08-09T07:05:00.198Z",
-      "feedsChecked": 5,
-      "itemsFetched": 110,
-      "published": []
-    },
-    {
-      "date": "2026-08-08T07:02:58.123Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
       "published": []
