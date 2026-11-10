@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-11-10T14:42:06.598Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-11-10-le-maroc-et-lequateur-examinent-les-moyens-de-renforcer-la-cooperation-en-matier",
+          "title": "Le Maroc et l'Équateur examinent les moyens de renforcer la coopération en matière de tourisme",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-11-09T15:50:54.784Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -724,12 +736,6 @@
           "source": "TelQuel"
         }
       ]
-    },
-    {
-      "date": "2026-08-12T07:41:23.156Z",
-      "feedsChecked": 5,
-      "itemsFetched": 110,
-      "published": []
     }
   ]
 }
