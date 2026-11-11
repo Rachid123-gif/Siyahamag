@@ -1,6 +1,12 @@
 {
   "runs": [
     {
+      "date": "2026-11-11T13:56:50.019Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": []
+    },
+    {
       "date": "2026-11-10T14:42:06.598Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -721,18 +727,6 @@
         {
           "slug": "2026-08-13-mondial-2030-281-milliards-de-dirhams-pour-la-mise-a-niveau-du-complexe-sportif-",
           "title": "Mondial 2030 : 2,81 milliards de dirhams pour la mise à niveau du Complexe sportif de Fès",
-          "source": "TelQuel"
-        }
-      ]
-    },
-    {
-      "date": "2026-08-13T07:43:27.751Z",
-      "feedsChecked": 5,
-      "itemsFetched": 110,
-      "published": [
-        {
-          "slug": "2026-08-12-marrakech-hausse-de-10-des-nuitees-dans-les-hebergements-touristiques-classes",
-          "title": "Marrakech : hausse de 10% des nuitées dans les hébergements touristiques classés",
           "source": "TelQuel"
         }
       ]
