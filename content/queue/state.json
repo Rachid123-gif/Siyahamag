@@ -118,13 +118,14 @@
     "2026-10-29-plf-2027-une-transition-budgetaire-strategique-pour-soutenir-lessor-du-tourisme-",
     "2026-11-03-lagune-de-marchica-un-complexe-hotelier-haut-de-gamme-de-585-mdh-a-nador",
     "2026-11-06-mondial-2030-feijoo-menace-de-retirer-lespagne-de-lorganisation-si-la-finale-est",
-    "2026-11-10-le-maroc-et-lequateur-examinent-les-moyens-de-renforcer-la-cooperation-en-matier"
+    "2026-11-10-le-maroc-et-lequateur-examinent-les-moyens-de-renforcer-la-cooperation-en-matier",
+    "2026-11-16-maroc-les-etablissements-touristiques-classes-enregistrent-348-millions-de-nuite"
   ],
-  "lastRun": "2026-11-15T13:47:28.501Z",
+  "lastRun": "2026-11-16T15:27:52.833Z",
   "lastRunStats": {
     "feedsChecked": 5,
     "itemsFetched": 110,
-    "candidates": 0,
-    "published": 0
+    "candidates": 1,
+    "published": 1
   }
 }

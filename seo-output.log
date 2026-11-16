@@ -1,19 +1,20 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-11-15T13:47:26.812Z
+📅 2026-11-16T15:27:31.772Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
   ✗ Medias24: Status code 403
-  ✓ Hespress Fr: 10 items
   ✗ Morocco World News: Status code 403
+  ✓ Hespress Fr: 10 items
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
 
 → Total items fetched: 110
 
-📰 Tourism-related new articles: 0
+📰 Tourism-related new articles: 1
+  ✓ Created (ai): 2026-11-16-maroc-les-etablissements-touristiques-classes-enregistrent-348-millions-de-nuite
 
-✅ Done. Published 0 new articles.
+✅ Done. Published 1 new articles.
+  - Maroc : les établissements touristiques classés enregistrent 34,8 millions de nuitées à fin septembre
 
-
-✨ Script completed successfully (0 articles)
+✨ Script completed successfully (1 articles)
