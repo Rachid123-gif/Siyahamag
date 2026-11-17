@@ -1,6 +1,23 @@
 {
   "runs": [
     {
+      "date": "2026-11-17T15:50:44.752Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-11-17-jalal-charaf-veut-rouvrir-le-dossier-du-tourisme-interne",
+          "title": "Jalal Charaf veut rouvrir le dossier du tourisme interne",
+          "source": "TelQuel"
+        },
+        {
+          "slug": "2026-11-17-tourisme-200-projets-mobilisant-pres-de-35-milliards-de-dh-pour-valoriser-les-po",
+          "title": "Tourisme : 200 projets mobilisant près de 3,5 milliards de DH pour valoriser les potentialités territoriales",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-11-16T15:27:52.835Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -721,12 +738,6 @@
     },
     {
       "date": "2026-08-20T06:55:49.728Z",
-      "feedsChecked": 5,
-      "itemsFetched": 110,
-      "published": []
-    },
-    {
-      "date": "2026-08-19T06:54:03.270Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
       "published": []
