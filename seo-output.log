@@ -1,23 +1,19 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-11-17T15:48:48.084Z
+📅 2026-11-18T15:28:26.506Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
+  ✓ Hespress Fr: 10 items
   ✗ Medias24: Status code 403
   ✗ Morocco World News: Status code 403
-  ✓ Hespress Fr: 10 items
   ✗ Le360 Fr: Status code 404
   ✓ TelQuel: 100 items
 
 → Total items fetched: 110
 
-📰 Tourism-related new articles: 2
-  ⚠️  AI generation failed: This operation was aborted
-  ✓ Created (thin): 2026-11-17-jalal-charaf-veut-rouvrir-le-dossier-du-tourisme-interne
-  ✓ Created (ai): 2026-11-17-tourisme-200-projets-mobilisant-pres-de-35-milliards-de-dh-pour-valoriser-les-po
+📰 Tourism-related new articles: 0
 
-✅ Done. Published 2 new articles.
-  - Jalal Charaf veut rouvrir le dossier du tourisme interne
-  - Tourisme : 200 projets mobilisant près de 3,5 milliards de DH pour valoriser les potentialités territoriales
+✅ Done. Published 0 new articles.
 
-✨ Script completed successfully (2 articles)
+
+✨ Script completed successfully (0 articles)
