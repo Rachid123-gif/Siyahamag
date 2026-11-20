@@ -1,15 +1,15 @@
 🚀 SiyahaMag Daily SEO Automation
-📅 2026-11-19T15:33:48.062Z
+📅 2026-11-20T15:13:27.042Z
 🤖 AI mode: ON — generating original articles via Gemini (free)
 
 📡 Fetching RSS feeds...
-  ✗ Hespress Fr: Status code 403
   ✗ Medias24: Status code 403
   ✗ Morocco World News: Status code 403
-  ✗ TelQuel: Status code 403
+  ✓ Hespress Fr: 10 items
   ✗ Le360 Fr: Status code 404
+  ✓ TelQuel: 100 items
 
-→ Total items fetched: 0
+→ Total items fetched: 110
 
 📰 Tourism-related new articles: 0
 
