@@ -1,6 +1,18 @@
 {
   "runs": [
     {
+      "date": "2026-11-26T16:42:58.118Z",
+      "feedsChecked": 5,
+      "itemsFetched": 110,
+      "published": [
+        {
+          "slug": "2026-11-26-la-smit-annonce-investmor-une-plateforme-pour-les-investisseurs-du-tourisme",
+          "title": "La SMIT annonce InvestMOR, une plateforme pour les investisseurs du tourisme",
+          "source": "TelQuel"
+        }
+      ]
+    },
+    {
       "date": "2026-11-25T17:00:48.453Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
@@ -732,12 +744,6 @@
     },
     {
       "date": "2026-08-29T12:34:35.842Z",
-      "feedsChecked": 5,
-      "itemsFetched": 110,
-      "published": []
-    },
-    {
-      "date": "2026-08-28T18:28:34.046Z",
       "feedsChecked": 5,
       "itemsFetched": 110,
       "published": []
